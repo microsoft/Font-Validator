@@ -234,6 +234,7 @@ namespace FontValidator
                     }
                 }
                 else if ( "+table" == args[i] ) {
+                    i++;
                     if ( i < args.Length ) {
                         vp.AddTable( args[i] );
                     } else {
