@@ -77,6 +77,11 @@ namespace OTFontFileVal {
             }
         }
 
+        public bool IsTestingTable( string table )
+        {
+            return tablesToTest.Contains( table );
+        }
+
         public int RemoveTableFromList( string table )
         {
             int i;
@@ -115,7 +120,4 @@ namespace OTFontFileVal {
             
         }
     }
-
-
-
 }

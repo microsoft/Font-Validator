@@ -88,8 +88,9 @@ namespace FontValidator
 
         public void OnBeginTableTest( DirectoryEntry de )
         {
-            if (m_verbose == true)
-                StdOut( "Table Test: " + ( string )de.tag );
+            string name = ( string )de.tag;
+            if (m_verbose == true && m_vp.IsTestingTable(name))
+                StdOut( "Table Test: " + name );
         }
         public void OnTestProgress( object oParam )
         {
