@@ -82,7 +82,7 @@ namespace FontValidator
         }
         public void OnBeginRasterTest( string label )
         {
-            if (m_verbose == true)
+            if (m_verbose == true && m_vp.IsTestingRaster())
                 StdOut( "Begin Raster Test: " + label );
         }
 
@@ -201,6 +201,7 @@ namespace FontValidator
             Console.WriteLine( "-all-tables" );
             Console.WriteLine( "-only-tables" );
             Console.WriteLine( "-quiet" );
+            Console.WriteLine( "+raster-tests" );
             Console.WriteLine( "-report-dir    <reportDir>" );
             Console.WriteLine( "-report-in-font-dir" );
 
@@ -272,6 +273,9 @@ namespace FontValidator
                 }
                 else if ( "-quiet" == args[i] ) {
                     verbose = false;
+                }
+                else if ( "+raster-tests" == args[i] ) {
+                    vp.SetRasterTesting();
                 }
                 else if ( "-report-dir" == args[i] ) {
                     i++;

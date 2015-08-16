@@ -82,6 +82,11 @@ namespace OTFontFileVal {
             return tablesToTest.Contains( table );
         }
 
+        public bool IsTestingRaster()
+        {
+            return (doRastBW || doRastGray || doRastClearType);
+        }
+
         public int RemoveTableFromList( string table )
         {
             int i;
