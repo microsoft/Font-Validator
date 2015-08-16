@@ -22,6 +22,7 @@ namespace FontValidator
         OTFileVal             m_curOTFileVal;
         List<string>          m_reportFiles = new List<string>();
         List<string>          m_captions = new List<string>();
+        bool m_verbose;
 
         static void ErrOut( string s ) 
         {
@@ -81,12 +82,14 @@ namespace FontValidator
         }
         public void OnBeginRasterTest( string label )
         {
-            StdOut( "Begin Raster Test: " + label );
+            if (m_verbose == true)
+                StdOut( "Begin Raster Test: " + label );
         }
 
         public void OnBeginTableTest( DirectoryEntry de )
         {
-            StdOut( "Table Test: " + ( string )de.tag );
+            if (m_verbose == true)
+                StdOut( "Table Test: " + ( string )de.tag );
         }
         public void OnTestProgress( object oParam )
         {
@@ -94,7 +97,8 @@ namespace FontValidator
             if (s == null) {
                 s = "";
             }
-            StdOut( "Progress: " + s );
+            if (m_verbose == true)
+                StdOut( "Progress: " + s );
         }
 
         public void OnCloseReportFile( string sReportFile )
@@ -174,13 +178,15 @@ namespace FontValidator
                                  string [] sFilenames, 
                                  ReportFileDestination rfd, 
                                  bool bOpenReportFiles, 
-                                 string sReportFixedDir )
+                                 string sReportFixedDir,
+                                 bool verbose)
         {
             m_vp = vp;
             m_sFiles = sFilenames;
             m_ReportFileDestination = rfd;
             m_bOpenReportFiles = bOpenReportFiles;
             m_sReportFixedDir = sReportFixedDir;
+            m_verbose = verbose;
         }
 
         static void Usage()
@@ -193,6 +199,7 @@ namespace FontValidator
             Console.WriteLine( "-table         <table-skip>    (multiple allowed)" );
             Console.WriteLine( "-all-tables" );
             Console.WriteLine( "-only-tables" );
+            Console.WriteLine( "-quiet" );
             Console.WriteLine( "-report-dir    <reportDir>" );
             Console.WriteLine( "-report-in-font-dir" );
 
@@ -213,6 +220,7 @@ namespace FontValidator
         static int Main( string[] args )
         {
             bool err = false;
+            bool verbose = true;
             string reportDir = null;
             ReportFileDestination rfd = ReportFileDestination.TempFiles;
             List<string> sFileList = new List<string>();
@@ -261,6 +269,9 @@ namespace FontValidator
                 else if ( "-only-tables" == args[i] ) {
                     vp.ClearTables();
                 }
+                else if ( "-quiet" == args[i] ) {
+                    verbose = false;
+                }
                 else if ( "-report-dir" == args[i] ) {
                     i++;
                     if ( i < args.Length ) {
@@ -287,9 +298,8 @@ namespace FontValidator
 
             CmdLineInterface cmd = new 
                 CmdLineInterface( vp, sFileList.ToArray(), rfd, false, 
-                                  reportDir );
+                                  reportDir , verbose);
             return cmd.DoIt();
         }
     }
-
 }
