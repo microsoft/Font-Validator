@@ -303,6 +303,8 @@ namespace OTFontFileVal {
             }
             catch (IOException)
             {
+                // This error needs to abort for the command line
+                // driver, since we are not viewing afterwards.
                 Console.WriteLine("Could not open the report file. Not outputting report");
                 stream = new MemoryStream(); //Just dumping into memory, later this is thrown away
             }

@@ -104,6 +104,9 @@ namespace FontValidator
 
         public void OnCloseReportFile( string sReportFile )
         {
+            // Maybe check that it exists? The GUI
+            // can use memory stream for temporary XML display;
+            // Not applicable to CMD.
             StdOut( "Complete: " + sReportFile );
             // copy the xsl file to the same directory as the report
             // 
@@ -282,6 +285,17 @@ namespace FontValidator
                     if ( i < args.Length ) {
                         reportDir = args[i];
                         rfd = ReportFileDestination.FixedDir;
+                        // Try writing to the directory to see if it works.
+                        using (FileStream fs = File.Create(
+                                                           Path.Combine(
+                                                                        reportDir,
+                                                                        Path.GetRandomFileName()
+                                                                        ),
+                                                           1, // bufferSize
+                                                           FileOptions.DeleteOnClose)
+                               )
+                        { };
+                        // exception should throw & abort on failure
                     } else {
                         ErrOut( "Argument required for \"" + args[i-1] + "\"" );
                         err = true;

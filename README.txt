@@ -57,5 +57,5 @@ Annoyances:
 Table order is case-insensitive sorted in GUI, but case-sensitive
 sorted in output. Would prefer all CAPs and sorted consistently.
 
-The command-line tool outputs one line per glyph per progress -
-over 100k lines for mingliu.ttc, which has 34k glyphs x 3 typefaces.
+GUI allows in-memory reports, so CMD does not warn nor abort when
+output location is invalid, and wastes time producing no output.
