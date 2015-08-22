@@ -1120,7 +1120,11 @@ namespace OTFontFileVal
         {
             //Any font with postscript outlines instead of truetype outlines has a CFF, table
             //So, if the file has a CFF table, we return 0 promptly
-            if (IsPostScript())
+            //
+            // FreeType is CFF capable.
+            Type freeType = Type.GetType("Compat.OTFontFile.Rasterizer.FreeType.Library");
+            if (freeType == null) freeType = Type.GetType("SharpFont.Library");
+            if (IsPostScript() && freeType == null)
             {
                 m_sDevMetricsDataError = "Font has PostScript outlines, rasterization not yet implemented";
                 return 0;
