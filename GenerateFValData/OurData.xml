@@ -5859,7 +5859,7 @@ Correct this data using a table editing tool.&lt;BR&gt;For examples of how to us
     atom="EBLC_P_BitmapSizeTableIndexOrder"
     linkTitle="WARNING: field missing"
     specLink="WARNING: field missing"
-    shortDesc="Each bitmapSizeTable's  indices are ordered okay"
+    shortDesc="Each bitmapSizeTable's indices are ordered okay"
     fwLinkID="0"
     tableName="WARNING: field missing">
     <problem/>
