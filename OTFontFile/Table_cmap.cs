@@ -804,8 +804,15 @@ namespace OTFontFile
                             uint obscureIndex = (uint)
                                 (idRangeOffset + (c-usStartCode)*2 + 
                                  AddressOfIdRangeOffset);
-                            ushort nGlyph = m_bufTable.GetUshort(m_ete.offset +
-                                                                 obscureIndex);
+                            ushort nGlyph = 0;
+                            // make sure we are not going to access outside of
+                            // table
+                            if (m_ete.offset + obscureIndex <
+                                m_bufTable.GetLength())
+                            {
+                                nGlyph = m_bufTable.GetUshort(m_ete.offset +
+                                                              obscureIndex);
+                            }
                             if (nGlyph !=0 )
                             {
                                 nGlyph = (ushort)(nGlyph + idDelta);
