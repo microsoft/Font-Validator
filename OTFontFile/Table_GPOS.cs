@@ -2538,6 +2538,7 @@ namespace OTFontFile
                     for (uint iChainPosClassSet = 0; iChainPosClassSet < ccpf2.ChainPosClassSetCount; iChainPosClassSet++)
                     {
                         ChainContextPosFormat2.ChainPosClassSet cpcs = ccpf2.GetChainPosClassSetTable(iChainPosClassSet);
+                        if ( cpcs != null )
                         for (uint iChainPosClassRule = 0; iChainPosClassRule < cpcs.ChainPosClassRuleCount; iChainPosClassRule++)
                         {
                             ChainContextPosFormat2.ChainPosClassRule cpcr = cpcs.GetChainPosClassRuleTable(iChainPosClassRule);
