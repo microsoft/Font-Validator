@@ -1,0 +1,33 @@
+From eb7b4d186e4433d28f269054e8455a974163e420 Mon Sep 17 00:00:00 2001
+From: Hin-Tak Leung <htl10@users.sourceforge.net>
+Date: Wed, 26 Aug 2015 04:48:18 +0100
+Subject: [PATCH] adding ComputeMetrics
+
+Signed-off-by: Hin-Tak Leung <htl10@users.sourceforge.net>
+---
+ Source/SharpFont/LoadFlags.cs | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/Source/SharpFont/LoadFlags.cs b/Source/SharpFont/LoadFlags.cs
+index 4f55831..2990cce 100644
+--- a/Source/SharpFont/LoadFlags.cs
++++ b/Source/SharpFont/LoadFlags.cs
+@@ -169,6 +169,15 @@ namespace SharpFont
+ 		/// </summary>
+ 		Color = 0x100000,
+ 
++		/// <summary>
++		/// This flag sets computing glyph metrics without the use of bundled
++		/// metrics tables. Well-behaving fonts have optimized bundled metrics
++		/// and these should be used. This flag is mainly used by font
++		/// validating or font editing applications which need to ignore, verify
++		/// or edit those tables.
++		/// <summary>
++		ComputeMetrics = 0x200000,
++
+ 		/// <summary><para>
+ 		/// A bit-flag to be OR-ed with the ‘flags’ parameter of the <see cref="Face.GetAdvance"/> and
+ 		/// <see cref="Face.GetAdvances"/> functions.
+-- 
+2.4.3
+
