@@ -117,11 +117,14 @@ namespace OTFontFileVal
                 }
             }
 
+            // T.EBDT_GlyphImageData depends on T.EBDT_TableDependency passing.
             if (v.PerformTest(T.EBDT_GlyphImageData))
             {
                 bool bGlyphImageDataOk = true;
 
                 Table_EBLC EBLCTable = (Table_EBLC)fontOwner.GetTable("EBLC");
+                if (EBLCTable == null)
+                    return bRet; //failed the last test, not going on.
                 
                 // for each bitmap size
                 for (uint i=0; i<EBLCTable.numSizes; i++)
