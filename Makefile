@@ -1,3 +1,27 @@
+# Copyright (c) Hin-Tak Leung
+
+# All rights reserved.
+
+# MIT License
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy of
+# this software and associated documentation files (the ""Software""), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+# of the Software, and to permit persons to whom the Software is furnished to do
+# so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 # Overview:
 
 # COMPAT_LIBRARIES: Compat - is the replacement stub dll for everything
@@ -25,6 +49,16 @@ LIBRARIES=OTFontFile ValCommon GMath Glyph OTFontFileVal
 GENDOC_EXE=GenerateFValData
 MAIN_EXE=FontVal FontValidator
 
+MCS=mcs -debug- -optimize+
+
+ifeq "$(BUILD)" ".net2"
+EXTRA_DEV_OPTS=/nostdlib /platform:AnyCPU /reference:/usr/lib/mono/2.0/System.dll \
+/reference:/usr/lib/mono/2.0/mscorlib.dll \
+-lib:/usr/lib/mono/2.0
+else
+EXTRA_DEV_OPTS=
+endif
+
 default:
 	mkdir -p bin
 	for target in $(COMPAT_LIBRARIES) $(LIBRARIES); do \
@@ -37,29 +71,35 @@ default:
 .PHONY: clean gendoc default
 
 clean:
-	$(RM) bin/*.dll bin/*.exe GenerateFValData/bin/Debug/GenerateFValData.exe
+	$(RM) GenerateFValData/bin/Debug/GenerateFValData.exe
+	for target in $(COMPAT_LIBRARIES) $(LIBRARIES); do \
+            $(RM) bin/$${target}.dll ; \
+        done
+	for target in $(MAIN_EXE); do \
+            $(RM) bin/$${target}.exe ; \
+        done
 
 gendoc: GenerateFValData/bin/Debug/GenerateFValData.exe
 
 bin/Compat.dll:
 	( cd Compat     && \
-        mcs  -target:library -r:System.Windows.Forms -out:../$@ *.cs )
+        $(MCS) -target:library $(EXTRA_DEV_OPTS) -lib:../bin/ -r:SharpFont -r:System.Windows.Forms -out:../$@ *.cs )
 
 bin/OTFontFile.dll:
 	( cd OTFontFile && \
-        mcs -target:library -out:../$@ *.cs )
+        $(MCS) -target:library $(EXTRA_DEV_OPTS) -out:../$@ *.cs )
 
 bin/ValCommon.dll:
 	( cd ValCommon  && \
-        mcs -lib:../bin/ -r:OTFontFile -target:library -out:../$@ *.cs )
+        $(MCS) -lib:../bin/ $(EXTRA_DEV_OPTS) -r:OTFontFile -target:library -out:../$@ *.cs )
 
 bin/GMath.dll:
 	( cd GMath      && \
-	mcs -lib:../bin/ -r:OTFontFile -r:ValCommon -target:library -out:../$@ *.cs )
+	$(MCS) -lib:../bin/ $(EXTRA_DEV_OPTS) -r:OTFontFile -r:ValCommon -target:library -out:../$@ *.cs )
 
 bin/Glyph.dll:
 	( cd Glyph      && \
-        mcs -lib:../bin/ -r:OTFontFile -r:ValCommon -r:GMath \
+        $(MCS) -lib:../bin/ $(EXTRA_DEV_OPTS) -r:OTFontFile -r:ValCommon -r:GMath \
             -resource:NS_Glyph.GErrStrings.resources \
             -target:library -out:../$@ *.cs )
 
@@ -68,7 +108,7 @@ bin/Glyph.dll:
 GenerateFValData/bin/Debug/GenerateFValData.exe:
 	( cd GenerateFValData && \
         mkdir -p bin/Debug && \
-        mcs -r:System.Web  -target:exe \
+        $(MCS) -r:System.Web  -target:exe \
             -out:bin/Debug/GenerateFValData.exe *.cs Properties/AssemblyInfo.cs )
 	@mkdir -p NewHelp
 	@echo
@@ -80,7 +120,7 @@ GenerateFValData/bin/Debug/GenerateFValData.exe:
 
 bin/OTFontFileVal.dll:
 	( cd OTFontFileVal && \
-        mcs -lib:../bin/ \
+        $(MCS) -lib:../bin/ $(EXTRA_DEV_OPTS) \
             -r:Compat -r:System.Windows.Forms \
             -r:OTFontFile -r:ValCommon -r:Glyph -r:GMath \
 	    -resource:OTFontFileVal.ValStrings.resources \
@@ -88,12 +128,12 @@ bin/OTFontFileVal.dll:
 
 bin/FontValidator.exe:
 	( cd FontValidator && \
-        mcs -lib:../bin/ -r:OTFontFileVal -r:OTFontFile -r:ValCommon \
+        $(MCS) -lib:../bin/ $(EXTRA_DEV_OPTS) -r:OTFontFileVal -r:OTFontFile -r:ValCommon \
         -target:exe -out:../$@ *.cs )
 
 bin/FontVal.exe:
 	( cd FontVal && \
-        mcs -lib:../bin/ -lib:../00_refs/ \
+        $(MCS) -lib:../bin/ $(EXTRA_DEV_OPTS) \
             -r:OTFontFileVal -r:OTFontFile -r:ValCommon -r:System.Windows.Forms \
             -r:System.Drawing -r:System.Data -r:Compat \
             -resource:FontVal.Form1.resources \
