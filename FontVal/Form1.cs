@@ -575,7 +575,6 @@ namespace FontVal
 			this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																					  this.menuItemOpenProj,
 																					  this.menuItemOpenReport});
-			this.menuItem3.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
 			this.menuItem3.Text = "Open";
 			// 
 			// menuItemOpenProj
