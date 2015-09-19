@@ -1,183 +1,105 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="GERR_APPLICATION" xml:space="preserve">
-    <value>A1110: Application error</value>
-  </data>
-  <data name="GERR_COMPONENT_INDEX_GLYPH" xml:space="preserve">
-    <value>E1113: Invalid glyph index of component</value>
-  </data>
-  <data name="GERR_VAL_FAILURE" xml:space="preserve">
-    <value>A1113: Test failed because of unhandeled exception</value>
-  </data>
-  <data name="GERR_COMPONENT_INTERS" xml:space="preserve">
-    <value>W1110: Intersecting components of composite glyph</value>
-  </data>
-  <data name="GERR_BBOX" xml:space="preserve">
-    <value>E1112: Bounding box is incorrect</value>
-  </data>
-  <data name="GERR_KNOT_DUPL" xml:space="preserve">
-    <value>W1111: Duplicated knots</value>
-  </data>
-  <data name="GERR_CONT_INTERS" xml:space="preserve">
-    <value>E1111: Intersecting contours</value>
-  </data>
-  <data name="GERR_EXTEREME_NOT_ON_CURVE" xml:space="preserve">
-    <value>W1112: Not all extremes are marked with the on-curve control points </value>
-  </data>
-  <data name="GERR_CONT_DEGEN" xml:space="preserve">
-    <value>W1113: Degenerated contour(s)</value>
-  </data>
-  <data name="GERR_CONT_MISOR" xml:space="preserve">
-    <value>E1110: Misoriented contour</value>
-  </data>
-  <data name="GERR_COMPONENT_EMPTY" xml:space="preserve">
-    <value>E1123: An empty component of the composite glyph</value>
-  </data>
-  <data name="GERR_COMPONENT_INCORRECT_TRANSFORM" xml:space="preserve">
-    <value>E1116: Component transform matrix is degenerated</value>
-  </data>
-  <data name="GERR_VAL_UNABLE_TO_PERFORM_TEST" xml:space="preserve">
-    <value>A1111: Unable to perform test due to previously detected errors</value>
-  </data>
-  <data name="GERR_CONT_WRAP" xml:space="preserve">
-    <value>E1119: Wrapped contour(s) </value>
-  </data>
-  <data name="GERR_CONT_DUPL" xml:space="preserve">
-    <value>E1120: Duplicated contours</value>
-  </data>
-  <data name="GERR_COMPONENT_INDEX_KNOT" xml:space="preserve">
-    <value>E1114: Invalid index of knot in composite glyph</value>
-  </data>
-  <data name="GERR_COMPONENT_CIRCULAR_DEPENDENCY" xml:space="preserve">
-    <value>E1118: Circular dependency of composite glyph's components</value>
-  </data>
-  <data name="GERR_COMPONENT_DUPL" xml:space="preserve">
-    <value>E1121: Duplicated components of composite glyph</value>
-  </data>
-  <data name="GERR_VAL_ABORTED" xml:space="preserve">
-    <value>A1112: Test aborted</value>
-  </data>
-  <data name="GERR_COMPONENT_LOAD_FAILURE" xml:space="preserve">
-    <value>E1115: Failure to load the component</value>
-  </data>
-  <data name="GERR_COMPONENT_INCORRECT_SHIFT" xml:space="preserve">
-    <value>E1117: Shift of component either undefined or ambigously defined</value>
-  </data>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="ResMimeType">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="Version">
+		<value>1.0.0.0</value>
+	</resheader>
+	<resheader name="Reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.3102.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="Writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.3102.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="GERR_CONT_MISOR">
+		<value>E1110: Misoriented contour</value>
+	</data>
+	<data name="GERR_CONT_INTERS">
+		<value>E1111: Intersecting contours</value>
+	</data>
+	<data name="GERR_BBOX">
+		<value>E1112: Bounding box is incorrect</value>
+	</data>
+	<data name="GERR_COMPONENT_INDEX_GLYPH">
+		<value>E1113: Invalid glyph index of component</value>
+	</data>
+	<data name="GERR_COMPONENT_INDEX_KNOT">
+		<value>E1114: Invalid index of knot in composite glyph</value>
+	</data>
+	<data name="GERR_COMPONENT_LOAD_FAILURE">
+		<value>E1115: Failure to load the component</value>
+	</data>
+	<data name="GERR_COMPONENT_INCORRECT_TRANSFORM">
+		<value>E1116: Component transform matrix is degenerated</value>
+	</data>
+	<data name="GERR_COMPONENT_INCORRECT_SHIFT">
+		<value>E1117: Shift of component either undefined or ambigously defined</value>
+	</data>
+	<data name="GERR_COMPONENT_CIRCULAR_DEPENDENCY">
+		<value>E1118: Circular dependency of composite glyph's components</value>
+	</data>
+	<data name="GERR_CONT_WRAP">
+		<value>E1119: Wrapped contour(s) </value>
+	</data>
+	<data name="GERR_CONT_DUPL">
+		<value>E1120: Duplicated contours</value>
+	</data>
+	<data name="GERR_COMPONENT_DUPL">
+		<value>E1121: Duplicated components of composite glyph</value>
+	</data>
+	<data name="GERR_COMPONENT_INTERS">
+		<value>W1110: Intersecting components of composite glyph</value>
+	</data>
+	<data name="GERR_KNOT_DUPL">
+		<value>W1111: Duplicated knots</value>
+	</data>
+	<data name="GERR_CONT_DEGEN">
+		<value>W1113: Degenerated contour(s)</value>
+	</data>
+	<data name="GERR_APPLICATION">
+		<value>A1110: Application error</value>
+	</data>
+	<data name="GERR_VAL_UNABLE_TO_PERFORM_TEST">
+		<value>A1111: Unable to perform test due to previously detected errors</value>
+	</data>
+	<data name="GERR_VAL_ABORTED">
+		<value>A1112: Test aborted</value>
+	</data>
+	<data name="GERR_VAL_FAILURE">
+		<value>A1113: Test failed because of unhandeled exception</value>
+	</data>
+	<data name="GERR_COMPONENT_EMPTY">
+		<value>E1123: An empty component of the composite glyph</value>
+	</data>
+	<data name="GERR_EXTEREME_NOT_ON_CURVE">
+		<value>W1112: Not all extremes are marked with the on-curve control points </value>
+	</data>
 </root>
