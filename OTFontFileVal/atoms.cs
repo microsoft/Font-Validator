@@ -21,6 +21,7 @@ namespace OTFontFileVal {
         cmap_W_f14_NonPacked,
         gasp_W_AdjRangeIdenticalFlags,
         glyf_W_CompositeReservedBit,
+        hdmx_W_Need_Newer_FreeType,
         head_W_created_0,
         head_W_created_unlikely,
         head_W_flags_bit4_1_hdmx,
@@ -42,6 +43,7 @@ namespace OTFontFileVal {
         loca_W_GlyfEntryLengthAlignment,
         loca_W_GlyfPartiallyUnreferenced,
         LTSH_W_yPels_zero,
+        LTSH_W_Need_Newer_FreeType,
         name_W_subfamily_style,
         name_W_VersionMismatch_MS_MAC,
         name_W_VersionMismatch_3_1_3_10,
@@ -84,9 +86,11 @@ namespace OTFontFileVal {
         _rast_W_PF_VECTORS_AT_OR_NEAR_PERP,
         _rast_W_PT_NOT_TOUCHED,
         _rast_W_SANGW_OBSELETE,
+        _rast_W_Need_Newer_FreeType,
         loca_W_GlyfEntryEmpty,
         maxp_W_Calculation_Unclear,
         VDMX_W_CalcData,
+        VDMX_W_Need_Newer_FreeType,
     }
     public enum E {
         OS_2_A_CodePageNotInstalled,
