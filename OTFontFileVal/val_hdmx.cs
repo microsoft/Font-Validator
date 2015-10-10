@@ -248,7 +248,7 @@ namespace OTFontFileVal
                     }
                     catch (Exception e)
                     {
-                        v.ApplicationError(T.VDMX_CompareToCalcData, E._Table_E_Exception, m_tag, e.Message);
+                        v.ApplicationError(T.hdmx_Widths, E._Table_E_Exception, m_tag, e.Message);
                         bRet = false;
                     }
 
@@ -291,7 +291,7 @@ namespace OTFontFileVal
                             }
                             catch (Exception e)
                             {
-                                v.ApplicationError(T.VDMX_CompareToCalcData, E._Table_E_Exception, m_tag, e.Message);
+                                v.ApplicationError(T.hdmx_Widths, E._Table_E_Exception, m_tag, e.Message);
                             }
                             Debug.Assert(sDetails != null);
                             v.Error(T.hdmx_Widths, E.hdmx_E_Rasterizer, m_tag, sDetails);
