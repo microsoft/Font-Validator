@@ -113,6 +113,12 @@ namespace OTFontFileVal
 
                 try
                 {
+                    Version ver = fontOwner.GetFile().GetRasterizer().FTVersion;
+
+                    if ( ver.CompareTo(new Version(2,6,1)) < 0 )
+                        v.Warning(T.VDMX_CompareToCalcData, W.VDMX_W_Need_Newer_FreeType, m_tag,
+                                  "Using FreeType Version " + ver + " may not get correct results for VDMX");
+
                     dmd = fontOwner.GetCalculatedDevMetrics();
                 }
                 catch (InvalidOperationException e)

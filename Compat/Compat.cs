@@ -58,7 +58,14 @@ namespace OTFontFile.Rasterizer
                     throw new System.ComponentModel.Win32Exception();
             }
             _lib = new Library();
-            Console.WriteLine("FreeType version: " + _lib.Version);
+            //Console.WriteLine("FreeType version: " + _lib.Version);
+        }
+
+        public Version FTVersion
+        {
+            get {
+                return _lib.Version;
+            }
         }
 
         static public RasterInterf getInstance()
@@ -275,7 +282,7 @@ namespace OTFontFile.Rasterizer
             try{
                 _face.SetPixelSizes(x_requestedPixelSize, y_requestPixelSize);
             } catch (FreeTypeException e) {
-                Console.WriteLine("SetPixelSizes caught " + e + " at size " + x_requestedPixelSize + ", " + y_requestPixelSize);
+                //Console.WriteLine("SetPixelSizes caught " + e + " at size " + x_requestedPixelSize + ", " + y_requestPixelSize);
                 if (e.Error == Error.InvalidPixelSize)
                     throw new ArgumentException("FreeType invalid pixel size error: Likely setting unsupported size "
                                                 + x_requestedPixelSize + ", " + y_requestPixelSize + " for fixed-size font.");

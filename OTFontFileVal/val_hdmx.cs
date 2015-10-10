@@ -238,6 +238,12 @@ namespace OTFontFileVal
                     RasterInterf.DevMetricsData dmd = null;
                     try
                     {
+                        Version ver = fontOwner.GetFile().GetRasterizer().FTVersion;
+
+                        if ( ver.CompareTo(new Version(2,6,1)) < 0 )
+                            v.Warning(T.hdmx_Widths, W.hdmx_W_Need_Newer_FreeType, m_tag,
+                                      "Using FreeType Version " + ver + " may not get correct results for HDMX");
+
                         dmd = fontOwner.GetCalculatedDevMetrics();
                     }
                     catch (Exception e)
