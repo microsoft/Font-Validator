@@ -70,6 +70,7 @@ namespace Mono.Security {
 			}
 		}
 
+#if NOT_USED
 		static public ASN1 FromInt32 (Int32 value) 
 		{
 			byte[] integer = BitConverterLE.GetBytes (value);
@@ -93,6 +94,7 @@ namespace Mono.Security {
 			}
 			return asn1;
 		}
+#endif
 
 		static public ASN1 FromOid (string oid) 
 		{
