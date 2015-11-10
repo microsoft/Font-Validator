@@ -9171,10 +9171,10 @@ All tables should be recorded in the table directory with their actual length. T
     atom="OS_2_W_Version_old"
     linkTitle="OS/2 table specification"
     specLink="http://www.microsoft.com/typography/otspec/os2.htm#ver"
-    shortDesc="The version number is valid, but less than 3"
+    shortDesc="The version number is valid, but less than 5"
     fwLinkID="10398"
     tableName="OS/2">
-    <problem>The version number of the OS/2 table identifies the content and layout of the table. The version number used currently is three (3). Versions zero (0, TrueType rev 1.5), one (1, TrueType rev 1.66), and two (2, OpenType rev 1.2) have been used previously. Incrementing the version number of the table will require that values stored in the table be changed to conform to the new version.</problem>
+    <problem>The version number of the OS/2 table identifies the content and layout of the table. The version number used currently is five (5). Versions zero (0, TrueType rev 1.5), one (1, TrueType rev 1.66), two (2, OpenType rev 1.2), three (3, OpenType rev 1.4) and four (4, OpenType rev 1.6) have been used previously. Incrementing the version number of the table will require that values stored in the table be changed to conform to the new version.</problem>
 </item>
 
 <item
