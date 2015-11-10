@@ -823,9 +823,9 @@ namespace OTFontFileVal
                 }
             }
 
-            if (GetDirectoryEntry("glyf") == null && GetDirectoryEntry("CFF ") == null && GetDirectoryEntry("EBDT") == null)
+            if (GetDirectoryEntry("glyf") == null && GetDirectoryEntry("CFF ") == null && GetDirectoryEntry("EBDT") == null && GetDirectoryEntry("CBDT") == null)
             {
-                v.Error(T.T_NULL, E._FONT_E_MissingRequiredTable, null, "Font must contain either a 'glyf', 'CFF ', or 'EBDT' table");
+                v.Error(T.T_NULL, E._FONT_E_MissingRequiredTable, null, "Font must contain either a 'glyf', 'CFF ', 'EBDT' or 'CBDT' table");
                 bRet = false;
             }
 

@@ -92,7 +92,7 @@ namespace OTFontFileVal
 
             if (v.PerformTest(T.EBDT_version))
             {
-                if (version.GetUint() == 0x00020000)
+                if (version.GetUint() == 0x00020000 || version.GetUint() == 0x00030000)
                 {
                     v.Pass(T.EBDT_version, P.EBDT_P_version, m_tag);
                 }
@@ -102,6 +102,7 @@ namespace OTFontFileVal
                     return false;
                 }
             }
+            //TODO: check tag for EBDT v3, CBDT v2, bdat
 
             if (v.PerformTest(T.EBDT_TableDependency))
             {
@@ -223,7 +224,35 @@ namespace OTFontFileVal
                                         }
                                         break;
 
+                                    case 17:
+                                        if (version.GetUint() != 0x00030000)
+                                        {
+                                            bGlyphImageDataOk = false;
+                                            bRet = false;
+                                        }
+                                        // TODO: adding 3 checks
+                                        break;
+
+                                    case 18:
+                                        if (version.GetUint() != 0x00030000)
+                                        {
+                                            bGlyphImageDataOk = false;
+                                            bRet = false;
+                                        }
+                                        // TODO: adding 3 checks
+                                        break;
+
+                                    case 19:
+                                        if (version.GetUint() != 0x00030000)
+                                        {
+                                            bGlyphImageDataOk = false;
+                                            bRet = false;
+                                        }
+                                        // TODO: adding 3 checks
+                                        break;
+
                                     default:
+                                        // TODO: emit Unknown
                                         break;
                                 }
                             }

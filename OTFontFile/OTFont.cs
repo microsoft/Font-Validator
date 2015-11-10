@@ -215,8 +215,8 @@ namespace OTFontFile
                     for (int i = 0; i<m_OffsetTable.DirectoryEntries.Count; i++)
                     {
                         DirectoryEntry temp = (DirectoryEntry)m_OffsetTable.DirectoryEntries[i];
-                        if ( (temp.tag == "bloc" && tag == "EBLC")
-                             || (temp.tag == "bdat" && tag == "EBDT") )
+                        if ( ( (temp.tag == "bloc" || temp.tag == "CBLC") && tag == "EBLC")
+                             || ( (temp.tag == "bdat" || temp.tag == "CBDT" ) && tag == "EBDT") )
                         {
                             de = temp;
                             break;

@@ -61,11 +61,11 @@ namespace OTFontFile
             if (tag == null) return "";
 
             string sName = tag;
-            if (sName == "bloc")
+            if (sName == "bloc" || sName == "CBLC" )
             {
                 sName = "EBLC";
             }
-            else if (sName == "bdat")
+            else if (sName == "bdat" || sName == "CBDT" )
             {
                 sName = "EBDT";
             }
@@ -78,6 +78,8 @@ namespace OTFontFile
             string [] sTables =
                 {
                     "BASE",
+                    "CBDT",
+                    "CBLC",
                     "CFF ",
                     "cmap",
                     "cvt ",

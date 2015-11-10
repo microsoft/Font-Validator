@@ -35,7 +35,7 @@ namespace OTFontFileVal
             
             if (v.PerformTest(T.EBLC_version))
             {
-                if (version.GetUint() == 0x00020000)
+                if (version.GetUint() == 0x00020000 || version.GetUint() == 0x00030000)
                 {
                     v.Pass(T.EBLC_version, P.EBLC_P_version, m_tag);
                 }
@@ -45,6 +45,7 @@ namespace OTFontFileVal
                     return false;
                 }
             }
+            // TODO: check tag and warn EBLC v3, CBLC v2, bloc
 
             if (v.PerformTest(T.EBLC_numSizes))
             {
@@ -139,7 +140,8 @@ namespace OTFontFileVal
                 for (uint i=0; i<numSizes; i++)
                 {
                     bitmapSizeTable bst = GetBitmapSizeTable(i);
-                    if (bst.bitDepth != 1 && bst.bitDepth != 2 && bst.bitDepth != 4 && bst.bitDepth != 8)
+                    if (bst.bitDepth != 1 && bst.bitDepth != 2 && bst.bitDepth != 4 && bst.bitDepth != 8
+                        && !(version.GetUint() == 0x00030000 && bst.bitDepth == 32) )
                     {
                         string s = "index = " + i + ", bitDepth = " + bst.bitDepth;
                         v.Error(T.EBLC_bitDepth, E.EBLC_E_bitDepth, m_tag, s);
@@ -252,7 +254,10 @@ namespace OTFontFileVal
                 bOk = false;
             }
 
-            if (iSH.imageFormat < 1 || iSH.imageFormat > 9 || iSH.imageFormat == 3)
+            if ( (iSH.imageFormat < 1 || iSH.imageFormat > 9 || iSH.imageFormat == 3)
+                && !(version.GetUint() == 0x00030000 &&
+                     (iSH.imageFormat == 17 || iSH.imageFormat == 18 || iSH.imageFormat == 19)
+                     ) )
             {
                 string sDetails = "invalid imageFormat: " + sID + ", imageFormat = " + iSH.imageFormat;
                 v.Error(T.EBLC_indexSubTables, E.EBLC_E_indexSubTables, m_tag, sDetails);
