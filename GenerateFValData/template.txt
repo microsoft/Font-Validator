@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso8859-1">
+<LINK REL=STYLESHEET HREF="fv.css" TYPE="text/css">
+<TITLE>##HELPID##</TITLE>
+</HEAD>
+<BODY BGCOLOR=white>
+<Object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<param name="Keyword" value="##HELPID##">
+	<param name="Keyword" value="##TABLENAME##">
+</OBJECT>
+<H1><A NAME="##HELPID##"></A>Message: ##HELPID##</H1></div>
+<HR>
+<P><B><I>##TABLENAME##</I>: ##SHORTDESC##</B></P>
+<P>##PROBLEM##</P>
+<P>For more information, see the <A TARGET="top" HREF="http://go.microsoft.com/fwlink?LinkID=##FWLINKID##">##LINKTITLE##</A>.
+</BODY>
+</HTML>
+

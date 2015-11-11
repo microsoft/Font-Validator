@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FontVal.Form1" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QFDbCAdeijVbQNrRR/Get4DihpM9PEEJBSeAPx0hhjk=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FontVal.PersistedData" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAKAAAAAAAAAAAAAAAAAAAAQQAAAEgAAAAAAAAAA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FontVal.FormAbout" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAAiAAAACAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FormAbout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FontVal.FormReportOptions" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DBAAACAAACAAAMEAAACAIAQDAAgQAEAABSAAAECgIBA=</HashCode>
+      <FileName>FormReportOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FontVal.FormTransform" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AqCAJAAAACBKBBEBAACAAIEGCAAQAUgBACBAgAEBBAE=</HashCode>
+      <FileName>FormTransform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FontVal.Progress" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEBLFIISQgEBEIAgiAAGASAAQQCgOKAEgAAAAIgAA=</HashCode>
+      <FileName>Progress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FontVal.project" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABABIAIBAAAQAAAAAAAQAAQAEAABAAAgAAEBA0AA=</HashCode>
+      <FileName>project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FontVal.ResultsForm" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAiACAAAgAACAAEAiAAAEAAAAAACAACAAQAA=</HashCode>
+      <FileName>ResultsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="FontVal.ReportFileDestination" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAACAAAA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

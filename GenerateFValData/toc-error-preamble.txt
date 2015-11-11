@@ -1,0 +1,4 @@
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Error Messages">
+		</OBJECT>
+	<UL>

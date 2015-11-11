@@ -1,0 +1,24 @@
+[OPTIONS]
+Auto Index=Yes
+Binary TOC=Yes
+Compatibility=1.1 or later
+Compiled file=FontValidatorHelp.chm
+Contents file=Table of Contents.hhc
+Default Window=Search
+Default topic=usingvalidator.htm
+Display compile progress=Yes
+Full-text search=Yes
+Index file=Index.hhk
+Language=0x409 English (United States)
+
+[WINDOWS]
+Search="Font Validator Help","Table of Contents.hhc","Index.hhk","usingvalidator.htm",,,,,,0x62520,,0x200e,[300,30,1000,530],,,,,,,0
+
+
+[FILES]
+interpretinglog.htm
+introtofv.htm
+legacy.htm
+resources.htm
+tooloverview.htm
+usingvalidator.htm

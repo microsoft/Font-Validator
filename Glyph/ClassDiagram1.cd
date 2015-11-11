@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NS_Glyph.DefsGC" Collapsed="true">
+    <Position X="45.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DefsGC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.DefsGM" Collapsed="true">
+    <Position X="47.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAEAAAAAACAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>DefsGM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.DefsGV" Collapsed="true">
+    <Position X="49" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IhAIAAIAAAEEAAAAAAAAABAAAEOACAQAAAQAAQAAUAA=</HashCode>
+      <FileName>DefsGV.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.ExceptionGlyph" Collapsed="true">
+    <Position X="45.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAIAAAAAA=</HashCode>
+      <FileName>ExceptionGlyph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.Flags" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAACAAACAAQEAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Flags.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.FlagsGV" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FlagsGV.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.FManager" Collapsed="true">
+    <Position X="47.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>LBAAAIAEAAAGCiAAACBgAAUIYAAkCAAAAgABAChAFCA=</HashCode>
+      <FileName>FManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.DrawParamGErr" Collapsed="true">
+    <Position X="52.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAACAAAgAA=</HashCode>
+      <FileName>GDrawParam.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErr" Collapsed="true">
+    <Position X="22.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BACAAIQIAAAAggAkICAAgAAgAAAIAAAAHCIAABcQEAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NS_Glyph.DIWrapperSource" Collapsed="true">
+    <Position X="50.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAABAAAAAgAAAgAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrApplication" Collapsed="true">
+    <Position X="34" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAggAAIAAAAAAAAAAAIAAAAAAAAEAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrValidation" Collapsed="true">
+    <Position X="34" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAgAgAAAAAAAAAAAAAAAAAAAAAIBAAAAAQA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrSource" Collapsed="true">
+    <Position X="40.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrBBox" Collapsed="true">
+    <Position X="2.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAhAAAAggAAIAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrExtremeNotOnCurve" Collapsed="true">
+    <Position X="7" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIgAAAAggAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrContMisor" Collapsed="true">
+    <Position X="25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAggAAoAAAAAAAAAAAAAAEAAAAAAEAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrContWrap" Collapsed="true">
+    <Position X="29.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAggAAoAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrContDegen" Collapsed="true">
+    <Position X="36.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAggAAoAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrContDupl" Collapsed="true">
+    <Position X="38.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAwgAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrContInters" Collapsed="true">
+    <Position X="43" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAggAEIAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrKnotDupl" Collapsed="true">
+    <Position X="4.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAggAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrComponent" Collapsed="true">
+    <Position X="16" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAggAAIAAAAAAAAAAAAAAAQAIAAEAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrComponentIndexGlyph" Collapsed="true">
+    <Position X="13.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrComponentLoadFailure" Collapsed="true">
+    <Position X="16" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrComponentIncorrectShift" Collapsed="true">
+    <Position X="18.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrComponentIncorrectTransform" Collapsed="true">
+    <Position X="20.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrComponentCircularDependency" Collapsed="true">
+    <Position X="22.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrComponentEmpty" Collapsed="true">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrComponentIndexKnot" Collapsed="true">
+    <Position X="11.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAABAAgAAQ=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrComponentInters" Collapsed="true">
+    <Position X="27.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAggAAIAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrComponentDupl" Collapsed="true">
+    <Position X="31.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAggAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrConsts" Collapsed="true">
+    <Position X="49" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAKAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>GErrConsts.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrFile" Collapsed="true">
+    <Position X="50.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErrFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrList" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="52.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIJAAAAAACAAABEACCAgAARAAAEAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>GErrList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NS_Glyph.GErrPool" Collapsed="true">
+    <Position X="45.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAQBEAAAAEAAAAACEAAAAEKAAEAgAIAAAAAAAAwAA=</HashCode>
+      <FileName>GErrPool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GErrSign" Collapsed="true">
+    <Position X="47.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gMAgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GErrSign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.Glyph" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="49" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEgGQkQAIgACkikghKAYCAAFAAAQ1YgEEgAISBABgEA=</HashCode>
+      <FileName>Glyph.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NS_Glyph.GRelations" Collapsed="true">
+    <Position X="50.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAQAAAAAAAAAQAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>GRelations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GScope" Collapsed="true">
+    <Position X="52.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAQAAQAAAAAAQACAAAAAAAAAAAAAQAAAAAQAAAIA=</HashCode>
+      <FileName>GScope.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NS_Glyph.GStore" Collapsed="true">
+    <Position X="45.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAQAAAAAAAAAACAAAAEAAkAAAgAAQAAAAAAAAAA=</HashCode>
+      <FileName>GStore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatusGV" Collapsed="true">
+    <Position X="47.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAgAAAAAIAAAACAAAAABAAAAAQA=</HashCode>
+      <FileName>StatusGV.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="NS_Glyph.I_IOGlyphs" Collapsed="true">
+    <Position X="45.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAEAAAAAAAGoAAAAAAAABAAABAAAA=</HashCode>
+      <FileName>I_IOGlyphs.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="NS_Glyph.I_ProgressUpdater" Collapsed="true">
+    <Position X="47.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAAAAAIAAAAAAAAAAAAAAAABAAAAABAAAA=</HashCode>
+      <FileName>I_ProgressUpdator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="NS_Glyph.DIWrapper" Collapsed="true">
+    <Position X="45.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DIWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

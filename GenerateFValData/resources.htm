@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso8859-1">
+<LINK REL=STYLESHEET HREF="fv.css" TYPE="text/css">
+<TITLE>Introduction to Font Validator</TITLE>
+</HEAD>
+<BODY BGCOLOR=white>
+<H1>Introduction to the Font Validator
+<HR>
+<P>
+</H1>
+
+<P>The Font Validator is a tool that evaluates how closely a TrueType or OpenType font adheres to the current font format specification, as well as whether the font meets basic recommendations and deliverable guidelines from Microsoft. The Font Validator can be useful to developers creating or modifying fonts, or to developers who are creating tools to generate valid fonts. The Validator performs tests of 'static' data as well as tests for run-time errors.</P>
+<P>The Validator identifies errors in a font by evaluating the font file and its component tables for their structural adherence to the spec, as well as for encoding inconsistencies within the font, errors with glyph contours, and out-of-range and unlikely values. The Validator checks for run-time errors (invalid instructions, stack overflow, IF without ENDIF, etc.) by rasterizing glyphs.</P>
+<P>The Validator generates 'Errors' when a problem is found that may cause the font to either function in an unexpected fashion, or to not function at all. The Validator generates 'Warnings' when something is found in the font that is inconsistent with Microsoft recommendations. These inconsistencies may not prevent the font from working with current or previous Windows operating systems, but may compromise the usefulness of the font in the future. For more information on the types of information reported by the Font Validator, see <A HREF="interpretinglog.htm">Interpreting the Validation Log</A>.</P>
+
+</BODY>
+</HTML>

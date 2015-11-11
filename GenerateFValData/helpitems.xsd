@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="helpitems" targetNamespace="urn:helpgen" xmlns:mstns="urn:helpgen" xmlns="urn:helpgen" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="helpitems" msdata:IsDataSet="true" msdata:Locale="en-US">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="item">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="problem" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+            </xs:sequence>
+            <xs:attribute name="helpID" form="unqualified" type="xs:string" />
+            <xs:attribute name="atom" form="unqualified" type="xs:string" />
+            <xs:attribute name="linkTitle" form="unqualified" type="xs:string" />
+            <xs:attribute name="specLink" form="unqualified" type="xs:string" />
+            <xs:attribute name="shortDesc" form="unqualified" type="xs:string" />
+            <xs:attribute name="fwLinkID" form="unqualified" type="xs:string" />
+            <xs:attribute name="tableName" form="unqualified" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

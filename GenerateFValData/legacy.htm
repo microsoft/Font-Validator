@@ -1,0 +1,16 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso8859-1">
+<LINK REL=STYLESHEET HREF="fv.css" TYPE="text/css">
+<TITLE>Information about Legacy Fonts</TITLE>
+</HEAD>
+<BODY BGCOLOR=white>
+<H1>Information about Legacy Fonts
+<HR>
+<P>
+</H1>
+
+<P>As noted, the Font Validator is a tool that evaluates how closely a TrueType or OpenType font adheres to the current OpenType font format specification and recommendations. Over the years, Microsoft (working with Apple and Adobe) has expanded and refined the font specification and issued more stringent recommendations with the following goals:<UL><LI>improving the quality of fonts</LI><LI>enhancing functionality and security</LI><LI>improving compatibility across operating systems</LI><LI>promoting consistent rendering and positioning operations in applications</UL>
+Some of the types of errors and warnings that you may see when legacy fonts are validated include the following:<BR><BR><I>Metric Data - </I>Previous versions of the Microsoft TrueType rasterizer have differed from the current version in how they calculate metric data (i.e., character widths). To prevent text from reflowing in existing documentation, the old metric values may have been intentionally left in the font.<BR><BR><I>Outline Data - </I>Problems with less sophisticated versions of development tools have allowed some outlines to be represented inefficiently and with ambiguity. Current outline editing tools do a more thorough job of validating outlines as they are created.<BR><BR><I>International Support - </I>The OpenType format has formalized the way advanced typographic data is represented within fonts. Previously, international encoding and support has been handled in a variety of ways, some proprietary to applications. Although existing fonts may continue to work well, Microsoft encourages font developers to create fonts that more robustly support international typography and advanced layout operations.
+</BODY>
+</HTML>
