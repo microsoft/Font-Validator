@@ -265,6 +265,11 @@ namespace OTFontFile
             return m_fs;
         }
 
+        /// <summary>Accessor for TTC header field.</summary>
+        public TTCHeader GetTTCHeader()
+        {
+            return m_ttch;
+        }
 
 
         // writing a font file
