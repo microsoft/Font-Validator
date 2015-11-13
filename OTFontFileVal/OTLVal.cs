@@ -547,6 +547,12 @@ namespace OTFontFile.OTL
                 "vpal", // Proportional Alternate Vertical Metrics"
                 "vrt2", // Vertical Alternates and Rotation"
                 "zero", // Slashed Zero"
+                // TODO: The 4 below are missing in the 2015 spec
+                // accept them but emit warning if these are used.
+                "dflt", // Default Processing"
+                "dpng", // Diphthongs"
+                "jajp", // Japanese Forms"
+                "rtbd", // Right-to-left Alternates"
             };
 
             for (uint i=0; i<sTags.Length; i++)
