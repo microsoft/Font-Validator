@@ -40,7 +40,7 @@ The rasterer-dependent tests (HDMX/LTSH/VDMX) requires an enhancement which firs
 Linux users can use `LD_LIBRARY_PATH` env to load newer library than system's.
 Mac OS users should edit `bin/SharpFont.dll.config`.
 The bundled `SharpFont.dll` is patched with an equivalent `0001-adding-ComputeMetrics.patch`.
-TThe bundled win64 FreeType dll was built with an additional win64-specific patch, `freetype-win64.patch`.
+The bundled win64 FreeType dll was built with an additional win64-specific patch, `freetype-win64.patch`.
 
 Currently the CHM Help file requires MS Help Workshop to build, so is bundled in the bin/ directory.
 `fval.xsl` is also rarely changed, so duplicated there. 
