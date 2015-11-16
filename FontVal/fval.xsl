@@ -27,17 +27,34 @@
 		}
 		function display_row(cb_id, row_classname)
 		{
-			rowColl = document.all.tags("TR");
-			for (i=0; i!=rowColl.length; i++) {
-				if (rowColl(i).className == row_classname)
-				{
+			if (typeof document.all.tags != "undefined")
+			{
+				rowColl = document.all.tags("TR");
+				for (i=0; i!=rowColl.length; i++) {
+					if (rowColl[i].className == row_classname)
+					{
+						if (cb_id.checked)
+						{
+							rowColl[i].style.display = "";
+						}
+						else
+						{
+							rowColl[i].style.display = "none";
+						}
+					}
+				}
+			}
+			else
+			{
+				rowColl = document.getElementsByClassName(row_classname);
+				for (i=0; i!=rowColl.length; i++) {
 					if (cb_id.checked)
 					{
-						rowColl(i).style.display = "";
+						rowColl[i].style.display = "";
 					}
 					else
 					{
-						rowColl(i).style.display = "none";
+						rowColl[i].style.display = "none";
 					}
 				}
 			}
@@ -79,30 +96,22 @@
 		</TD>
 
 		<TD BGCOLOR="#ccffff" WIDTH="100">
-		<xsl:text disable-output-escaping="yes">&lt;INPUT</xsl:text>		
-		id='cbInfo' type='checkbox' name='cbInfo' onclick='cbInfo_onclick()'
-		<xsl:text disable-output-escaping="yes">checked&gt;</xsl:text>		
+		<INPUT id="cbInfo" type="checkbox" name="cbInfo" onclick="cbInfo_onclick()" checked="checked"/>
 		Info
 		</TD>
 		
 		<TD BGCOLOR="#99ff99" WIDTH="100">
-		<xsl:text disable-output-escaping="yes">&lt;INPUT</xsl:text>		
-		id='cbPass' type='checkbox' name='cbPass' onclick='cbPass_onclick()'
-		<xsl:text disable-output-escaping="yes">checked &gt;</xsl:text>		
+		<INPUT id="cbPass" type="checkbox" name="cbPass" onclick="cbPass_onclick()" checked="checked"/>
 		Pass 
 		</TD>
 		
 		<TD BGCOLOR="#ffff99" WIDTH="100">
-		<xsl:text disable-output-escaping="yes">&lt;INPUT</xsl:text>		
-		id='cbWarn' type='checkbox' name='cbWarn' onclick='cbWarn_onclick()'
-		<xsl:text disable-output-escaping="yes">checked &gt;</xsl:text>		
+		<INPUT id="cbWarn" type="checkbox" name="cbWarn" onclick="cbWarn_onclick()" checked="checked"/>
 		Warning 
 		</TD>
 		
 		<TD BGCOLOR="#ff9999" WIDTH="100">
-		<xsl:text disable-output-escaping="yes">&lt;INPUT</xsl:text>		
-		id='cbErr' type='checkbox' name='cbErr' onclick='cbErr_onclick()'
-		<xsl:text disable-output-escaping="yes">checked &gt;</xsl:text>		
+		<INPUT id="cbErr" type="checkbox" name="cbErr" onclick="cbErr_onclick()" checked="checked"/>
 		Error 
 		</TD>
 
@@ -153,11 +162,10 @@
 				<TR>
 				<TD>
 				
-				<xsl:text disable-output-escaping="yes">&lt;A</xsl:text>		
-				HREF='#<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>'
-				<xsl:text disable-output-escaping="yes">&gt;</xsl:text>		
-				<xsl:value-of select="@Tag"/>
-				<xsl:text disable-output-escaping="yes">&lt;/A&gt;</xsl:text>		
+				<A>
+					<xsl:attribute name="href">#<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<xsl:value-of select="@Tag"/>
+				</A>
 				</TD>
 				<TD><xsl:value-of select="@Offset"/></TD>
 				<TD><xsl:value-of select="@Length"/></TD>
@@ -179,80 +187,83 @@
 			
 			<xsl:for-each select="TableEntry">
 				<BR/>
-				<xsl:text disable-output-escaping="yes">&lt;INPUT</xsl:text>		
-				id='cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>' type='checkbox' name='cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>' onclick='display_table(table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>)'
-				<xsl:text disable-output-escaping="yes">checked &gt;</xsl:text>		
+				<INPUT type="checkbox" checked="checked">
+					<xsl:attribute name="id">cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<xsl:attribute name="name">cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<xsl:attribute name="onclick">display_table(table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>)</xsl:attribute>
+				</INPUT>
 				<B>
-				<xsl:text disable-output-escaping="yes">&lt;A</xsl:text>		
-				NAME='<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>'
-				<xsl:text disable-output-escaping="yes">&gt;</xsl:text>		
-				<xsl:value-of select="@Tag"/>
-				<xsl:text disable-output-escaping="yes">&lt;/A&gt;</xsl:text>		
+				<A>
+					<xsl:attribute name="name"><xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<xsl:value-of select="@Tag"/>
+				</A>
 				</B><BR/>
-				<xsl:text disable-output-escaping="yes">&lt;TABLE</xsl:text>		
-				WIDTH='100%' id='table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>'
-				<xsl:text disable-output-escaping="yes">&gt;</xsl:text>		
-				<TR CLASS="caption">
-				<TD WIDTH="10%"><I>Error code</I></TD>
-				<TD WIDTH="50%"><I>Message</I></TD>
-				<TD WIDTH="40%"><I>Details</I></TD>
-				</TR>
-				<xsl:apply-templates select="Report"/><BR/>
-				<xsl:text disable-output-escaping="yes">&lt;/TABLE&gt;</xsl:text>
+				<TABLE WIDTH="100%">
+					<xsl:attribute name="id">table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<TR CLASS="caption">
+					<TD WIDTH="10%"><I>Error code</I></TD>
+					<TD WIDTH="50%"><I>Message</I></TD>
+					<TD WIDTH="40%"><I>Details</I></TD>
+					</TR>
+					<xsl:apply-templates select="Report"/><BR/>
+				</TABLE>
 				<BR/>
 			</xsl:for-each>
 			<xsl:for-each select="RasterizationTest_BW">
 				<BR/>
-				<xsl:text disable-output-escaping="yes">&lt;INPUT</xsl:text>		
-				id='cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>' type='checkbox' name='cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>' onclick='display_table(table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>)'
-				<xsl:text disable-output-escaping="yes">checked &gt;</xsl:text>		
+				<INPUT type="checkbox" checked="checked">
+					<xsl:attribute name="id">cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<xsl:attribute name="name">cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<xsl:attribute name="onclick">display_table(table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>)</xsl:attribute>
+				</INPUT>
 				<B>Rasterization Test, BW</B><BR/>
-				<xsl:text disable-output-escaping="yes">&lt;TABLE</xsl:text>		
-				WIDTH='100%' id='table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>'
-				<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
-				<TR CLASS="caption">
-				<TD WIDTH="10%"><I>Error code</I></TD>
-				<TD WIDTH="50%"><I>Message</I></TD>
-				<TD WIDTH="40%"><I>Details</I></TD>
-				</TR>
-				<xsl:apply-templates select="Report"/><BR/>
-				<xsl:text disable-output-escaping="yes">&lt;/TABLE&gt;</xsl:text>
+				<TABLE WIDTH="100%">
+					<xsl:attribute name="id">table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<TR CLASS="caption">
+					<TD WIDTH="10%"><I>Error code</I></TD>
+					<TD WIDTH="50%"><I>Message</I></TD>
+					<TD WIDTH="40%"><I>Details</I></TD>
+					</TR>
+					<xsl:apply-templates select="Report"/><BR/>
+				</TABLE>
 				<BR/>
 			</xsl:for-each>
 			<xsl:for-each select="RasterizationTest_Grayscale">
 				<BR/>
-				<xsl:text disable-output-escaping="yes">&lt;INPUT</xsl:text>		
-				id='cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>' type='checkbox' name='cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>' onclick='display_table(table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>)'
-				<xsl:text disable-output-escaping="yes">checked &gt;</xsl:text>		
+				<INPUT type="checkbox" checked="checked">
+					<xsl:attribute name="id">cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<xsl:attribute name="name">cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<xsl:attribute name="onclick">display_table(table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>)</xsl:attribute>
+				</INPUT>
 				<B>Rasterization Test, Grayscale</B><BR/>
-				<xsl:text disable-output-escaping="yes">&lt;TABLE</xsl:text>		
-				WIDTH='100%' id='table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>'
-				<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
-				<TR CLASS="caption">
-				<TD WIDTH="10%"><I>Error code</I></TD>
-				<TD WIDTH="50%"><I>Message</I></TD>
-				<TD WIDTH="40%"><I>Details</I></TD>
-				</TR>
-				<xsl:apply-templates select="Report"/><BR/>
-				<xsl:text disable-output-escaping="yes">&lt;/TABLE&gt;</xsl:text>
+				<TABLE WIDTH="100%">
+					<xsl:attribute name="id">table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<TR CLASS="caption">
+					<TD WIDTH="10%"><I>Error code</I></TD>
+					<TD WIDTH="50%"><I>Message</I></TD>
+					<TD WIDTH="40%"><I>Details</I></TD>
+					</TR>
+					<xsl:apply-templates select="Report"/><BR/>
+				</TABLE>
 				<BR/>
 			</xsl:for-each>
 			<xsl:for-each select="RasterizationTest_ClearType">
 				<BR/>
-				<xsl:text disable-output-escaping="yes">&lt;INPUT</xsl:text>		
-				id='cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>' type='checkbox' name='cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>' onclick='display_table(table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>)'
-				<xsl:text disable-output-escaping="yes">checked &gt;</xsl:text>		
+				<INPUT type="checkbox" checked="checked">
+					<xsl:attribute name="id">cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<xsl:attribute name="name">cb_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<xsl:attribute name="onclick">display_table(table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>)</xsl:attribute>
+				</INPUT>
 				<B>Rasterization Test, ClearType</B><BR/>
-				<xsl:text disable-output-escaping="yes">&lt;TABLE</xsl:text>		
-				WIDTH='100%' id='table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/>'
-				<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
-				<TR CLASS="caption">
-				<TD WIDTH="10%"><I>Error code</I></TD>
-				<TD WIDTH="50%"><I>Message</I></TD>
-				<TD WIDTH="40%"><I>Details</I></TD>
-				</TR>
-				<xsl:apply-templates select="Report"/><BR/>
-				<xsl:text disable-output-escaping="yes">&lt;/TABLE&gt;</xsl:text>
+				<TABLE WIDTH="100%">
+					<xsl:attribute name="id">table_<xsl:value-of select="@CodeFriendlyTag"/>_<xsl:value-of select="parent::node()/@FontIndex"/></xsl:attribute>
+					<TR CLASS="caption">
+					<TD WIDTH="10%"><I>Error code</I></TD>
+					<TD WIDTH="50%"><I>Message</I></TD>
+					<TD WIDTH="40%"><I>Details</I></TD>
+					</TR>
+					<xsl:apply-templates select="Report"/><BR/>
+				</TABLE>
 				<BR/>
 			</xsl:for-each>
 			
@@ -272,14 +283,12 @@
 	
 	
 	<xsl:template match = "Report">
-	
-		<xsl:text disable-output-escaping="yes">&lt;TR</xsl:text>		
-		class='class_<xsl:value-of select="@ErrorType"/>'
-		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>		
-		<TD VALIGN="TOP"> <xsl:value-of select="@ErrorCode"/> </TD>
-		<TD VALIGN="TOP"> <xsl:value-of select="@Message"/> </TD>
-		<TD VALIGN="TOP"> <xsl:value-of select="@Details"/> </TD>
-		<xsl:text disable-output-escaping="yes">&lt;/TR&gt;</xsl:text>
+		<TR>
+			<xsl:attribute name="class">class_<xsl:value-of select="@ErrorType"/></xsl:attribute>
+			<TD VALIGN="TOP"> <xsl:value-of select="@ErrorCode"/> </TD>
+			<TD VALIGN="TOP"> <xsl:value-of select="@Message"/> </TD>
+			<TD VALIGN="TOP"> <xsl:value-of select="@Details"/> </TD>
+		</TR>
 		
 	</xsl:template>
 	
