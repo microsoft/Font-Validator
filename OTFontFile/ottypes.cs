@@ -419,6 +419,8 @@ namespace OTFontFile
 
         public DirectoryEntry(DirectoryEntry obj)
         {
+            if (m_buf == null)
+                m_buf = new MBOBuffer(16);
             tag = new OTTag(obj.tag.GetBytes());
             checkSum = obj.checkSum;
             offset   = obj.offset;
