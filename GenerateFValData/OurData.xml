@@ -5316,6 +5316,17 @@ Correct this data using a table editing tool.&lt;BR&gt;For examples of how to us
 </item>
 
 <item
+    helpID="I0500"
+    atom="DSIG_I_VerifySignature_Generic"
+    linkTitle="DSIG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/dsig.htm"
+    shortDesc="DSIG Information"
+    fwLinkID="10341"
+    tableName="DSIG">
+    <problem>Catch-all Place Holder for Generic DSIG Information</problem>
+</item>
+
+<item
     helpID="I0900"
     atom="fpgm_I_NotValidated"
     linkTitle="WARNING: field missing"
@@ -8746,6 +8757,17 @@ All tables should be recorded in the table directory with their actual length. T
     fwLinkID="10339"
     tableName="cmap">
     <problem>The region of non-default and default UVS tables following the Variation Selector records is not packed. This may indicated corrupted data</problem>
+</item>
+
+<item
+    helpID="W0500"
+    atom="DSIG_W_VerifySignature_Generic"
+    linkTitle="DSIG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/dsig.htm"
+    shortDesc="DSIG Warning"
+    fwLinkID="10341"
+    tableName="DSIG">
+    <problem>Catch-all Place Holder for Generic DSIG Warnings</problem>
 </item>
 
 <item
