@@ -76,7 +76,17 @@ namespace OTFontFileVal
                 WinVerifyTrustWrapper wvt = new WinVerifyTrustWrapper();
                 if (wvt.WinVerifyTrustFile(sFilename))
                 {
-                    v.Pass(T.DSIG_VerifySignature, P.DSIG_P_VerifySignature, m_tag);
+                    if (wvt.usNumSigs > 0)
+                    {
+                        if (wvt.Warn_TTCv1 || wvt.Warn_DSIG_in_memFonts)
+                            v.Warning(T.DSIG_VerifySignature, W.DSIG_W_VerifySignature_Generic, m_tag,
+                                   ( wvt.Warn_TTCv1 ? "TTC with v1 header;":"")
+                                   + (wvt.Warn_DSIG_in_memFonts ? "DSIG tables detected in member fonts;":"") );
+                        v.Pass(T.DSIG_VerifySignature, P.DSIG_P_VerifySignature, m_tag,
+                               wvt.Signer);
+                    }
+                    else
+                        v.Pass(T.DSIG_VerifySignature, P.DSIG_P_VerifySignature, m_tag);
                 }
                 else
                 {

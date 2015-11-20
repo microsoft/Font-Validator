@@ -44,10 +44,16 @@
 # GenerateFValData is run; the CHM file requires MS HTML Help Workshop
 # to build.
 
-COMPAT_LIBRARIES=Compat
-LIBRARIES=OTFontFile ValCommon GMath Glyph OTFontFileVal
+COMPAT_LIBRARIES_1=Compat
+COMPAT_LIBRARIES_2=Compat.2nd
+LIBRARIES_1=OTFontFile
+LIBRARIES_2=ValCommon GMath Glyph OTFontFileVal
+
+# COMPAT_LIBRARIES_2 is not real.
+COMPAT_LIBRARIES=$(COMPAT_LIBRARIES_1)
+LIBRARIES=$(LIBRARIES_1) $(LIBRARIES_2)
 GENDOC_EXE=GenerateFValData
-MAIN_EXE=FontVal FontValidator
+MAIN_EXE=FontVal FontValidator DSIGInfo
 
 MCS=mcs -debug- -optimize+
 
@@ -61,14 +67,14 @@ endif
 
 default:
 	mkdir -p bin
-	for target in $(COMPAT_LIBRARIES) $(LIBRARIES); do \
+	for target in $(COMPAT_LIBRARIES_1) $(LIBRARIES_1) $(COMPAT_LIBRARIES_2) $(LIBRARIES_2); do \
             $(MAKE) bin/$${target}.dll ; \
         done
 	for target in $(MAIN_EXE); do \
             $(MAKE) bin/$${target}.exe ; \
         done
 
-.PHONY: clean gendoc default
+.PHONY: clean gendoc default bin/Compat.2nd.dll
 
 clean:
 	$(RM) GenerateFValData/bin/Debug/GenerateFValData.exe
@@ -84,6 +90,19 @@ gendoc: GenerateFValData/bin/Debug/GenerateFValData.exe
 bin/Compat.dll:
 	( cd Compat     && \
         $(MCS) -target:library $(EXTRA_DEV_OPTS) -lib:../bin/ -r:SharpFont -r:System.Windows.Forms -out:../$@ *.cs )
+
+# Not a real target
+bin/Compat.2nd.dll:
+	( cd Compat.2nd     && \
+        $(MCS) -target:library $(EXTRA_DEV_OPTS) -lib:../bin/ \
+        -r:SharpFont -r:System.Windows.Forms \
+        -r:System.Security \
+        -r:OTFontFile \
+        -out:../bin/Compat.dll *.cs \
+        ../DSIGInfo/DSIGInfo.cs \
+        ../mcs-class-Mono.Security/ASN1.cs \
+        ../mcs-class-Mono.Security/ASN1Convert.cs \
+        ../Compat/*.cs )
 
 bin/OTFontFile.dll:
 	( cd OTFontFile && \
@@ -142,3 +161,12 @@ bin/FontVal.exe:
             -resource:FontVal.FormTransform.resources \
             -resource:FontVal.ResultsForm.resources \
             -target:winexe -out:../$@ *.cs )
+
+bin/DSIGInfo.exe: DSIGInfo/DSIGInfo.cs
+	( cd DSIGInfo && \
+        $(MCS) -lib:../bin/ $(EXTRA_DEV_OPTS) \
+        -r:System.Security \
+        -target:exe -out:../$@ *.cs \
+        ../mcs-class-Mono.Security/ASN1.cs \
+        ../mcs-class-Mono.Security/ASN1Convert.cs \
+        ../OTFontFile/* )

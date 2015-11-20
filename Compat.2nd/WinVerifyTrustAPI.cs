@@ -24,13 +24,65 @@
 
 using System;
 
+using Compat;
+
 namespace WinVerifyTrustAPI
 {
     public class WinVerifyTrustWrapper
     {
+        private DSIGInfo info;
+
         public bool WinVerifyTrustFile (string sFilename)
         {
-            throw new NotImplementedException( "UnImplemented WinVerifyTrustAPI.WinVerifyTrustWrapper/WinVerifyTrustFile" );
+            info = new DSIGInfo( sFilename );
+            return info.IsOK;
+        }
+
+        public int usNumSigs
+        {
+            get {
+                return info.usNumSigs;
+            }
+        }
+        public bool Warn_TTCv1
+        {
+            get {
+                return info.Warn_TTCv1;
+            }
+        }
+        public bool Warn_DSIG_in_memFonts
+        {
+            get {
+                return info.Warn_DSIG_in_memFonts;
+            }
+        }
+
+        public string Signer
+        {
+            get {
+                return info.Signer;
+            }
+        }
+
+        public string AlgoName
+        {
+            get {
+                return info.AlgoName;
+            }
+        }
+
+        public string SignedHash
+        {
+            get {
+                return info.SignedHash;
+            }
+        }
+
+        public string CalcHash
+        {
+            get {
+                return info.CalcHash;
+            }
         }
     }
 }
