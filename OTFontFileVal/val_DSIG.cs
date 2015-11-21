@@ -34,12 +34,23 @@ namespace OTFontFileVal
                 bool bFormatsOk = true;
                 for (uint i=0; i<usNumSigs; i++)
                 {
-                    SigFormatOffset sfo = GetSigFormatOffset(i);
+                    SigFormatOffset sfo;
+                    try
+                    {
+                    sfo = GetSigFormatOffset(i);
                     if (sfo.ulFormat != 1)
                     {
                         v.Error(T.DSIG_Formats, E.DSIG_E_Formats, m_tag, "block " + i + ", format = " + sfo.ulFormat);
                         bFormatsOk = false;
                         bRet = false;
+                    }
+                    }
+                    catch (IndexOutOfRangeException e)
+                    {
+                        v.Error(T.DSIG_Formats, E.DSIG_E_Formats, m_tag, "block " + i + ", " + e);
+                        bFormatsOk = false;
+                        bRet = false;
+                        break; // No point continuing
                     }
                 }
                 if (bFormatsOk)
@@ -53,12 +64,23 @@ namespace OTFontFileVal
                 bool bReservedOk = true;
                 for (uint i=0; i<usNumSigs; i++)
                 {
-                    SignatureBlock sb = GetSignatureBlock(i);
+                    SignatureBlock sb;
+                    try
+                    {
+                    sb = GetSignatureBlock(i);
                     if (sb.usReserved1 != 0 || sb.usReserved2 != 0)
                     {
                         v.Error(T.DSIG_Reserved, E.DSIG_E_Reserved, m_tag, "block " + i);
                         bReservedOk = false;
                         bRet = false;
+                    }
+                    }
+                    catch (IndexOutOfRangeException e)
+                    {
+                        v.Error(T.DSIG_Reserved, E.DSIG_E_Reserved, m_tag, "block " + i);
+                        bReservedOk = false;
+                        bRet = false;
+                        break; // No point continuing
                     }
                 }
                 if (bReservedOk)
