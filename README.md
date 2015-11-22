@@ -52,11 +52,11 @@ SharpFont requires xbuild from monodevelop to build.
 
 ### Missing/broken Parts
 
-Summary: 194 table tests, 1 do not work.
+Summary: 194 table tests, all work!
 
 * The 3 Rasterization Tests (BW, Grayscale, ClearType) requires a font scaler, and are not yet implemented via FreeType. See [README-hybrid.txt](README-hybrid.txt) for a work-around that uses Windows libraries to perform these tests.
 
-* 1 of 3 DSIG tests (DSIG_VerifySignature) requires Windows Trust API.
+* The DSIG test (DSIG_VerifySignature) does not validate trusted certificate chain yet.
 
 * Viewing XML reports (and print, text search/select/copy therein) requires MSIE and Active X.
 
