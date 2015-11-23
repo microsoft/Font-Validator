@@ -926,7 +926,7 @@ namespace OTFontFileVal
 
             }
             
-            if (GetDirectoryEntry("DSIG") == null)
+            if (GetDirectoryEntry("DSIG") == null && !GetFile().IsCollection())
             {
                 v.Warning(T.T_NULL, W._FONT_W_MissingRecommendedTable, null, "DSIG");
                 bMissing = true;
