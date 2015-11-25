@@ -36,6 +36,29 @@ namespace Compat
 {
     public class DSIGInfo
     {
+        private static readonly Dictionary<string, string> trusted_roots =
+            new Dictionary<string, string>
+            {
+                { "0563B8630D62D75ABBC8AB1E4BDFB5A899B24D43", "CN=DigiCert Assured ID Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US" },
+                { "18F7C1FCC3090203FD5BAA2F861A754976C8DD25", "OU=\"NO LIABILITY ACCEPTED, (c)97 VeriSign, Inc.\", OU=VeriSign Time Stamping Service Root, OU=\"VeriSign, Inc.\", O=VeriSign Trust Network" },
+                { "245C97DF7514E7CF2DF8BE72AE957B9E04741E85", "OU=Copyright (c) 1997 Microsoft Corp., OU=Microsoft Time Stamping Service Root, OU=Microsoft Corporation, O=Microsoft Trust Network" },
+                { "24A40A1F573643A67F0A4B0749F6A22BF28ABB6B", "OU=VeriSign Commercial Software Publishers CA, O=\"VeriSign, Inc.\", L=Internet" },
+                { "3B1EFD3A66EA28B16697394703A72CA340A05BD5", "CN=Microsoft Root Certificate Authority 2010, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" },
+                { "4EB6D578499B1CCF5F581EAD56BE3D9B6744A5E5", "CN=VeriSign Class 3 Public Primary Certification Authority - G5, OU=\"(c) 2006 VeriSign, Inc. - For authorized use only\", OU=VeriSign Trust Network, O=\"VeriSign, Inc.\", C=US" },
+                { "4F65566336DB6598581D584A596C87934D5F2AB4", "OU=Class 3 Public Primary Certification Authority, O=\"VeriSign, Inc.\", C=US" },
+                { "627F8D7827656399D27D7F9044C9FEB3F33EFA9A", "E=premium-server@thawte.com, CN=Thawte Premium Server CA, OU=Certification Services Division, O=Thawte Consulting cc, L=Cape Town, S=Western Cape, C=ZA" },
+                { "742C3192E607E424EB4549542BE1BBC53E6174E2", "OU=Class 3 Public Primary Certification Authority, O=\"VeriSign, Inc.\", C=US" },
+                { "7F88CD7223F3C813818C994614A89C99FA3B5247", "CN=Microsoft Authenticode(tm) Root Authority, O=MSFT, C=US" },
+                { "8F43288AD272F3103B6FB1428485EA3014C0BCFE", "CN=Microsoft Root Certificate Authority 2011, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" },
+                { "91C6D6EE3E8AC86384E548C299295C756C817B81", "CN=thawte Primary Root CA, OU=\"(c) 2006 thawte, Inc. - For authorized use only\", OU=Certification Services Division, O=\"thawte, Inc.\", C=US" },
+                { "97817950D81C9670CC34D809CF794431367EF474", "CN=GTE CyberTrust Global Root, OU=\"GTE CyberTrust Solutions, Inc.\", O=GTE Corporation, C=US" },
+                { "A43489159A520F0D93D032CCAF37E7FE20A8B419", "CN=Microsoft Root Authority, OU=Microsoft Corporation, OU=Copyright (c) 1997 Microsoft Corp." },
+                { "BE36A4562FB2EE05DBB3D32323ADF445084ED656", "CN=Thawte Timestamping CA, OU=Thawte Certification, O=Thawte, L=Durbanville, S=Western Cape, C=ZA" },
+                { "CDD4EEAE6000AC7F40C3802C171E30148030C072", "CN=Microsoft Root Certificate Authority, DC=microsoft, DC=com" },
+                { "DE28F4A4FFE5B92FA3C503D1A349A7F9962A8212", "CN=GeoTrust Global CA, O=GeoTrust Inc., C=US" },
+                { "E0AB059420725493056062023670F7CD2EFC6666", "E=premium-server@thawte.com, CN=Thawte Premium Server CA, OU=Certification Services Division, O=Thawte Consulting cc, L=Cape Town, S=Western Cape, C=ZA" },
+                { "E12DFB4B41D7D9C32B30514BAC1D81D8385E2D46", "CN=UTN-USERFirst-Object, OU=http://www.usertrust.com, O=The USERTRUST Network, L=Salt Lake City, S=UT, C=US" },
+            };
         static HashAlgorithm hash;
         private OTFile fontfile;
         private Table_DSIG tDSIG;
