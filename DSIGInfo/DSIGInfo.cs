@@ -27,7 +27,6 @@ using System.Text;
 using OTFontFile;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
 
 using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography; // Oid
@@ -551,13 +550,14 @@ namespace Compat
             DirectoryEntry deDSIG = null;
             // sort table by offset
             Dictionary<uint, int> offsetlookup = new Dictionary<uint, int>();
+            var list = new List<uint>();
             for (ushort i=0; i<fn.GetNumTables(); i++) {
                 DirectoryEntry de = fn.GetDirectoryEntry(i);
                 offsetlookup.Add(de.offset, i);
+                list.Add( de.offset );
                 if ((string) de.tag == "DSIG" )
                     deDSIG = de;
             }
-            var list = offsetlookup.Keys.ToList();
             list.Sort();
 
             // New offset table
