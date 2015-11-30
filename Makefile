@@ -62,7 +62,11 @@ EXTRA_DEV_OPTS=/nostdlib /platform:AnyCPU /reference:/usr/lib/mono/2.0/System.dl
 /reference:/usr/lib/mono/2.0/mscorlib.dll \
 -lib:/usr/lib/mono/2.0
 else
+ifeq "$(USE_MONO_SECURITY)" "true"
+EXTRA_DEV_OPTS=-define:HAVE_MONO_X509 -r:Mono.Security
+else
 EXTRA_DEV_OPTS=
+endif
 endif
 
 default:

@@ -63,6 +63,9 @@ namespace Compat
         private OTFile fontfile;
         private Table_DSIG tDSIG;
         static int verbose;
+#if HAVE_MONO_X509
+        private static Mono.Security.X509.X509CertificateCollection certs;
+#endif
 
         // Internal Analysis Results
         private bool HaveDSIG;
@@ -348,8 +351,15 @@ namespace Compat
                     Console.WriteLine(si.Certificate);
                 }
                 Console.WriteLine( "#Certificates: {0}", cms.Certificates.Count );
+#if HAVE_MONO_X509
+                certs =  new Mono.Security.X509.X509CertificateCollection ();
+                //Mono.Security.X509.X509Chain signerChain = new Mono.Security.X509.X509Chain ();
+#endif
                 foreach ( var x509 in cms.Certificates )
                 {
+#if HAVE_MONO_X509
+                    certs.Add(new Mono.Security.X509.X509Certificate(x509.RawData));
+#endif
                 if ( verbose > 0 )
                 {
                     Console.WriteLine(x509);
@@ -359,7 +369,16 @@ namespace Compat
                     Console.WriteLine(x509.Subject);
                 }
                 };
-
+#if HAVE_MONO_X509
+                Mono.Security.X509.X509Certificate x = new Mono.Security.X509.X509Certificate(cms.SignerInfos[0].Certificate.RawData);
+                Mono.Security.X509.X509Certificate parent = x;
+                while (x != null) { // Self-signed is fine - the font bundled CA is self-signed.
+                    parent = x; // last valid
+                    x = FindCertificateParent (x);
+                    if (x != null && x.Equals(parent))
+                        break;
+                }
+#endif
                 ASN1 spc = new ASN1(cms.ContentInfo.Content);
 
                 ASN1 playload_oid = null;
@@ -420,10 +439,50 @@ namespace Compat
                 hexLine.AppendFormat (Environment.NewLine);
                 Console.WriteLine("{0} Signed Digest: {1}", algoname.ToUpper(), hexLine_sig);
                 Console.WriteLine("Calculated Digest: {0}", hexLine);
+                string root_thumb = "";
+#if HAVE_MONO_X509
+                root_thumb =
+                    (new System.Security.Cryptography.X509Certificates.X509Certificate2(parent.RawData)).Thumbprint;
+                Console.WriteLine("ChainEnd Name: {0}", parent.SubjectName);
+#endif
+                Console.WriteLine("ChainEnd: {0}", root_thumb);
+                bool trusted = false;
+                try
+                {
+                    string root_id = trusted_roots[root_thumb];
+                    Console.WriteLine("RootID: {0}", root_id);
+                    trusted = true;
+                }
+                catch (KeyNotFoundException e)
+                {}
+                Console.WriteLine("Trusted: {0}", trusted);
             }
 
             return 0;
         }
+
+#if HAVE_MONO_X509
+        private static Mono.Security.X509.X509Certificate FindCertificateParent (Mono.Security.X509.X509Certificate child)
+        {
+            foreach (Mono.Security.X509.X509Certificate potentialParent in certs) {
+                if (IsParent (child, potentialParent))
+                    return potentialParent;
+            }
+            return null;
+        }
+
+        private static bool IsParent (Mono.Security.X509.X509Certificate child, Mono.Security.X509.X509Certificate parent)
+        {
+            if (child.IssuerName != parent.SubjectName)
+                return false;
+
+            if (child.VerifySignature (parent.RSA) || child.VerifySignature (parent.DSA)) {
+                return true;
+            }
+
+            return true;
+        }
+#endif
 
         public class TTCHBuffer
         {
