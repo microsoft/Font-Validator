@@ -459,6 +459,7 @@ namespace Compat
                 root_thumb =
                     (new System.Security.Cryptography.X509Certificates.X509Certificate2(parent.RawData)).Thumbprint;
                 Console.WriteLine("ChainEnd Name: {0}", parent.SubjectName);
+                Console.WriteLine("ChainEnd Self-Signed: {0}", parent.IsSelfSigned);
 #endif
                 Console.WriteLine("ChainEnd: {0}", root_thumb);
                 bool trusted = false;
