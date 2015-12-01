@@ -30,6 +30,15 @@ https://bugzilla.xamarin.com/show_bug.cgi?id=34091
 https://bugzilla.xamarin.com/show_bug.cgi?id=35563
 Bug 35563 - ASN1 class behaves differently under mono vs dotnet
 
+https://bugzilla.xamarin.com/show_bug.cgi?id=36295
+"Bug 36295 - missing attributes in System.Security.Cryptography.Pkcs.SignedCms.Decode()"
+
+https://bugzilla.xamarin.com/show_bug.cgi?id=36297
+"Bug 36297 - System.Security.Cryptography.Pkcs.SignedCms.CheckSignature() does not throw exception on empty SignedCms."
+
+https://bugs.winehq.org/show_bug.cgi?id=39681
+"Bug 39681 - Unimplemented function crypt32.dll.CryptMsgVerifyCountersignatureEncoded"
+
 Find out why Wine-Mono complains about Illegal IL byte-codes,
 and why the XML viewer never worked in wine.
 
@@ -62,8 +71,13 @@ https://bugzilla.xamarin.com/show_bug.cgi?id=35309
 Bug 35309 - cert-sync output message glitch
 https://bugzilla.xamarin.com/show_bug.cgi?id=35311
 Bug 35311 - Authenticode support for win64 binaries.
-
 https://bugzilla.redhat.com/show_bug.cgi?id=1238842
 Bug 1238842 - "Warning: Mismatch between the program and library build versions detected."
 https://bugzilla.redhat.com/show_bug.cgi?id=1278194
 "Bug 1278194 - wget Illegal instruction (core dumped)" - openssl
+Bug filed: copyright violation of a specific font
+https://bugzilla.xamarin.com/show_bug.cgi?id=592
+Bug 592 - [Mono-Security]: Microsoft files' digital certificates can't be traced to a trusted root
+http://lists.ximian.com/pipermail/mono-bugs/2007-April/056578.html
+(defunct) http://bugzilla.ximian.com/show_bug.cgi?id=81450
+Two authenticode issues
