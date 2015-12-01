@@ -349,6 +349,21 @@ namespace Compat
                 foreach ( var si in cms.SignerInfos )
                 {
                     Console.WriteLine(si.Certificate);
+                    if ( Type.GetType("Mono.Runtime") == null )
+                        foreach ( var ua in si.UnsignedAttributes )
+                        {
+                            foreach ( var asnd in ua.Values )
+                            {
+                                try
+                                {
+                                    ASN1 vv = new ASN1(asnd.RawData);
+                                    ASN1 t = new ASN1(vv[3][1][1].Value);
+                                    Console.WriteLine("Decoded Signing Time: {0}", ASN1Convert.ToDateTime (t) );
+                                }
+                                catch (Exception e)
+                                {/* Nothing to do */ }
+                            }
+                        }
                 }
                 Console.WriteLine( "#Certificates: {0}", cms.Certificates.Count );
 #if HAVE_MONO_X509
