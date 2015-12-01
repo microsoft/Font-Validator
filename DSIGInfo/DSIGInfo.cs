@@ -492,11 +492,12 @@ namespace Compat
             if (child.IssuerName != parent.SubjectName)
                 return false;
 
-            if (child.VerifySignature (parent.RSA) || child.VerifySignature (parent.DSA)) {
+            if ( parent.RSA != null && child.VerifySignature (parent.RSA) )
                 return true;
-            }
+            if ( parent.DSA != null && child.VerifySignature (parent.DSA) )
+                return true;
 
-            return true;
+            return false;
         }
 #endif
 
