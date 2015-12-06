@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Xml;
+using System.Xml.Xsl;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Threading;
@@ -66,6 +67,15 @@ namespace OTFontFileVal {
                 File.Copy(sSrcFile, sDestFile, true);
                 fi = new FileInfo(sDestFile);
                 fi.Attributes = fi.Attributes & ~FileAttributes.ReadOnly;
+
+                if ( Type.GetType("Mono.Runtime") != null )
+                {
+                    var xslTrans = new XslCompiledTransform();
+                    xslTrans.Load(sDestFile);
+                    string sHTMLFile = sReportFile.Replace(".report.xml", ".report.html");
+                    if ( sHTMLFile != sReportFile )
+                        xslTrans.Transform(sReportFile, sHTMLFile);
+                }
             }
             catch (Exception)
             {
