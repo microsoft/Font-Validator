@@ -199,7 +199,7 @@ namespace OTFontFile
             long NextTablePos = m_fs.Length;
 
             // possible DSIG in TTC after all the tables
-            if (IsCollection() && (string) m_ttch.DsigTag == "DSIG" && m_ttch.DsigOffset > 0 && m_ttch.DsigOffset < NextTablePos && (string) t.m_tag != "DSIG" )
+            if (IsCollection() && m_ttch.DsigTag != null && (string) m_ttch.DsigTag == "DSIG" && m_ttch.DsigOffset > 0 && m_ttch.DsigOffset < NextTablePos && (string) t.m_tag != "DSIG" )
                 NextTablePos = m_ttch.DsigOffset;
 
             for (uint iFont=0; iFont<m_nFonts; iFont++)
