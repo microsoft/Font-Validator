@@ -84,11 +84,17 @@ namespace OTFontFileVal
                 RasterInterf.DevMetricsData dmd = null;
                 try
                 {
+                    Version ver = fontOwner.GetFile().GetRasterizer().FTVersion;
+
+                    if ( ver.CompareTo(new Version(2,6,1)) < 0 )
+                        v.Warning(T.LTSH_yPels, W.LTSH_W_Need_Newer_FreeType, m_tag,
+                                  "Using FreeType Version " + ver + " may not get correct results for LTSH");
+
                     dmd = fontOwner.GetCalculatedDevMetrics();
                 }
                 catch (Exception e)
                 {
-                    v.ApplicationError(T.VDMX_CompareToCalcData, E._Table_E_Exception, m_tag, e.Message);
+                    v.ApplicationError(T.LTSH_yPels, E._Table_E_Exception, m_tag, e.Message);
                     bRet = false;
                 }
 
@@ -144,7 +150,7 @@ namespace OTFontFileVal
                         }
                         catch (Exception e)
                         {
-                            v.ApplicationError(T.VDMX_CompareToCalcData, E._Table_E_Exception, m_tag, e.Message);
+                            v.ApplicationError(T.LTSH_yPels, E._Table_E_Exception, m_tag, e.Message);
                         }
                         Debug.Assert(sDetails != null);
                         v.Error(T.LTSH_yPels, E.LTSH_E_Rasterizer, m_tag, sDetails);

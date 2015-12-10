@@ -167,7 +167,7 @@ namespace FontVal
 			// FormReportOptions
 			// 
 			this.AcceptButton = this.btnOK;
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+			if ( Type.GetType("Mono.Runtime") == null ) this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.btnCancel;
 			this.ClientSize = new System.Drawing.Size(440, 318);
 			this.Controls.AddRange(new System.Windows.Forms.Control[] {

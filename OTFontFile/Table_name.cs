@@ -227,6 +227,50 @@ namespace OTFontFile
                 int nMacCodePage = MacEncIdToCodePage(EncID);
                 if (nMacCodePage != -1)
                 {
+                    if ( Type.GetType("Mono.Runtime") != null )
+                    {
+                        // Mono.Runtime don't currently support
+                        // 10001 to 10008.
+                        switch ( nMacCodePage )
+                        {
+                            // Close-enough substitutes for names:
+
+                            case 10001:             // Japanese
+                                nMacCodePage = 932; // ShiftJIS
+                                break;
+
+                            case 10002:             // Chinese (Traditional)
+                                nMacCodePage = 950; // Big5
+                                break;
+
+                            case 10003:             // Korean
+                                nMacCodePage = 949; //
+                                break;
+
+                            case 10004:             // mac-arabic
+                                nMacCodePage = 1256;
+                                break;
+
+                            case 10005:             // mac-hebrew
+                                nMacCodePage = 1255;
+                                break;
+
+                            case 10006:             // mac-greek
+                                nMacCodePage = 1253;
+                                break;
+
+                            case 10007:             // mac-cyrillic
+                                nMacCodePage = 1251;
+                                break;
+
+                            case 10008:             // Chinese (Simplified)
+                                nMacCodePage = 936; // PRC
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
                     s = GetUnicodeStrFromCodePageBuf(EncodedStringBuf, nMacCodePage);
                 }
             }

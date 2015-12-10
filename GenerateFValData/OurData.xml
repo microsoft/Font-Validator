@@ -5316,6 +5316,17 @@ Correct this data using a table editing tool.&lt;BR&gt;For examples of how to us
 </item>
 
 <item
+    helpID="I0500"
+    atom="DSIG_I_VerifySignature_Generic"
+    linkTitle="DSIG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/dsig.htm"
+    shortDesc="DSIG Information"
+    fwLinkID="10341"
+    tableName="DSIG">
+    <problem>Catch-all Place Holder for Generic DSIG Information</problem>
+</item>
+
+<item
     helpID="I0900"
     atom="fpgm_I_NotValidated"
     linkTitle="WARNING: field missing"
@@ -5859,7 +5870,7 @@ Correct this data using a table editing tool.&lt;BR&gt;For examples of how to us
     atom="EBLC_P_BitmapSizeTableIndexOrder"
     linkTitle="WARNING: field missing"
     specLink="WARNING: field missing"
-    shortDesc="Each bitmapSizeTable's  indices are ordered okay"
+    shortDesc="Each bitmapSizeTable's indices are ordered okay"
     fwLinkID="0"
     tableName="WARNING: field missing">
     <problem/>
@@ -8749,6 +8760,17 @@ All tables should be recorded in the table directory with their actual length. T
 </item>
 
 <item
+    helpID="W0500"
+    atom="DSIG_W_VerifySignature_Generic"
+    linkTitle="DSIG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/dsig.htm"
+    shortDesc="DSIG Warning"
+    fwLinkID="10341"
+    tableName="DSIG">
+    <problem>Catch-all Place Holder for Generic DSIG Warnings</problem>
+</item>
+
+<item
     helpID="W1000"
     atom="gasp_W_AdjRangeIdenticalFlags"
     linkTitle="gasp table specification"
@@ -8768,6 +8790,17 @@ All tables should be recorded in the table directory with their actual length. T
     fwLinkID="10348"
     tableName="glyf">
     <problem>A composite glyph description contained in the glyf table has bit 4 of the flag field incorrectly set to 1. This bit should be set to 0.</problem>
+</item>
+
+<item
+    helpID="W1200"
+    atom="hdmx_W_Need_Newer_FreeType"
+    linkTitle="WARNING: field missing"
+    specLink="WARNING: field missing"
+    shortDesc="The Freetype version is too old"
+    fwLinkID="0"
+    tableName="WARNING: field missing">
+    <problem>To calculate HDMX, LTSH and VDMX correctly, the minimum version of Freetype required is 2.6.1.</problem>
 </item>
 
 <item
@@ -9024,6 +9057,17 @@ All tables should be recorded in the table directory with their actual length. T
 </item>
 
 <item
+    helpID="W1801"
+    atom="LTSH_W_Need_Newer_FreeType"
+    linkTitle="WARNING: field missing"
+    specLink="WARNING: field missing"
+    shortDesc="The Freetype version is too old"
+    fwLinkID="0"
+    tableName="WARNING: field missing">
+    <problem>To calculate HDMX, LTSH and VDMX correctly, the minimum version of Freetype required is 2.6.1.</problem>
+</item>
+
+<item
     helpID="W2000"
     atom="name_W_subfamily_style"
     linkTitle="name table specification"
@@ -9149,10 +9193,10 @@ All tables should be recorded in the table directory with their actual length. T
     atom="OS_2_W_Version_old"
     linkTitle="OS/2 table specification"
     specLink="http://www.microsoft.com/typography/otspec/os2.htm#ver"
-    shortDesc="The version number is valid, but less than 3"
+    shortDesc="The version number is valid, but less than 5"
     fwLinkID="10398"
     tableName="OS/2">
-    <problem>The version number of the OS/2 table identifies the content and layout of the table. The version number used currently is three (3). Versions zero (0, TrueType rev 1.5), one (1, TrueType rev 1.66), and two (2, OpenType rev 1.2) have been used previously. Incrementing the version number of the table will require that values stored in the table be changed to conform to the new version.</problem>
+    <problem>The version number of the OS/2 table identifies the content and layout of the table. The version number used currently is five (5). Versions zero (0, TrueType rev 1.5), one (1, TrueType rev 1.66), two (2, OpenType rev 1.2), three (3, OpenType rev 1.4) and four (4, OpenType rev 1.6) have been used previously. Incrementing the version number of the table will require that values stored in the table be changed to conform to the new version.</problem>
 </item>
 
 <item
@@ -9486,6 +9530,17 @@ All tables should be recorded in the table directory with their actual length. T
 </item>
 
 <item
+    helpID="W6013"
+    atom="_rast_W_Need_Newer_FreeType"
+    linkTitle="WARNING: field missing"
+    specLink="WARNING: field missing"
+    shortDesc="The Freetype version is too old"
+    fwLinkID="0"
+    tableName="WARNING: field missing">
+    <problem>Place holder - We most likely need to enhance Freetype and do a minimum version check.</problem>
+</item>
+
+<item
     helpID="W7001"
     atom="loca_W_GlyfEntryEmpty"
     linkTitle="loca table specification"
@@ -9592,6 +9647,16 @@ by either method may indicate some other problem in the font.
     <problem>The VDMX data does not match the value calculated by the current version of the rasterizer. This data may not match if glyphs have been updated but the VDMX table has not been recalculated (using a tool such as Microsoft's CacheTT). The problem may also occur if the VDMX table was generated using a previous version of the rasterizer, or another tool that performs the calculations differently. To correct the data, use the latest version of CacheTT to calculate the cached values using the current rasterizer. However, you may not want to change these values if there are concerns about the way text in legacy documents might reflow.</problem>
 </item>
 
+<item
+    helpID="W2501"
+    atom="VDMX_W_Need_Newer_FreeType"
+    linkTitle="WARNING: field missing"
+    specLink="WARNING: field missing"
+    shortDesc="The Freetype version is too old"
+    fwLinkID="0"
+    tableName="WARNING: field missing">
+    <problem>To calculate HDMX, LTSH and VDMX correctly, the minimum version of Freetype required is 2.6.1.</problem>
+</item>
 
 <!--
 <item

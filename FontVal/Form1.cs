@@ -575,7 +575,6 @@ namespace FontVal
 			this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																					  this.menuItemOpenProj,
 																					  this.menuItemOpenReport});
-			this.menuItem3.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
 			this.menuItem3.Text = "Open";
 			// 
 			// menuItemOpenProj
@@ -924,7 +923,7 @@ namespace FontVal
 			// Form1
 			// 
 			this.AllowDrop = true;
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+			if ( Type.GetType("Mono.Runtime") == null ) this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(632, 529);
 			this.Controls.Add(this.splitter1);
 			this.Controls.Add(this.panel1);

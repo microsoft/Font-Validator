@@ -823,9 +823,9 @@ namespace OTFontFileVal
                 }
             }
 
-            if (GetDirectoryEntry("glyf") == null && GetDirectoryEntry("CFF ") == null && GetDirectoryEntry("EBDT") == null)
+            if (GetDirectoryEntry("glyf") == null && GetDirectoryEntry("CFF ") == null && GetDirectoryEntry("EBDT") == null && GetDirectoryEntry("CBDT") == null)
             {
-                v.Error(T.T_NULL, E._FONT_E_MissingRequiredTable, null, "Font must contain either a 'glyf', 'CFF ', or 'EBDT' table");
+                v.Error(T.T_NULL, E._FONT_E_MissingRequiredTable, null, "Font must contain either a 'glyf', 'CFF ', 'EBDT' or 'CBDT' table");
                 bRet = false;
             }
 
@@ -926,7 +926,7 @@ namespace OTFontFileVal
 
             }
             
-            if (GetDirectoryEntry("DSIG") == null)
+            if (GetDirectoryEntry("DSIG") == null && !GetFile().IsCollection())
             {
                 v.Warning(T.T_NULL, W._FONT_W_MissingRecommendedTable, null, "DSIG");
                 bMissing = true;
@@ -1120,7 +1120,11 @@ namespace OTFontFileVal
         {
             //Any font with postscript outlines instead of truetype outlines has a CFF, table
             //So, if the file has a CFF table, we return 0 promptly
-            if (IsPostScript())
+            //
+            // FreeType is CFF capable.
+            Type freeType = Type.GetType("Compat.OTFontFile.Rasterizer.FreeType.Library");
+            if (freeType == null) freeType = Type.GetType("SharpFont.Library");
+            if (IsPostScript() && freeType == null)
             {
                 m_sDevMetricsDataError = "Font has PostScript outlines, rasterization not yet implemented";
                 return 0;

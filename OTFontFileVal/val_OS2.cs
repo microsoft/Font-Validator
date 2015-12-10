@@ -31,11 +31,11 @@ namespace OTFontFileVal
 
             if (v.PerformTest(T.OS_2_Version))
             {
-                if (version == 0 || version == 1 || version == 2)
+                if (version == 0 || version == 1 || version == 2 || version == 3 || version == 4 )
                 {
                     v.Warning(T.OS_2_Version, W.OS_2_W_Version_old, m_tag, version.ToString());
                 }
-                else if (version == 3)
+                else if (version == 5)
                 {
                     v.Pass(T.OS_2_Version, P.OS_2_P_Version, m_tag, version.ToString());
                 }
@@ -49,10 +49,12 @@ namespace OTFontFileVal
             if (v.PerformTest(T.OS_2_TableLength))
             {
                 uint len = GetLength();
-                if ((version == 0 && len == 78)
-                    || (version == 1 && len == 86)
-                    || (version == 2 && len == 96)
-                    || (version == 3 && len == 96))
+                if ((version == 0 && len == 78)      // TrueType rev 1.5
+                    || (version == 1 && len == 86)   // TrueType rev 1.66, + ulCodePageRange1, ulCodePageRange2
+                    || (version == 2 && len == 96)   // OpenType rev 1.2
+                    || (version == 3 && len == 96)   // OpenType rev 1.4
+                    || (version == 4 && len == 96)   // OpenType rev 1.6
+                    || (version == 5 && len == 100)) // OpenType rev 1.7, + usLowerOpticalPointSize, usUpperOpticalPointSize
                 {
                     v.Pass(T.OS_2_TableLength, P.OS_2_P_TableLength, m_tag);
                 }
@@ -639,6 +641,7 @@ namespace OTFontFileVal
                 }
 
                 // reserved bits
+                // TODO: Bit 7,8,9, v4
                 if ( (fsSelection & 0xFF80 ) != 0 )
                 {
                     // we need to look for Win 3.1 font pages
@@ -741,6 +744,8 @@ namespace OTFontFileVal
                     bool bMacBold = ((headTable.macStyle & 0x0001) != 0);
                     bool bMacItal = ((headTable.macStyle & 0x0002) != 0);
 
+                    // TODO, bit 9, OBLIQUE
+
                     if (bItalic != bMacItal)
                     {
                         string sDetails = null;
@@ -824,6 +829,8 @@ namespace OTFontFileVal
                         }
                     }                    
                 }
+
+                // TODO: bit 9, OBLIQUE
 
                 if (bSelOk)
                 {
@@ -1103,6 +1110,8 @@ namespace OTFontFileVal
                 }
             }
 
+            // TODO: usLowerOpticalPointSize/usUpperOpticalPointSize, v5
+
             return bRet;
         }
 
@@ -1149,12 +1158,14 @@ namespace OTFontFileVal
                         new Range(i++, 0x0300, 0x036f, "Combining Diacritical Marks"),
                         new Range(i++, 0x0370, 0x03ff, "Greek and Coptic"),
                         new Range(i++, 0x0400, 0x04ff, "Cyrillic"),
-                        new Range(i++, 0x0500, 0x052f, "Cyrillic Supplementary"),
+                        new Range(i++, 0x0500, 0x052f, "Cyrillic Supplement"),
                         new Range(i++, 0x0530, 0x058f, "Armenian"),
                         new Range(i++, 0x0590, 0x05ff, "Hebrew"),
                         new Range(i++, 0x0600, 0x06ff, "Arabic"),
                         new Range(i++, 0x0700, 0x074f, "Syriac"),
+                        new Range(i++, 0x0750, 0x077f, "Arabic Supplement"),
                         new Range(i++, 0x0780, 0x07bf, "Thaana"),
+                        new Range(i++, 0x07c0, 0x07ff, "NKo"),
                         new Range(i++, 0x0900, 0x097f, "Devanagari"),
                         new Range(i++, 0x0980, 0x09ff, "Bengali"),
                         new Range(i++, 0x0a00, 0x0a7f, "Gurmukhi"),
@@ -1172,8 +1183,9 @@ namespace OTFontFileVal
                         new Range(i++, 0x10a0, 0x10ff, "Georgian"),
                         new Range(i++, 0x1100, 0x11ff, "Hangul Jamo"),
                         new Range(i++, 0x1200, 0x137f, "Ethiopic"),
+                        new Range(i++, 0x1380, 0x139f, "Ethiopic Supplement"),
                         new Range(i++, 0x13a0, 0x13ff, "Cherokee"),
-                        new Range(i++, 0x1400, 0x167f, "Unified Canadian Aboriginal Syllabic"),
+                        new Range(i++, 0x1400, 0x167f, "Unified Canadian Aboriginal Syllabics"),
                         new Range(i++, 0x1680, 0x169f, "Ogham"),
                         new Range(i++, 0x16a0, 0x16ff, "Runic"),
                         new Range(i++, 0x1700, 0x171f, "Tagalog"),
@@ -1184,14 +1196,22 @@ namespace OTFontFileVal
                         new Range(i++, 0x1800, 0x18af, "Mongolian"),
                         new Range(i++, 0x1900, 0x194f, "Limbu"),
                         new Range(i++, 0x1950, 0x197f, "Tai Le"),
+                        new Range(i++, 0x1980, 0x19df, "New Tai Lue"),
                         new Range(i++, 0x19e0, 0x19ff, "Khmer Symbols"),
+                        new Range(i++, 0x1a00, 0x1a1f, "Buginese"),
+                        new Range(i++, 0x1b00, 0x1b7f, "Balinese"),
+                        new Range(i++, 0x1b80, 0x1bbf, "Sundanese"),
+                        new Range(i++, 0x1c00, 0x1c4f, "Lepcha"),
+                        new Range(i++, 0x1c50, 0x1c7f, "Ol Chiki"),
                         new Range(i++, 0x1d00, 0x1d7f, "Phonetic Extensions"),
+                        new Range(i++, 0x1d80, 0x1dbf, "Phonetic Extensions Supplement"),
+                        new Range(i++, 0x1dc0, 0x1dff, "Combining Diacritical Marks Supplement"),
                         new Range(i++, 0x1e00, 0x1eff, "Latin Extended Additional"),
                         new Range(i++, 0x1f00, 0x1fff, "Greek Extended"),
                         new Range(i++, 0x2000, 0x206f, "General Punctuation"),
-                        new Range(i++, 0x2070, 0x209f, "Superscripts and Subscripts"),
+                        new Range(i++, 0x2070, 0x209f, "Superscripts And Subscripts"),
                         new Range(i++, 0x20a0, 0x20cf, "Currency Symbols"),
-                        new Range(i++, 0x20d0, 0x20ff, "Combining Marks for Symbols"),
+                        new Range(i++, 0x20d0, 0x20ff, "Combining Diacritical Marks For Symbols"),
                         new Range(i++, 0x2100, 0x214f, "Letterlike Symbols"),
                         new Range(i++, 0x2150, 0x218f, "Number Forms"),
                         new Range(i++, 0x2190, 0x21ff, "Arrows"),
@@ -1212,59 +1232,94 @@ namespace OTFontFileVal
                         new Range(i++, 0x2980, 0x29ff, "Miscellaneous Mathematical Symbols-B"),
                         new Range(i++, 0x2a00, 0x2aff, "Supplemental Mathematical Operators"),
                         new Range(i++, 0x2b00, 0x2bff, "Miscellaneous Symbols and Arrows"),
+                        new Range(i++, 0x2c00, 0x2c5f, "Glagolitic"),
+                        new Range(i++, 0x2c60, 0x2c7f, "Latin Extended-C"),
+                        new Range(i++, 0x2c80, 0x2cff, "Coptic"),
+                        new Range(i++, 0x2d00, 0x2d2f, "Georgian Supplement"),
+                        new Range(i++, 0x2d30, 0x2d7f, "Tifinagh"),
+                        new Range(i++, 0x2d80, 0x2ddf, "Ethiopic Extended"),
+                        new Range(i++, 0x2de0, 0x2dff, "Cyrillic Extended-A"),
+                        new Range(i++, 0x2e00, 0x2e7f, "Supplemental Punctuation"),
                         new Range(i++, 0x2e80, 0x2eff, "CJK Radicals Supplement"),
                         new Range(i++, 0x2f00, 0x2fdf, "Kangxi Radicals"),
                         new Range(i++, 0x2ff0, 0x2fff, "Ideographic Description Characters"),
-                        new Range(i++, 0x3000, 0x303f, "CJK Symbols and Punctuation"),
+                        new Range(i++, 0x3000, 0x303f, "CJK Symbols And Punctuation"),
                         new Range(i++, 0x3040, 0x309f, "Hiragana"),
                         new Range(i++, 0x30a0, 0x30ff, "Katakana"),
                         new Range(i++, 0x3100, 0x312f, "Bopomofo"),
                         new Range(i++, 0x3130, 0x318f, "Hangul Compatibility Jamo"),
                         new Range(i++, 0x3190, 0x319f, "Kanbun"),
                         new Range(i++, 0x31a0, 0x31bf, "Bopomofo Extended"),
+                        new Range(i++, 0x31c0, 0x31ef, "CJK Strokes"),
                         new Range(i++, 0x31f0, 0x31ff, "Katakana Phonetic Extensions"),
-                        new Range(i++, 0x3200, 0x32ff, "Enclosed CJK Letters and Months"),
+                        new Range(i++, 0x3200, 0x32ff, "Enclosed CJK Letters And Months"),
                         new Range(i++, 0x3300, 0x33ff, "CJK Compatibility"),
                         new Range(i++, 0x3400, 0x4dbf, "CJK Unified Ideographs Extension A"),
                         new Range(i++, 0x4dc0, 0x4dff, "Yijing Hexagram Symbols"),
                         new Range(i++, 0x4e00, 0x9fff, "CJK Unified Ideographs"),
                         new Range(i++, 0xa000, 0xa48f, "Yi Syllables"),
                         new Range(i++, 0xa490, 0xa4cf, "Yi Radicals"),
+                        new Range(i++, 0xa500, 0xa63f, "Vai"),
+                        new Range(i++, 0xa640, 0xa69f, "Cyrillic Extended-B"),
+                        new Range(i++, 0xa700, 0xa71f, "Modifier Tone Letters"),
+                        new Range(i++, 0xa720, 0xa7ff, "Latin Extended-D"),
+                        new Range(i++, 0xa800, 0xa82f, "Syloti Nagri"),
+                        new Range(i++, 0xa840, 0xa87F, "Phags-pa"),
+                        new Range(i++, 0xa880, 0xa8df, "Saurashtra"),
+                        new Range(i++, 0xa900, 0xa92f, "Kayah Li"),
+                        new Range(i++, 0xa930, 0xa95f, "Rejang"),
+                        new Range(i++, 0xaa00, 0xaa5f, "Cham"),
                         new Range(i++, 0xac00, 0xd7af, "Hangul Syllables"),
-                        new Range(i++, 0xd800, 0xd87f, "High Surrogates"),
-                        new Range(i++, 0xd880, 0xdbff, "High Private Use Surrogates"),
-                        new Range(i++, 0xdc00, 0xdfff, "Low Surrogates"),
-                        new Range(i++, 0xe000, 0xf8ff, "Private Use Area"),
+                        new Range(i++, 0xd800, 0xd87f, "High Surrogates"),             // Non-Plane 0
+                        new Range(i++, 0xd880, 0xdbff, "High Private Use Surrogates"), // Non-Plane 0
+                        new Range(i++, 0xdc00, 0xdfff, "Low Surrogates"),              // Non-Plane 0
+                        new Range(i++, 0xe000, 0xf8ff, "Private Use Area (plane 0)"),
                         new Range(i++, 0xf900, 0xfaff, "CJK Compatibility Ideographs"),
                         new Range(i++, 0xfb00, 0xfb4f, "Alphabetic Presentation Forms"),
                         new Range(i++, 0xfb50, 0xfdff, "Arabic Presentation Forms-A"),
                         new Range(i++, 0xfe00, 0xfe0f, "Variation Selectors"),
+                        new Range(i++, 0xfe10, 0xfe1f, "Vertical Forms"),
                         new Range(i++, 0xfe20, 0xfe2f, "Combining Half Marks"),
                         new Range(i++, 0xfe30, 0xfe4f, "CJK Compatibility Forms"),
                         new Range(i++, 0xfe50, 0xfe6f, "Small Form Variants"),
                         new Range(i++, 0xfe70, 0xfeff, "Arabic Presentation Forms-B"),
-                        new Range(i++, 0xff00, 0xffef, "Halfwidth and Fullwidth Forms"),
+                        new Range(i++, 0xff00, 0xffef, "Halfwidth And Fullwidth Forms"),
                         new Range(i++, 0xfff0, 0xffff, "Specials"),
                         new Range(i++, 0x10000, 0x1007f, "Linear B Syllabary"),
                         new Range(i++, 0x10080, 0x100ff, "Linear B Ideograms"),
-                        new Range(i++, 0x10100, 0x1013f, "Agean Numbers"),
+                        new Range(i++, 0x10100, 0x1013f, "Aegean Numbers"),
+                        new Range(i++, 0x10140, 0x1018f, "Ancient Greek Numbers"),
+                        new Range(i++, 0x10190, 0x101cf, "Ancient Symbols"),
+                        new Range(i++, 0x101d0, 0x101ff, "Phaistos Disc"),
+                        new Range(i++, 0x10280, 0x1029f, "Lycian"),
+                        new Range(i++, 0x102a0, 0x102df, "Carian"),
                         new Range(i++, 0x10300, 0x1032f, "Old Italic"),
                         new Range(i++, 0x10330, 0x1034f, "Gothic"),
                         new Range(i++, 0x10380, 0x1039f, "Ugaritic"),
+                        new Range(i++, 0x103a0, 0x103df, "Old Persian"),
                         new Range(i++, 0x10400, 0x1044f, "Deseret"),
                         new Range(i++, 0x10450, 0x1047f, "Shavian"),
                         new Range(i++, 0x10480, 0x104af, "Osmanya"),
                         new Range(i++, 0x10800, 0x1083f, "Cypriot Syllabary"),
+                        new Range(i++, 0x10900, 0x1091f, "Phoenician"),
+                        new Range(i++, 0x10920, 0x1093f, "Lydian"),
+                        new Range(i++, 0x10a00, 0x10a5f, "Kharoshthi"),
+                        new Range(i++, 0x12000, 0x123ff, "Cuneiform"),
+                        new Range(i++, 0x12400, 0x1247f, "Cuneiform Numbers and Punctuation"),
                         new Range(i++, 0x1d000, 0x1d0ff, "Byzantine Musical Symbols"),
                         new Range(i++, 0x1d100, 0x1d1ff, "Musical Symbols"),
+                        new Range(i++, 0x1d200, 0x1d24f, "Ancient Greek Musical Notation"),
                         new Range(i++, 0x1d300, 0x1d35f, "Tai Xuan Jing Symbols"),
+                        new Range(i++, 0x1d360, 0x1d37f, "Counting Rod Numerals"),
                         new Range(i++, 0x1d400, 0x1d7ff, "Mathematical Alphanumeric Symbols"),
+                        new Range(i++, 0x1f000, 0x1f02f, "Mahjong Tiles"),
+                        new Range(i++, 0x1f030, 0x1f09f, "Domino Tiles"),
                         new Range(i++, 0x20000, 0x2a6df, "CJK Unified Ideographs Extension B"),
                         new Range(i++, 0x2f800, 0x2fa1f, "CJK Compatibility Ideographs Supplement"),
                         new Range(i++, 0xe0000, 0xe007f, "Tags"),
                         new Range(i++, 0xe0100, 0xe01ef, "Variation Selectors Supplement"),
-                        new Range(i++, 0xf0000, 0xffffd, "Supplementary Private Use Area-A"),
-                        new Range(i++, 0x100000, 0x10ffff, "Supplementary Private Use Area-B")
+                        new Range(i++, 0xff000, 0xffffd, "Private Use (plane 15)"),
+                        new Range(i++, 0x100000, 0x10fffd, "Private Use (plane 16)")
                     };
 
                 return arrRanges;
@@ -1411,18 +1466,26 @@ namespace OTFontFileVal
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x00000008, nCharsInRange, "Latin Extended-B");
 
             // bit 4
-            uint IPA_EXTENSIONS_LOW                    = 0x0250; 
-            nCharsInRange = ur.GetRange(IPA_EXTENSIONS_LOW).count;
+            uint IPA_EXTENSIONS_LOW                    = 0x0250;
+            uint Phonetic_Extensions                   = 0x1D00;
+            uint Phonetic_Extensions_Supplement        = 0x1D80;
+            nCharsInRange = ur.GetRange(IPA_EXTENSIONS_LOW).count
+                + ur.GetRange(Phonetic_Extensions).count
+                + ur.GetRange(Phonetic_Extensions_Supplement).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x00000010, nCharsInRange, "IPA Extensions");
 
             // bit 5
-            uint SPACING_MODIFIER_LETTERS_LOW        = 0x02B0; 
-            nCharsInRange = ur.GetRange(SPACING_MODIFIER_LETTERS_LOW).count;
+            uint SPACING_MODIFIER_LETTERS_LOW        = 0x02B0;
+            uint Modifier_Tone_Letters               = 0xA700;
+            nCharsInRange = ur.GetRange(SPACING_MODIFIER_LETTERS_LOW).count
+                + ur.GetRange(Modifier_Tone_Letters).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x00000020, nCharsInRange, "Spacing Modifier Letters");
 
             // bit 6
-            uint COMBINING_DIACRITICAL_MARKS_LOW     = 0x0300; 
-            nCharsInRange = ur.GetRange(COMBINING_DIACRITICAL_MARKS_LOW).count;
+            uint COMBINING_DIACRITICAL_MARKS_LOW     = 0x0300;
+            uint Combining_Diacritical_Marks_Supplement = 0x1DC0;
+            nCharsInRange = ur.GetRange(COMBINING_DIACRITICAL_MARKS_LOW).count
+                + ur.GetRange(Combining_Diacritical_Marks_Supplement).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x00000040, nCharsInRange, "Combining Diacritical Marks");
 
             // bit 7
@@ -1430,18 +1493,29 @@ namespace OTFontFileVal
             nCharsInRange = ur.GetRange(GREEK_LOW).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x00000080, nCharsInRange, "Greek");
             
-            // bit 8 reserved
-            if ((ulUnicodeRange1 & 0x00000100) != 0)
+            // v1: Greek Symbols and Coptic
+            // v2/v3: Reserved for Unicode SubRanges
+            // v4: Coptic                                  2C80-2CFF
+            if (version > 1 && version < 4)
             {
-                bOk = false;
-                v.Error(T.T_NULL, E.OS_2_E_ReservedBitSet_Unicode, m_tag, "bit #8");
+                // bit 8 reserved
+                if ((ulUnicodeRange1 & 0x00000100) != 0)
+                {
+                    bOk = false;
+                    v.Error(T.T_NULL, E.OS_2_E_ReservedBitSet_Unicode, m_tag, "bit #8");
+                }
             }
+            // TODO: v4
 
             // bit 9
             uint CYRILLIC_LOW                        = 0x0400; 
             uint CYRILLIC_SUPPLEMENTARY_LOW         = 0x0500;
+            uint Cyrillic_Extended_A                = 0x2DE0;
+            uint Cyrillic_Extended_B                = 0xA640;
             nCharsInRange = ur.GetRange(CYRILLIC_LOW).count
-                          + ur.GetRange(CYRILLIC_SUPPLEMENTARY_LOW).count;
+                          + ur.GetRange(CYRILLIC_SUPPLEMENTARY_LOW).count
+                + ur.GetRange(Cyrillic_Extended_A).count
+                + ur.GetRange(Cyrillic_Extended_B).count;
             bOk &= VerifyUnicodeRanges(v, ulUnicodeRange1, 0x00000200, nCharsInRange, "Cyrillic, Cyrillic Supplementary");
             
             // bit 10
@@ -1454,7 +1528,10 @@ namespace OTFontFileVal
             nCharsInRange = ur.GetRange(HEBREW_LOW).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x00000800, nCharsInRange, "Hebrew");
             
-            if (version > 1)
+            // v1: Hebrew Extended (A and B blocks combined)
+            // v2/v3: Reserved for Unicode SubRanges
+            // v4: Vai                                     A500-A63F
+            if (version > 1 && version < 4)
             {
                 // bit 12 reserved
                 if ((ulUnicodeRange1 & 0x00001000) != 0)
@@ -1463,13 +1540,19 @@ namespace OTFontFileVal
                     v.Error(T.T_NULL, E.OS_2_E_ReservedBitSet_Unicode, m_tag, "bit #12");
                 }
             }
+            // TODO: v4
 
             // bit 13
-            uint ARABIC_LOW                            = 0x0600; 
-            nCharsInRange = ur.GetRange(ARABIC_LOW).count;
+            uint ARABIC_LOW                            = 0x0600;
+            uint Arabic_Supplement                     = 0x0750;
+            nCharsInRange = ur.GetRange(ARABIC_LOW).count
+                + ur.GetRange(Arabic_Supplement).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x00002000, nCharsInRange, "Arabic");
             
-            if (version > 1)
+            // v1: Arabic Extended
+            // v2/v3: Reserved for Unicode SubRanges
+            // v4: NKo                                     07C0-07FF
+            if (version > 1 && version < 4)
             {
                 // bit 14 reserved
                 if ((ulUnicodeRange1 & 0x00004000) != 0)
@@ -1478,6 +1561,7 @@ namespace OTFontFileVal
                     v.Error(T.T_NULL, E.OS_2_E_ReservedBitSet_Unicode, m_tag, "bit #14");
                 }
             }
+            // TODO: v4
 
             // bit 15
             uint DEVANAGARI_LOW                        = 0x0900; 
@@ -1534,12 +1618,21 @@ namespace OTFontFileVal
             nCharsInRange = ur.GetRange(LAO_LOW).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x02000000, nCharsInRange, "Lao");
             
+            // v3: Georgian
+            // v4: Georgian                                10A0-10FF
+            //     Georgian Supplement                     2D00-2D2F
+            // TODO: v4
             // bit 26
-            uint GEORGIAN_LOW                        = 0x10A0; 
-            nCharsInRange = ur.GetRange(GEORGIAN_LOW).count;
+            uint GEORGIAN_LOW                        = 0x10A0;
+            uint Georgian_Supplement                 = 0x2D00;
+            nCharsInRange = ur.GetRange(GEORGIAN_LOW).count
+                + ur.GetRange(Georgian_Supplement).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x04000000, nCharsInRange, "Georgian");
             
-            if (version > 1)
+            // v1: Georgian Extended
+            // v2/v3: Reserved for Unicode SubRanges
+            // v4: Balinese                                1B00-1B7F
+            if (version > 1 && version < 4)
             {
                 // bit 27 reserved
                 if ((ulUnicodeRange1 & 0x08000000) != 0)
@@ -1548,6 +1641,7 @@ namespace OTFontFileVal
                     v.Error(T.T_NULL, E.OS_2_E_ReservedBitSet_Unicode, m_tag, "bit #27");
                 }
             }
+            // TODO: v4
             
             // bit 28
             uint HANGUL_JAMO_LOW                     = 0x1100; 
@@ -1555,8 +1649,12 @@ namespace OTFontFileVal
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x10000000, nCharsInRange, "Hangul Jamo");
             
             // bit 29
-            uint LATIN_EXTENDED_ADDITIONAL_LOW        = 0x1E00; 
-            nCharsInRange = ur.GetRange(LATIN_EXTENDED_ADDITIONAL_LOW).count;
+            uint LATIN_EXTENDED_ADDITIONAL_LOW        = 0x1E00;
+            uint Latin_Extended_C                     = 0x2C60;
+            uint Latin_Extended_D                     = 0xA720;
+            nCharsInRange = ur.GetRange(LATIN_EXTENDED_ADDITIONAL_LOW).count
+                + ur.GetRange(Latin_Extended_C).count
+                + ur.GetRange(Latin_Extended_D).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x20000000, nCharsInRange, "Latin Extended Additional");
             
             // bit 30
@@ -1565,8 +1663,10 @@ namespace OTFontFileVal
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x40000000, nCharsInRange, "Greek Extended");
             
             // bit 31
-            uint GENERAL_PUNCTUATION_LOW             = 0x2000; 
-            nCharsInRange = ur.GetRange(GENERAL_PUNCTUATION_LOW).count;
+            uint GENERAL_PUNCTUATION_LOW             = 0x2000;
+            uint Supplemental_Punctuation            = 0x2E00;
+            nCharsInRange = ur.GetRange(GENERAL_PUNCTUATION_LOW).count
+                + ur.GetRange(Supplemental_Punctuation).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange1, 0x80000000, nCharsInRange, "General Punctuation");
 
 
@@ -1599,9 +1699,11 @@ namespace OTFontFileVal
             uint ARROWS_LOW                            = 0x2190; 
             uint SUPPLEMENTAL_ARROWS_A_LOW            = 0x27F0;
             uint SUPPLEMENTAL_ARROWS_B_LOW            = 0x2900;
+            uint Miscellaneous_Symbols_and_Arrows     = 0x2B00;
             nCharsInRange = ur.GetRange(ARROWS_LOW).count
                           + ur.GetRange(SUPPLEMENTAL_ARROWS_A_LOW).count
-                          + ur.GetRange(SUPPLEMENTAL_ARROWS_B_LOW).count; 
+                          + ur.GetRange(SUPPLEMENTAL_ARROWS_B_LOW).count
+                + ur.GetRange(Miscellaneous_Symbols_and_Arrows).count;
             bOk &= VerifyUnicodeRanges(v, ulUnicodeRange2, 0x00000020, nCharsInRange, "Arrows, Supplementary Arrows A, Supplementary Arrows B");
 
             // bit 38
@@ -1671,8 +1773,10 @@ namespace OTFontFileVal
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange2, 0x00020000, nCharsInRange, "Hiragana");
             
             // bit 50
-            uint KATAKANA_LOW                        = 0x30A0; 
-            nCharsInRange = ur.GetRange(KATAKANA_LOW).count;
+            uint KATAKANA_LOW                        = 0x30A0;
+            uint Katakana_Phonetic_Extensions        = 0x31F0;
+            nCharsInRange = ur.GetRange(KATAKANA_LOW).count
+                + ur.GetRange(Katakana_Phonetic_Extensions).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange2, 0x00040000, nCharsInRange, "Katakana");
             
             // bit 51
@@ -1687,6 +1791,9 @@ namespace OTFontFileVal
             nCharsInRange = ur.GetRange(HANGUL_COMPAT_JAMO_LOW).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange2, 0x00100000, nCharsInRange, "Hangul Compatibility Jamo");
             
+            // v2: CJK Miscellaneous
+            // v3: Reserved for Unicode SubRanges
+            // v4: Phags-pa                                A840-A87F
             // bit 53 !!! OT Spec 1.3 says bit 53 is CJK Misc !!!
             //        !!! Since there's no unicode range name !!!
             //        !!! that maps nicely to CJK Misc,       !!!
@@ -1694,6 +1801,7 @@ namespace OTFontFileVal
             /*
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange2, 0x00200000, nCharsInRange, "CJK Miscellaneous");
             */
+            // TODO: v4
             
             // bit 54
             uint ENCLOSED_CJK_LETTERS_MONTHS_LOW     = 0x3200; 
@@ -1710,6 +1818,10 @@ namespace OTFontFileVal
             nCharsInRange = ur.GetRange(HANGUL_LOW).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange2, 0x01000000, nCharsInRange, "Hangul");
             
+            // v1: Reserved for Unicode SubRanges
+            // v2: Surrogates
+            // v3: Non-Plane 0 *
+            // v4: Non-Plane 0 *                           D800-DFFF
             // bit 57 surrogates
             if (version > 1)
             {
@@ -1740,12 +1852,18 @@ namespace OTFontFileVal
                 }
             }
 
-            // bit 58 reserved
-            if ((ulUnicodeRange2 & 0x04000000) != 0)
+            // v1/v2/v3: Reserved for Unicode SubRanges
+            // v4: Phoenician                              10900-1091F
+            if (version < 4)
             {
-                bOk = false;
-                v.Error(T.T_NULL, E.OS_2_E_ReservedBitSet_Unicode, m_tag, "bit #58");
+                // bit 58 reserved
+                if ((ulUnicodeRange2 & 0x04000000) != 0)
+                {
+                    bOk = false;
+                    v.Error(T.T_NULL, E.OS_2_E_ReservedBitSet_Unicode, m_tag, "bit #58");
+                }
             }
+            // TODO: v4
 
             // bit 59
             uint CJK_UNIFIED_IDEOGRAPHS_LOW            = 0x4E00; 
@@ -1773,9 +1891,11 @@ namespace OTFontFileVal
             }
             
             // bit 61
+            uint CJK_Strokes                         = 0x31C0;
             uint CJK_COMPATIBILITY_IDEOGRAPHS_LOW    = 0xF900; 
             uint CJK_COMPATIBILITY_IDEO_SUPP_LOW    = 0x2F800;
-            nCharsInRange = ur.GetRange(CJK_COMPATIBILITY_IDEOGRAPHS_LOW).count
+            nCharsInRange = ur.GetRange(CJK_Strokes).count
+                + ur.GetRange(CJK_COMPATIBILITY_IDEOGRAPHS_LOW).count
                           + ur.GetRange(CJK_COMPATIBILITY_IDEO_SUPP_LOW).count; 
             bOk &= VerifyUnicodeRanges(v, ulUnicodeRange2, 0x20000000, nCharsInRange, "CJK Compatibility Ideographs, CJK Compatibility Ideographs Supplement");
             
@@ -1797,8 +1917,10 @@ namespace OTFontFileVal
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange3, 0x00000001, nCharsInRange, "Combining Half Marks");
             
             // bit 65
-            uint CJK_COMPATIBILITY_FORMS_LOW         = 0xFE30; 
-            nCharsInRange = ur.GetRange(CJK_COMPATIBILITY_FORMS_LOW).count;
+            uint Vertical_Forms                      = 0xFE10;
+            uint CJK_COMPATIBILITY_FORMS_LOW         = 0xFE30;
+            nCharsInRange = ur.GetRange(Vertical_Forms).count
+                + ur.GetRange(CJK_COMPATIBILITY_FORMS_LOW).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange3, 0x00000002, nCharsInRange, "CJK Compatibility Forms");
             
             // bit 66
@@ -1821,6 +1943,7 @@ namespace OTFontFileVal
             nCharsInRange = ur.GetRange(SPECIALS_LOW).count;
             bOk &= VerifyUnicodeRange(v, ulUnicodeRange3, 0x00000020, nCharsInRange, "Specials");
 
+            // v1: 70-127 Reserved for Unicode SubRanges
             if (version < 2)
             {
                 for (int bitpos = 6; bitpos < 32; bitpos++)
@@ -1861,8 +1984,12 @@ namespace OTFontFileVal
                 bOk &= VerifyUnicodeRange(v, ulUnicodeRange3, 0x00000400, nCharsInRange, "Myanmar");
                 
                 // bit 75
-                uint ETHIOPIC_LOW                        = 0x1200; 
-                nCharsInRange = ur.GetRange(ETHIOPIC_LOW).count;
+                uint ETHIOPIC_LOW                        = 0x1200;
+                uint Ethiopic_Supplement                 = 0x1380;
+                uint Ethiopic_Extended                   = 0x2D80;
+                nCharsInRange = ur.GetRange(ETHIOPIC_LOW).count
+                    + ur.GetRange(Ethiopic_Supplement).count
+                    + ur.GetRange(Ethiopic_Extended).count;
                 bOk &= VerifyUnicodeRange(v, ulUnicodeRange3, 0x00000800, nCharsInRange, "Ethiopic");
                 
                 // bit 76
@@ -1886,8 +2013,10 @@ namespace OTFontFileVal
                 bOk &= VerifyUnicodeRange(v, ulUnicodeRange3, 0x00008000, nCharsInRange, "Runic");
                 
                 // bit 80
-                uint KHMER_LOW                            = 0x1780; 
-                nCharsInRange = ur.GetRange(KHMER_LOW).count;
+                uint KHMER_LOW                            = 0x1780;
+                uint Khmer_Symbols                        = 0x19E0;
+                nCharsInRange = ur.GetRange(KHMER_LOW).count
+                    + ur.GetRange(Khmer_Symbols).count;
                 bOk &= VerifyUnicodeRange(v, ulUnicodeRange3, 0x00010000, nCharsInRange, "Khmer");
                 
                 // bit 81
@@ -1908,6 +2037,7 @@ namespace OTFontFileVal
                 bOk &= VerifyUnicodeRanges(v, ulUnicodeRange3, 0x00080000, nCharsInRange, "Yi, Yi Radicals");
                 
 
+                // v2: 84-127 Reserved for Unicode SubRanges
                 if (version < 3)
                 {
                     for (int bitpos = 20; bitpos < 32; bitpos++)
@@ -1951,8 +2081,10 @@ namespace OTFontFileVal
                     // bit 88
                     uint BYZANTINE_MUSICAL_SYMBOLS_LOW  = 0x1D000;
                     uint MUSICAL_SYMBOLS_LOW            = 0x1D100;
+                    uint Ancient_Greek_Musical_Notation = 0x1D200;
                     nCharsInRange = ur.GetRange(BYZANTINE_MUSICAL_SYMBOLS_LOW).count
-                                  + ur.GetRange(MUSICAL_SYMBOLS_LOW).count;
+                                  + ur.GetRange(MUSICAL_SYMBOLS_LOW).count
+                        + ur.GetRange(Ancient_Greek_Musical_Notation).count;
                     bOk &= VerifyUnicodeRanges(v, ulUnicodeRange3, 0x01000000, nCharsInRange, "Byzantine Musical Symbols, Musical Symbols");
 
                     // bit 89
@@ -1968,8 +2100,10 @@ namespace OTFontFileVal
                     bOk &= VerifyUnicodeRange(v, ulUnicodeRange3, 0x04000000, nCharsInRange, "Private Use (Plane 15), Private Use (Plane 16)");
 
                     // bit 91
-                    uint VARIATION_SELECTORS_LOW         = 0xE0100;
-                    nCharsInRange = ur.GetRange(VARIATION_SELECTORS_LOW).count;
+                    uint Variation_Selectors             = 0xFE00;
+                    uint VARIATION_SELECTORS_SUPP         = 0xE0100;
+                    nCharsInRange = ur.GetRange(Variation_Selectors).count
+                        + ur.GetRange(VARIATION_SELECTORS_SUPP).count;
                     bOk &= VerifyUnicodeRange(v, ulUnicodeRange3, 0x08000000, nCharsInRange, "Variation Selectors");
 
                     // bit 92
@@ -1977,14 +2111,64 @@ namespace OTFontFileVal
                     nCharsInRange = ur.GetRange(TAGS_LOW).count;
                     bOk &= VerifyUnicodeRange(v, ulUnicodeRange3, 0x10000000, nCharsInRange, "Tags");
 
-                    for (int bitpos = 29; bitpos < 32; bitpos++)
+                    // v3: 93-127 Reserved for Unicode SubRanges
+                    if (version < 4)
                     {
-                        if ((ulUnicodeRange3 & (1<<bitpos)) != 0) { bOk = false; v.Error(T.T_NULL, E.OS_2_E_ReservedBitSet_Unicode, m_tag, "bit #" + (64+bitpos)); }
-                    }
+                        for (int bitpos = 29; bitpos < 32; bitpos++)
+                        {
+                            if ((ulUnicodeRange3 & (1<<bitpos)) != 0) { bOk = false; v.Error(T.T_NULL, E.OS_2_E_ReservedBitSet_Unicode, m_tag, "bit #" + (64+bitpos)); }
+                        }
 
-                    for (int bitpos = 0; bitpos < 32; bitpos++)
+                        for (int bitpos = 0; bitpos < 32; bitpos++)
+                        {
+                            if ((ulUnicodeRange4 & (1<<bitpos)) != 0) { bOk = false; v.Error(T.T_NULL, E.OS_2_E_ReservedBitSet_Unicode, m_tag, "bit #" + (96+bitpos)); }
+                        }
+                    }
+                    else
                     {
-                        if ((ulUnicodeRange4 & (1<<bitpos)) != 0) { bOk = false; v.Error(T.T_NULL, E.OS_2_E_ReservedBitSet_Unicode, m_tag, "bit #" + (96+bitpos)); }
+                    // v4 addition
+
+                    /*
+                      93      Limbu                                   1900-194F
+                      94      Tai Le                                  1950-197F
+                      95      New Tai Lue                             1980-19DF
+                      96      Buginese                                1A00-1A1F
+                      97      Glagolitic                              2C00-2C5F
+                      98      Tifinagh                                2D30-2D7F
+                      99      Yijing Hexagram Symbols                 4DC0-4DFF
+                      100     Syloti Nagri                            A800-A82F
+                      101     Linear B Syllabary                      10000-1007F
+                      Linear B Ideograms                      10080-100FF
+                      Aegean Numbers                          10100-1013F
+                      102     Ancient Greek Numbers                   10140-1018F
+                      103     Ugaritic                                10380-1039F
+                      104     Old Persian                             103A0-103DF
+                      105     Shavian                                 10450-1047F
+                      106     Osmanya                                 10480-104AF
+                      107     Cypriot Syllabary                       10800-1083F
+                      108     Kharoshthi                              10A00-10A5F
+                      109     Tai Xuan Jing Symbols                   1D300-1D35F
+                      110     Cuneiform                               12000-123FF
+                      Cuneiform Numbers and Punctuation       12400-1247F
+                      111     Counting Rod Numerals                   1D360-1D37F
+                      112     Sundanese                               1B80-1BBF
+                      113     Lepcha                                  1C00-1C4F
+                      114     Ol Chiki                                1C50-1C7F
+                      115     Saurashtra                              A880-A8DF
+                      116     Kayah Li                                A900-A92F
+                      117     Rejang                                  A930-A95F
+                      118     Cham                                    AA00-AA5F
+                      119     Ancient Symbols                         10190-101CF
+                      120     Phaistos Disc                           101D0-101FF
+                      121     Carian                                  102A0-102DF
+                      Lycian                                  10280-1029F
+                      Lydian                                  10920-1093F
+                      122     Domino Tiles                            1F030-1F09F
+                      Mahjong Tiles                           1F000-1F02F
+                      123-127 Reserved for process-internal usage
+                     */
+
+                        // TODO: v4 addition
                     }
                 }
             }

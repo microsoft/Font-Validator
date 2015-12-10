@@ -69,7 +69,7 @@ namespace OTFontFile
                 }
 
                 // only read Dsig fields if version 2.0 and last buffer was successfully read
-                if (version == 0x00020000 && buf != null)
+                if ((version == 0x00010000 || version == 0x00020000) && buf != null)
                 {
                     uint filepos = SIZEOF_FIRSTTHREEFIELDS + DirectoryCount*SIZEOF_UINT;
                     buf = file.ReadPaddedBuffer(filepos, 3*SIZEOF_UINT);
@@ -77,7 +77,13 @@ namespace OTFontFile
                     {
                         // DsigTag
                         ttc.DsigTag = new OTTag(buf.GetBuffer());
-                                            
+                        if ( ( version == 0x00010000 ) && ( (string) ttc.DsigTag != "DSIG" ) )
+                        {
+                            // failed v1 trial - reset & bail
+                            ttc.DsigTag = null;
+                            return ttc;
+                        }
+
                         // DsigLength
                         ttc.DsigLength = buf.GetUint(4);
 

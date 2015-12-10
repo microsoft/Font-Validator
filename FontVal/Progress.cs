@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Diagnostics;
 using System.Xml;
+using System.Xml.Xsl;
 using System.IO;
 
 using OTFontFile;
@@ -255,7 +256,7 @@ namespace FontVal
             // 
             // Progress
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            if ( Type.GetType("Mono.Runtime") == null ) this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(384, 214);
             this.ControlBox = false;
             this.Controls.Add(this.labelTestProgress);
@@ -371,6 +372,15 @@ namespace FontVal
                 File.Copy(sSrcFile, sDestFile, true);
                 fi = new FileInfo(sDestFile);
                 fi.Attributes = fi.Attributes & ~FileAttributes.ReadOnly;
+
+                if ( Type.GetType("Mono.Runtime") != null )
+                {
+                    var xslTrans = new XslCompiledTransform();
+                    xslTrans.Load(sDestFile);
+                    string sHTMLFile = sReportFile.Replace(".report.xml", ".report.html");
+                    if ( sHTMLFile != sReportFile )
+                        xslTrans.Transform(sReportFile, sHTMLFile);
+                }
             }
             catch (Exception)
             {

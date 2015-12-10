@@ -105,7 +105,7 @@ namespace FontVal
 			// 
 			// FormAbout
 			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+			if ( Type.GetType("Mono.Runtime") == null ) this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(320, 222);
 			this.Controls.AddRange(new System.Windows.Forms.Control[] {
 																		  this.linkLabel2,

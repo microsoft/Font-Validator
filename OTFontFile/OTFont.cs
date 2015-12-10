@@ -209,6 +209,19 @@ namespace OTFontFile
                         break;
                     }
                 }
+
+                // Try aliases after direct match
+                if ( de == null )
+                    for (int i = 0; i<m_OffsetTable.DirectoryEntries.Count; i++)
+                    {
+                        DirectoryEntry temp = (DirectoryEntry)m_OffsetTable.DirectoryEntries[i];
+                        if ( ( (temp.tag == "bloc" || temp.tag == "CBLC") && tag == "EBLC")
+                             || ( (temp.tag == "bdat" || temp.tag == "CBDT" ) && tag == "EBDT") )
+                        {
+                            de = temp;
+                            break;
+                        }
+                    }
             }
 
             return de;
@@ -506,6 +519,11 @@ namespace OTFontFile
                 if (cmapTable != null)
                 {
                     Table_cmap.Format12 subtable = (Table_cmap.Format12)cmapTable.GetSubtable(3,10);
+
+                    // Apple Color Emoji does not have a 3.10 charmap
+                    if (subtable == null)
+                        return glyphID;
+
                     Table_cmap.Format12.Group g = subtable.GetGroup(subtable.nGroups-1);
                     uint nArraySize = g.endCharCode + 1;
 
@@ -559,6 +577,11 @@ namespace OTFontFile
             uint uni32 = 0xffffffff; // return this (illegal) char on failure
 
             FastMapUnicode32ToGlyphID(0); // force the map to be calculated
+
+            // Apple Color Emoji does not have a 3.10 charmap
+            if (m_arrUnicodeToGlyph_3_10 == null)
+                return uni32;
+
             for (uint c=Start; c<m_arrUnicodeToGlyph_3_10.Length; c++)
             {
                 uint g = FastMapUnicode32ToGlyphID(c);

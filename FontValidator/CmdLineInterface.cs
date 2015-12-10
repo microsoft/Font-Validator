@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Xml;
+using System.Xml.Xsl;
 
 using OTFontFile;
 using NS_ValCommon;
@@ -22,6 +23,7 @@ namespace FontValidator
         OTFileVal             m_curOTFileVal;
         List<string>          m_reportFiles = new List<string>();
         List<string>          m_captions = new List<string>();
+        bool m_verbose;
 
         static void ErrOut( string s ) 
         {
@@ -61,6 +63,15 @@ namespace FontValidator
                 File.Copy(sSrcFile, sDestFile, true);
                 fi = new FileInfo(sDestFile);
                 fi.Attributes = fi.Attributes & ~FileAttributes.ReadOnly;
+
+                if ( Type.GetType("Mono.Runtime") != null )
+                {
+                    var xslTrans = new XslCompiledTransform();
+                    xslTrans.Load(sDestFile);
+                    string sHTMLFile = sReportFile.Replace(".report.xml", ".report.html");
+                    if ( sHTMLFile != sReportFile )
+                        xslTrans.Transform(sReportFile, sHTMLFile);
+                }
             }
             catch (Exception)
             {
@@ -81,12 +92,15 @@ namespace FontValidator
         }
         public void OnBeginRasterTest( string label )
         {
-            StdOut( "Begin Raster Test: " + label );
+            if (m_verbose == true && m_vp.IsTestingRaster())
+                StdOut( "Begin Raster Test: " + label );
         }
 
         public void OnBeginTableTest( DirectoryEntry de )
         {
-            StdOut( "Table Test: " + ( string )de.tag );
+            string name = ( string )de.tag;
+            if (m_verbose == true && m_vp.IsTestingTable(name))
+                StdOut( "Table Test: " + name );
         }
         public void OnTestProgress( object oParam )
         {
@@ -94,11 +108,15 @@ namespace FontValidator
             if (s == null) {
                 s = "";
             }
-            StdOut( "Progress: " + s );
+            if (m_verbose == true)
+                StdOut( "Progress: " + s );
         }
 
         public void OnCloseReportFile( string sReportFile )
         {
+            // Maybe check that it exists? The GUI
+            // can use memory stream for temporary XML display;
+            // Not applicable to CMD.
             StdOut( "Complete: " + sReportFile );
             // copy the xsl file to the same directory as the report
             // 
@@ -174,13 +192,15 @@ namespace FontValidator
                                  string [] sFilenames, 
                                  ReportFileDestination rfd, 
                                  bool bOpenReportFiles, 
-                                 string sReportFixedDir )
+                                 string sReportFixedDir,
+                                 bool verbose)
         {
             m_vp = vp;
             m_sFiles = sFilenames;
             m_ReportFileDestination = rfd;
             m_bOpenReportFiles = bOpenReportFiles;
             m_sReportFixedDir = sReportFixedDir;
+            m_verbose = verbose;
         }
 
         static void Usage()
@@ -193,6 +213,8 @@ namespace FontValidator
             Console.WriteLine( "-table         <table-skip>    (multiple allowed)" );
             Console.WriteLine( "-all-tables" );
             Console.WriteLine( "-only-tables" );
+            Console.WriteLine( "-quiet" );
+            Console.WriteLine( "+raster-tests" );
             Console.WriteLine( "-report-dir    <reportDir>" );
             Console.WriteLine( "-report-in-font-dir" );
 
@@ -213,6 +235,7 @@ namespace FontValidator
         static int Main( string[] args )
         {
             bool err = false;
+            bool verbose = true;
             string reportDir = null;
             ReportFileDestination rfd = ReportFileDestination.TempFiles;
             List<string> sFileList = new List<string>();
@@ -234,6 +257,7 @@ namespace FontValidator
                     }
                 }
                 else if ( "+table" == args[i] ) {
+                    i++;
                     if ( i < args.Length ) {
                         vp.AddTable( args[i] );
                     } else {
@@ -260,11 +284,28 @@ namespace FontValidator
                 else if ( "-only-tables" == args[i] ) {
                     vp.ClearTables();
                 }
+                else if ( "-quiet" == args[i] ) {
+                    verbose = false;
+                }
+                else if ( "+raster-tests" == args[i] ) {
+                    vp.SetRasterTesting();
+                }
                 else if ( "-report-dir" == args[i] ) {
                     i++;
                     if ( i < args.Length ) {
                         reportDir = args[i];
                         rfd = ReportFileDestination.FixedDir;
+                        // Try writing to the directory to see if it works.
+                        using (FileStream fs = File.Create(
+                                                           Path.Combine(
+                                                                        reportDir,
+                                                                        Path.GetRandomFileName()
+                                                                        ),
+                                                           1, // bufferSize
+                                                           FileOptions.DeleteOnClose)
+                               )
+                        { };
+                        // exception should throw & abort on failure
                     } else {
                         ErrOut( "Argument required for \"" + args[i-1] + "\"" );
                         err = true;
@@ -286,9 +327,8 @@ namespace FontValidator
 
             CmdLineInterface cmd = new 
                 CmdLineInterface( vp, sFileList.ToArray(), rfd, false, 
-                                  reportDir );
+                                  reportDir , verbose);
             return cmd.DoIt();
         }
     }
-
 }

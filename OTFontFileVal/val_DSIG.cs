@@ -34,12 +34,23 @@ namespace OTFontFileVal
                 bool bFormatsOk = true;
                 for (uint i=0; i<usNumSigs; i++)
                 {
-                    SigFormatOffset sfo = GetSigFormatOffset(i);
+                    SigFormatOffset sfo;
+                    try
+                    {
+                    sfo = GetSigFormatOffset(i);
                     if (sfo.ulFormat != 1)
                     {
                         v.Error(T.DSIG_Formats, E.DSIG_E_Formats, m_tag, "block " + i + ", format = " + sfo.ulFormat);
                         bFormatsOk = false;
                         bRet = false;
+                    }
+                    }
+                    catch (IndexOutOfRangeException e)
+                    {
+                        v.Error(T.DSIG_Formats, E.DSIG_E_Formats, m_tag, "block " + i + ", " + e);
+                        bFormatsOk = false;
+                        bRet = false;
+                        break; // No point continuing
                     }
                 }
                 if (bFormatsOk)
@@ -53,12 +64,23 @@ namespace OTFontFileVal
                 bool bReservedOk = true;
                 for (uint i=0; i<usNumSigs; i++)
                 {
-                    SignatureBlock sb = GetSignatureBlock(i);
+                    SignatureBlock sb;
+                    try
+                    {
+                    sb = GetSignatureBlock(i);
                     if (sb.usReserved1 != 0 || sb.usReserved2 != 0)
                     {
                         v.Error(T.DSIG_Reserved, E.DSIG_E_Reserved, m_tag, "block " + i);
                         bReservedOk = false;
                         bRet = false;
+                    }
+                    }
+                    catch (IndexOutOfRangeException e)
+                    {
+                        v.Error(T.DSIG_Reserved, E.DSIG_E_Reserved, m_tag, "block " + i);
+                        bReservedOk = false;
+                        bRet = false;
+                        break; // No point continuing
                     }
                 }
                 if (bReservedOk)
@@ -76,7 +98,17 @@ namespace OTFontFileVal
                 WinVerifyTrustWrapper wvt = new WinVerifyTrustWrapper();
                 if (wvt.WinVerifyTrustFile(sFilename))
                 {
-                    v.Pass(T.DSIG_VerifySignature, P.DSIG_P_VerifySignature, m_tag);
+                    if (wvt.usNumSigs > 0)
+                    {
+                        if (wvt.Warn_TTCv1 || wvt.Warn_DSIG_in_memFonts)
+                            v.Warning(T.DSIG_VerifySignature, W.DSIG_W_VerifySignature_Generic, m_tag,
+                                   ( wvt.Warn_TTCv1 ? "TTC with v1 header;":"")
+                                   + (wvt.Warn_DSIG_in_memFonts ? "DSIG tables detected in member fonts;":"") );
+                        v.Pass(T.DSIG_VerifySignature, P.DSIG_P_VerifySignature, m_tag,
+                               wvt.Signer);
+                    }
+                    else
+                        v.Pass(T.DSIG_VerifySignature, P.DSIG_P_VerifySignature, m_tag);
                 }
                 else
                 {
