@@ -1412,7 +1412,7 @@ namespace FontVal
                 if(dlg.ShowDialog() == DialogResult.OK)
                 {
                     rf.SaveReportAs(dlg.FileName);
-                    Progress.CopyXslFile(dlg.FileName);
+                    Driver.CopyXslFile(dlg.FileName);
                     AddMRUReport(dlg.FileName);
                 }
             }
