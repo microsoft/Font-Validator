@@ -173,6 +173,7 @@ namespace OTFontFile
                 case "PCLT": table = new Table_PCLT(tag, buf); break;
                 case "post": table = new Table_post(tag, buf); break;
                 case "prep": table = new Table_prep(tag, buf); break;
+                case "SVG ": table = new Table_SVG(tag, buf); break;
                 case "VDMX": table = new Table_VDMX(tag, buf); break;
                 case "vhea": table = new Table_vhea(tag, buf); break;
                 case "vmtx": table = new Table_vmtx(tag, buf); break;
