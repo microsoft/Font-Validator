@@ -173,4 +173,4 @@ bin/DSIGInfo.exe: DSIGInfo/DSIGInfo.cs
         -target:exe -out:../$@ *.cs \
         ../mcs-class-Mono.Security/ASN1.cs \
         ../mcs-class-Mono.Security/ASN1Convert.cs \
-        ../OTFontFile/* )
+        ../OTFontFile/*.cs )
