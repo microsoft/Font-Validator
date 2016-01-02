@@ -61,6 +61,7 @@ namespace OTFontFileVal
                 case "PCLT": table = new val_PCLT(tag, buf); break;
                 case "post": table = new val_post(tag, buf); break;
                 case "prep": table = new val_prep(tag, buf); break;
+                case "SVG ": table = new val_SVG(tag, buf); break;
                 case "VDMX": table = new val_VDMX(tag, buf); break;
                 case "vhea": table = new val_vhea(tag, buf); break;
                 case "vmtx": table = new val_vmtx(tag, buf); break;
