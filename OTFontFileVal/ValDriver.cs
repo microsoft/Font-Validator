@@ -64,7 +64,15 @@ namespace OTFontFileVal {
             // copy the file
             try
             {
-                File.Copy(sSrcFile, sDestFile, true);
+                try
+                {
+                    File.Copy(sSrcFile, sDestFile, true);
+                }
+                catch ( FileNotFoundException )
+                {
+                    if ( !File.Exists( sDestFile ) )
+                        File.WriteAllBytes(sDestFile, Compat.Xsl.fval);
+                }
                 fi = new FileInfo(sDestFile);
                 fi.Attributes = fi.Attributes & ~FileAttributes.ReadOnly;
 
