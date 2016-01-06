@@ -1,0 +1,6 @@
+[submodule "mono-webbrowser"]
+	path = mono-webbrowser
+	url = git://github.com/HinTak/mono-webbrowser.git
+[submodule "SharpFont"]
+	path = SharpFont
+	url = git://github.com/Robmaister/SharpFont.git
