@@ -144,7 +144,7 @@ namespace FontVal
             {
                 try {
                 FreeConsole();
-                } catch (Exception e ) {
+                } catch (Exception e) when ( e is EntryPointNotFoundException || e is DllNotFoundException ) {
                     // FreeConsole() is neither available nor relevant
                     // on non-windows.
                 }

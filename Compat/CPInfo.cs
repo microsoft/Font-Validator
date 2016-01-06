@@ -134,7 +134,7 @@ namespace Compat.Win32APIs
                             throw new NotImplementedException("UnImplemented CodePage Lookup:" + codepage);
                     }
                 }
-                catch (KeyNotFoundException ex)
+                catch (KeyNotFoundException)
                 {
                     // Look up failing is okay - NLS does not map.
                     return -1;

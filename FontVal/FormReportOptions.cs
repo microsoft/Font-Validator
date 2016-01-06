@@ -229,7 +229,7 @@ namespace FontVal
                     m_sFixedDir = sDir;
                     textFixedDir.Text = sDir;
                 }
-            } catch (Exception what) {
+            } catch (MissingMethodException) {
                 // Does not happen if SH.BrowseForFolder works.
                 // "/tmp" is friendlier than do nothing.
                 m_sFixedDir = "/tmp";

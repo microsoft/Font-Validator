@@ -75,7 +75,7 @@ namespace OTFontFileVal
                         bRet = false;
                     }
                     }
-                    catch (IndexOutOfRangeException e)
+                    catch (IndexOutOfRangeException)
                     {
                         v.Error(T.DSIG_Reserved, E.DSIG_E_Reserved, m_tag, "block " + i);
                         bReservedOk = false;

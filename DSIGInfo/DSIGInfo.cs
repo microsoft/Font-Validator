@@ -204,7 +204,7 @@ namespace Compat
                 Table_DSIG.SignatureBlock sgb;
                 try {
                     sgb = tDSIG.GetSignatureBlock(v);
-                } catch (IndexOutOfRangeException e)
+                } catch (IndexOutOfRangeException)
                 {
                     Warn_MalformedSIG = true;
                     break;
@@ -335,7 +335,7 @@ namespace Compat
                 Table_DSIG.SignatureBlock sgb;
                 try {
                     sgb = tDSIG.GetSignatureBlock(v);
-                } catch (IndexOutOfRangeException e)
+                } catch (IndexOutOfRangeException)
                 {
                     Console.WriteLine("Error: Out of Range SignatureBlock {0}", v);
                     break;
@@ -469,7 +469,7 @@ namespace Compat
                     Console.WriteLine("RootID: {0}", root_id);
                     trusted = true;
                 }
-                catch (KeyNotFoundException e)
+                catch (KeyNotFoundException)
                 {}
                 Console.WriteLine("Trusted: {0}", trusted);
             }
