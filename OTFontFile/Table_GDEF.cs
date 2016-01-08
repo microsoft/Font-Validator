@@ -28,7 +28,8 @@ namespace OTFontFile
             GlyphClassDefOffset      = 4,
             AttachListOffset         = 6,
             LigCaretListOffset       = 8,
-            MarkAttachClassDefOffset = 10
+            MarkAttachClassDefOffset = 10,
+            MarkGlyphSetsDefOffset   = 12
         }
 
         /************************
@@ -304,6 +305,8 @@ namespace OTFontFile
             protected MBOBuffer m_bufTable;
         }
 
+        // TODO: public class MarkGlyphSetsTable
+
         /************************
          * accessors
          */
@@ -331,6 +334,16 @@ namespace OTFontFile
         public ushort MarkAttachClassDefOffset
         {
             get {return m_bufTable.GetUshort((uint)FieldOffsets.MarkAttachClassDefOffset);}
+        }
+
+        public ushort MarkGlyphSetsDefOffset
+        {
+            get {
+                if ( Version.GetUint() > 0x00010000 )
+                    return m_bufTable.GetUshort((uint)FieldOffsets.MarkGlyphSetsDefOffset);
+                else
+                    return 0;
+            }
         }
 
         public OTL.ClassDefTable GetGlyphClassDefTable()
@@ -381,6 +394,7 @@ namespace OTFontFile
             return cdt;
         }
 
+        // TODO: public .. GetMarkGlyphSetsDefTable()
 
 
         /************************

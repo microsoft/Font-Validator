@@ -31,7 +31,7 @@ namespace OTFontFileVal
 
             if (v.PerformTest(T.GDEF_Version))
             {
-                if (Version.GetUint() == 0x00010000)
+                if (Version.GetUint() == 0x00010000 || Version.GetUint() == 0x00010002 )
                 {
                     v.Pass(T.GDEF_Version, P.GDEF_P_Version, m_tag);
                 }
@@ -85,6 +85,15 @@ namespace OTFontFileVal
                     }
                 }
 
+                if (MarkGlyphSetsDefOffset != 0)
+                {
+                    if (MarkGlyphSetsDefOffset > m_bufTable.GetLength())
+                    {
+                        v.Error(T.GDEF_HeaderOffsets, E.GDEF_E_HeaderOffset, m_tag, "MarkGlyphSetsDef");
+                        bOffsetsOk = false;
+                        bRet = false;
+                    }
+                }
 
                 if (bOffsetsOk == true)
                 {
@@ -116,6 +125,11 @@ namespace OTFontFileVal
                 {
                     ClassDefTable_val macdt = GetMarkAttachClassDefTable_val();
                     macdt.Validate(v, "MarkAttachClassDef", this);
+                }
+
+                if (MarkGlyphSetsDefOffset != 0)
+                {
+                    //TODO
                 }
             }
 
@@ -359,6 +373,7 @@ namespace OTFontFileVal
             return cdt;
         }
 
+        // TODO: GetMarkGlyphSetsDefTable_val()
 
 
 
