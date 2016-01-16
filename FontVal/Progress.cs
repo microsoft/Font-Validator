@@ -351,6 +351,11 @@ namespace FontVal
             string sReportFile = null;
             switch ( m_ReportFileDestination )
             {
+                case ReportFileDestination.UserDesktop:
+                    sReportFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) +
+                        Path.DirectorySeparatorChar +
+                        Path.GetFileName(sFontFile) + ".report.xml";
+                    break;
                 case ReportFileDestination.TempFiles:
                     string sTemp = Path.GetTempFileName();
                     sReportFile = sTemp + ".report.xml";

@@ -194,6 +194,8 @@ namespace FontVal
             if (radioButtonTempFiles.Checked)
             {
                 m_ReportFileDestination = ReportFileDestination.TempFiles;
+                if ( Type.GetType("Mono.Runtime") != null )
+                    m_ReportFileDestination = ReportFileDestination.UserDesktop;
                 checkBoxOpenReport.CheckState = CheckState.Checked;
                 m_bOpenReportFile = checkBoxOpenReport.Checked;
                 checkBoxOpenReport.Enabled = false;
@@ -254,8 +256,13 @@ namespace FontVal
             set
             {
                 m_ReportFileDestination = value;
+                if ( Type.GetType("Mono.Runtime") != null && value == ReportFileDestination.TempFiles)
+                    m_ReportFileDestination = ReportFileDestination.UserDesktop;
                 switch(m_ReportFileDestination)
                 {
+                    case ReportFileDestination.UserDesktop:
+                        radioButtonTempFiles.Checked = true; //revisit
+                        break;
                     case ReportFileDestination.TempFiles:
                         radioButtonTempFiles.Checked = true;
                         break;

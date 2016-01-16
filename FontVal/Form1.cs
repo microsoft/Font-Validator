@@ -1936,6 +1936,11 @@ namespace FontVal
             m_sMRUReports  = new String[4];
             m_ReportFileDestination = ReportFileDestination.TempFiles;
             m_bOpenReportFile = true;
+            if ( Type.GetType("Mono.Runtime") != null )
+            {
+                m_ReportFileDestination = ReportFileDestination.UserDesktop;
+                m_bOpenReportFile = false;
+            }
             m_sReportFixedDir = "";
             m_bFirstTime = true;
         }

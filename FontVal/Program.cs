@@ -90,6 +90,11 @@ namespace FontVal
             string sReportFile = null;
             switch (m_ReportFileDestination)
             {
+                case ReportFileDestination.UserDesktop:
+                    sReportFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) +
+                        Path.DirectorySeparatorChar +
+                        Path.GetFileName(sFontFile) + ".report.xml";
+                    break;
                 case ReportFileDestination.TempFiles:
                     string sTemp = Path.GetTempFileName();
                     sReportFile = sTemp + ".report.xml";
@@ -154,7 +159,7 @@ namespace FontVal
 
             bool err = false;
             string reportDir = null;
-            ReportFileDestination rfd = ReportFileDestination.TempFiles;
+            ReportFileDestination rfd = ReportFileDestination.UserDesktop;
             List<string> sFileList = new List<string>();
             ValidatorParameters vp = new ValidatorParameters();
 
@@ -278,6 +283,9 @@ namespace FontVal
                 else if ("-report-in-font-dir" == args[i])
                 {
                     rfd = ReportFileDestination.SameDirAsFont;
+                }
+                else if ( "-temporary-reports" == args[i] ) {
+                    rfd = ReportFileDestination.TempFiles;
                 }
                 else
                 {
