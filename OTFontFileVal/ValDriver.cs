@@ -21,6 +21,7 @@ namespace OTFontFileVal {
     // parameters class that will be used to drive the engine and store state
     // across runs.
     public enum ReportFileDestination {
+        UserDesktop,
         TempFiles,
         FixedDir,
         SameDirAsFont
