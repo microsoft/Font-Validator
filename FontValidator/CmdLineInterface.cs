@@ -102,6 +102,11 @@ namespace FontValidator
             string sReportFile = null;
             switch ( m_ReportFileDestination )
             {
+                case ReportFileDestination.UserDesktop:
+                    sReportFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) +
+                        Path.DirectorySeparatorChar +
+                        Path.GetFileName(sFontFile) + ".report.xml";
+                    break;
                 case ReportFileDestination.TempFiles:
                     string sTemp = Path.GetTempFileName();
                     sReportFile = sTemp + ".report.xml";
@@ -171,6 +176,7 @@ namespace FontValidator
             Console.WriteLine( "-quiet" );
             Console.WriteLine( "+raster-tests" );
             Console.WriteLine( "-report-dir    <reportDir>" );
+            Console.WriteLine( "-temporary-reports" );
             Console.WriteLine( "-report-in-font-dir" );
 
             Console.WriteLine( "" );
@@ -184,7 +190,7 @@ namespace FontValidator
             Console.WriteLine( "" );
 
             Console.WriteLine( "Example:" );
-            Console.WriteLine( "  FontValidator -file arial.ttf -file times.ttf -table 'OS/2' -table DSIG -report-dir /tmp");
+            Console.WriteLine( "  FontValidator -file arial.ttf -file times.ttf -table 'OS/2' -table DSIG -report-dir ~/Desktop");
         }
 
         static int Main( string[] args )
@@ -192,7 +198,7 @@ namespace FontValidator
             bool err = false;
             bool verbose = true;
             string reportDir = null;
-            ReportFileDestination rfd = ReportFileDestination.TempFiles;
+            ReportFileDestination rfd = ReportFileDestination.UserDesktop;
             List<string> sFileList = new List<string>();
             ValidatorParameters vp = new ValidatorParameters();
             
@@ -269,6 +275,9 @@ namespace FontValidator
                 }
                 else if ( "-report-in-font-dir" == args[i] ) {
                     rfd = ReportFileDestination.SameDirAsFont;
+                }
+                else if ( "-temporary-reports" == args[i] ) {
+                    rfd = ReportFileDestination.TempFiles;
                 }
                 else {
                     ErrOut( "Unknown argument: \"" + args[i] + "\"" );
