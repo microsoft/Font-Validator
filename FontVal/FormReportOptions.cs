@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
@@ -231,9 +232,9 @@ namespace FontVal
                 }
             } catch (MissingMethodException) {
                 // Does not happen if SH.BrowseForFolder works.
-                // "/tmp" is friendlier than do nothing.
-                m_sFixedDir = "/tmp";
-                textFixedDir.Text = "/tmp";
+                // GetTempPath() (="/tmp" on unix) is friendlier than do nothing.
+                m_sFixedDir = Path.GetTempPath();
+                textFixedDir.Text = Path.GetTempPath();
             }
         }
 
