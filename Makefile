@@ -53,7 +53,7 @@ LIBRARIES_2=ValCommon GMath Glyph OTFontFileVal
 COMPAT_LIBRARIES=$(COMPAT_LIBRARIES_1)
 LIBRARIES=$(LIBRARIES_1) $(LIBRARIES_2)
 GENDOC_EXE=GenerateFValData
-MAIN_EXE=FontVal FontValidator DSIGInfo
+MAIN_EXE=FontVal FontValidator DSIGInfo SVGInfo
 
 MCS=mcs -debug- -optimize+
 
@@ -173,4 +173,10 @@ bin/DSIGInfo.exe: DSIGInfo/DSIGInfo.cs
         -target:exe -out:../$@ *.cs \
         ../mcs-class-Mono.Security/ASN1.cs \
         ../mcs-class-Mono.Security/ASN1Convert.cs \
+        ../OTFontFile/*.cs )
+
+bin/SVGInfo.exe: SVGInfo/SVGInfo.cs
+	( cd SVGInfo && \
+        $(MCS) -lib:../bin/ $(EXTRA_DEV_OPTS) \
+        -target:exe -out:../$@ *.cs \
         ../OTFontFile/*.cs )
