@@ -9541,7 +9541,7 @@ All tables should be recorded in the table directory with their actual length. T
 </item>
 
 <item
-    helpID="W7001"
+    helpID="W1703"
     atom="loca_W_GlyfEntryEmpty"
     linkTitle="loca table specification"
     specLink="http://www.microsoft.com/typography/otspec/loca.htm"
@@ -9552,7 +9552,7 @@ All tables should be recorded in the table directory with their actual length. T
 </item>
 
 <item
-    helpID="I9001"
+    helpID="I1900"
     atom="maxp_I_Calculation_Method1"
     linkTitle="maxp table specification"
     specLink="http://www.microsoft.com/typography/otspec/maxp.htm"
@@ -9574,7 +9574,7 @@ This info message indicates that maxSizeOfInstructions computed via method #1.
 </item>
 
 <item
-    helpID="I9002"
+    helpID="I1901"
     atom="maxp_I_Calculation_Method2"
     linkTitle="maxp table specification"
     specLink="http://www.microsoft.com/typography/otspec/maxp.htm"
@@ -9596,7 +9596,7 @@ This info message indicates that maxSizeOfInstructions computed via method #2.
 </item>
 
 <item
-    helpID="W7002"
+    helpID="W1900"
     atom="maxp_W_Calculation_Unclear"
     linkTitle="maxp table specification"
     specLink="http://www.microsoft.com/typography/otspec/maxp.htm"
@@ -9659,19 +9659,215 @@ by either method may indicate some other problem in the font.
 </item>
 
 <!--
-<item
-    helpID="W7003"
-    atom="_FONT_W_MissingRequiredTable"
-    linkTitle="details about OpenType files"
-    specLink="http://www.microsoft.com/typography/otspec/otff.htm"
-    shortDesc="Required table is missing"
-    fwLinkID="10363"
-    tableName="General">
-    <problem>The OpenType spec indicates that the prep table should be present
-in an OpenType font based on TrueType outlines, but in some unhinted fonts, the
-prep table may be missing.
-    </problem>
-</item>
+Pre-2015 assigned values:
+
+00 _GEN,_OFFSET,_FONT,_DE,_Table,_TEST
+
+02 CFF
+03 cmap
+04 cvt
+05 DSIG
+06 EBDT
+07 EBLC
+08 EBSC
+09 fpgm
+10 gasp
+11 glyf
+12 hdmx
+13 head
+14 hhea
+15 hmtx
+16 kern
+17 loca
+18 LTSH
+19 maxp
+20 name
+21 OS/2
+22 PCLT
+23 post
+24 prep
+25 VDMX
+26 vhea
+27 vmtx
+28 VORG
+
+40 GDEF
+41 GPOS
+42 GSUB
+43 BASE
+44 JSTF
+
+50 _OTL_ClassDefinitionTable
+51 _OTL_CoverageTable
+52 _OTL_DeviceTable
+53 _OTL_FeatureListTable
+54 _OTL_FeatureTable
+55 _OTL_LangSysTable
+56 _OTL_LookupListTable
+57 _OTL_LookupTable
+58 _OTL_ScriptListTable
+59 _OTL_ScriptTable
+
+60 rast
 -->
+
+<!--
+2015:
+reserve 30-35 for CBDT/CBLC/COLR/CPAL/MATH/SVG
+-->
+
+<item
+    helpID="P3500"
+    atom="SVG_P_version"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The version field is okay"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem></problem>
+</item>
+
+<item
+    helpID="W3500"
+    atom="SVG_W_version"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The version field is wrong"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem>Version should be zero.</problem>
+</item>
+
+<item
+    helpID="P3501"
+    atom="SVG_P_offsetToSVGDocIndex"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The offsetToSVGDocIndex field is okay"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem></problem>
+</item>
+
+<item
+    helpID="W3501"
+    atom="SVG_W_offsetToSVGDocIndex_NonContiguous"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The offsetToSVGDocIndex field is too large"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem>There is a gap between the end of the reserved field and the SVGDocIndex.</problem>
+</item>
+
+<item
+    helpID="E3501"
+    atom="SVG_E_offsetToSVGDocIndex_Overlapping"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The offsetToSVGDocIndex field is too small"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem>The offsetToSVGDocIndex should be non-zero and beyond the reserved field.</problem>
+</item>
+
+<item
+    helpID="P3502"
+    atom="SVG_P_reserved"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The reserved field is okay"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem></problem>
+</item>
+
+<item
+    helpID="W3502"
+    atom="SVG_W_reserved"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The reserved field is wrong"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem>reserved field should be zero.</problem>
+</item>
+
+<item
+    helpID="P3503"
+    atom="SVG_P_numEntries"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The numEntries field is okay"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem></problem>
+</item>
+
+<item
+    helpID="W3503"
+    atom="SVG_W_numEntries"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The numEntries field is wrong"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem>numEntries should not be zero.</problem>
+</item>
+
+<item
+    helpID="P3504"
+    atom="SVG_P_SVGDocIndex"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The SVGDocIndex field is okay"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem></problem>
+</item>
+
+<item
+    helpID="W3504"
+    atom="SVG_W_SVGDocIndex"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The SVGDocIndex field has some non-fatal errors"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem>Non-fatal errors are for example, unused gaps between index entries.</problem>
+</item>
+
+<item
+    helpID="E3504"
+    atom="SVG_E_SVGDocIndex"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="The SVGDocIndex field has some fatal errors"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem>Fatal errors are, for example, overlapping entries, where futher processing is impossible.</problem>
+</item>
+
+<item
+    helpID="P3505"
+    atom="SVG_P_TryLoadSVG"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="Try loading SVG as XML is okay"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem></problem>
+</item>
+
+<item
+    helpID="E3505"
+    atom="SVG_E_TryLoadSVG"
+    linkTitle="SVG table specification"
+    specLink="http://www.microsoft.com/typography/otspec/svg.htm"
+    shortDesc="Try loading SVG as XML failed"
+    fwLinkID="0"
+    tableName="SVG">
+    <problem>Try loading SVG as XML failed. It is possible this is a bare deflate stream which is not recommended, or simply corrupted data.</problem>
+</item>
 
 </helpitems>
