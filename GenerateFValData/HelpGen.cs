@@ -232,9 +232,17 @@ namespace helpgen {
             TextWriter s = new StreamWriter( helpprojTemp );
             AppendTextFileToStream( s, inputDir+"help-proj-preamble.txt" );
             foreach ( HelpItem hi in items ) {
-                if ( 'P' != hi.helpID[0] && 
-                     "ERROR" != hi.problem.Substring(0,5) ) {
-                    s.WriteLine( HelpFileName( "", hi.helpID ) );
+                try
+                {
+                    if ( 'P' != hi.helpID[0] &&
+                         "ERROR" != hi.problem.Substring(0,5) ) {
+                        s.WriteLine( HelpFileName( "", hi.helpID ) );
+                    }
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    Console.WriteLine("<problem/> description must not be empty.");
+                    throw;
                 }
             }
             AppendTextFileToStream( s, inputDir+"help-proj-postamble.txt" );
