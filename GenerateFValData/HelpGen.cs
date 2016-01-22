@@ -456,6 +456,10 @@ namespace helpgen {
         {
             List<HelpItem> items = GetHelpItemsFromXMLFile( ps.xmlPath,
                                                             ps.xsdPath );
+            items.Sort(delegate(HelpItem x, HelpItem y)
+                       {
+                           return x.helpID.CompareTo(y.helpID);
+                       });
             if ( null == items ) {
                 return 1;
             }
