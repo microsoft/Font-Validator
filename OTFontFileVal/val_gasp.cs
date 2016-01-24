@@ -45,6 +45,7 @@ namespace OTFontFileVal
             if (v.PerformTest(T.gasp_rangeGaspBehavior))
             {
                 bool bFlagsOk = true;
+                string first_error = null;
                 for (uint i=0; i<numRanges; i++)
                 {
                     GaspRange gr = GetGaspRange(i);
@@ -54,6 +55,8 @@ namespace OTFontFileVal
                             || (version == 1 && gr.rangeGaspBehavior > 0xf))
                         {
                             bFlagsOk = false;
+                            first_error = "version=" + version + ", range #" + i + ", rangeGaspBehavior=0x"
+                                + gr.rangeGaspBehavior.ToString("X4");
                             break;
                         }
                     }
@@ -64,7 +67,7 @@ namespace OTFontFileVal
                 }
                 else
                 {
-                    v.Error(T.gasp_rangeGaspBehavior, E.gasp_E_rangeGaspBehavior, m_tag);
+                    v.Error(T.gasp_rangeGaspBehavior, E.gasp_E_rangeGaspBehavior, m_tag, first_error);
                     bRet = false;
                 }
             }
