@@ -129,7 +129,12 @@ namespace OTFontFile
                     {
                         using (GZipStream zip = new GZipStream(input, CompressionMode.Decompress))
                         {
-                            zip.CopyTo(output);
+                            byte[] buffer = new byte[16 * 1024];
+                            int byteRead;
+                            while ( (byteRead = zip.Read( buffer, 0, buffer.Length )) > 0 )
+                            {
+                                output.Write( buffer, 0, byteRead );
+                            }
                         }
                     }
                     decompressed = output.ToArray();
