@@ -33,7 +33,7 @@ namespace OTFontFileVal
             {
                 if (Version.GetUint() == 0x00010000 || Version.GetUint() == 0x00010002 )
                 {
-                    v.Pass(T.GDEF_Version, P.GDEF_P_Version, m_tag);
+                    v.Pass(T.GDEF_Version, P.GDEF_P_Version, m_tag, "0x"+ Version.GetUint().ToString("x8"));
                 }
                 else
                 {
@@ -129,7 +129,8 @@ namespace OTFontFileVal
 
                 if (MarkGlyphSetsDefOffset != 0)
                 {
-                    //TODO
+                    MarkGlyphSetsDefTable_val mgsdt = GetMarkGlyphSetsDefTable_val();
+                    mgsdt.Validate(v, "MarkGlyphSetsDefDef", this);
                 }
             }
 
@@ -325,6 +326,43 @@ namespace OTFontFileVal
             }
         }
 
+        public class MarkGlyphSetsDefTable_val : MarkGlyphSetsDefTable, I_OTLValidate
+        {
+            public MarkGlyphSetsDefTable_val(ushort offset, MBOBuffer bufTable) : base(offset, bufTable)
+            {
+            }
+
+            public bool Validate(Validator v, string sIdentity, OTTable table)
+            {
+                bool bRet = true;
+
+                bRet &= ((val_GDEF)table).ValidateNoOverlap(m_offsetMarkGlyphSetsDefTable, CalcLength(), v, sIdentity, table.GetTag());
+
+                if (MarkSetTableFormat != 1)
+                {
+                    v.Error(T.T_NULL, E.GDEF_E_MarkSetTableFormat, table.m_tag,
+                            sIdentity + ": MarkSetTableFormat=" + MarkSetTableFormat.ToString());
+                    bRet = false;
+                }
+
+                if (m_offsetMarkGlyphSetsDefTable + CalcLength() > m_bufTable.GetLength())
+                {
+                    v.Error(T.T_NULL, E.GDEF_E_MarkGlyphSetsDefTable_PastEOT, table.m_tag, sIdentity);
+                    bRet = false;
+                }
+
+                v.Info(T.T_NULL, I.GDEF_I_MarkSetCount, table.m_tag, sIdentity + ": MarkSetCount=" + MarkSetCount);
+                // TODO: check Coverage [MarkSetCount] array?
+
+                if (bRet)
+                {
+                    v.Pass(T.T_NULL, P.GDEF_P_MarkGlyphSetsDefTable, table.m_tag, sIdentity);
+                }
+
+                return bRet;
+            }
+        }
+
         public ClassDefTable_val GetGlyphClassDefTable_val()
         {
             ClassDefTable_val cdt = null;
@@ -373,11 +411,17 @@ namespace OTFontFileVal
             return cdt;
         }
 
-        // TODO: GetMarkGlyphSetsDefTable_val()
+        public MarkGlyphSetsDefTable_val GetMarkGlyphSetsDefTable_val()
+        {
+            MarkGlyphSetsDefTable_val mgsdt = null;
 
+            if (MarkGlyphSetsDefOffset != 0)
+            {
+                mgsdt = new MarkGlyphSetsDefTable_val(MarkGlyphSetsDefOffset, m_bufTable);
+            }
 
-
-
+            return mgsdt;
+        }
 
         public bool ValidateNoOverlap(uint offset, uint length, Validator v, string sIdentity, OTTag tag)
         {
