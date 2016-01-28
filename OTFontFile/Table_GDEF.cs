@@ -305,7 +305,44 @@ namespace OTFontFile
             protected MBOBuffer m_bufTable;
         }
 
-        // TODO: public class MarkGlyphSetsTable
+        public class MarkGlyphSetsDefTable
+        {
+            public MarkGlyphSetsDefTable(ushort offset, MBOBuffer bufTable)
+            {
+                m_offsetMarkGlyphSetsDefTable = offset;
+                m_bufTable = bufTable;
+            }
+
+            public enum FieldOffsets
+            {
+                MarkSetTableFormat = 0, // uint16
+                MarkSetCount       = 2, // uint16
+                Coverage           = 4  // ULONG [MarkSetCount]
+            }
+
+            public uint CalcLength()
+            {
+                return (uint)FieldOffsets.Coverage + (uint)MarkSetCount*4;
+            }
+
+            public ushort MarkSetTableFormat
+            {
+                get {return m_bufTable.GetUshort(m_offsetMarkGlyphSetsDefTable + (uint)FieldOffsets.MarkSetTableFormat);}
+            }
+
+            public ushort MarkSetCount
+            {
+                get {return m_bufTable.GetUshort(m_offsetMarkGlyphSetsDefTable + (uint)FieldOffsets.MarkSetCount);}
+            }
+
+            public uint GetCoverage(uint i)
+            {
+                return m_bufTable.GetUint(m_offsetMarkGlyphSetsDefTable + (uint)FieldOffsets.Coverage + i*4);
+            }
+
+            protected ushort m_offsetMarkGlyphSetsDefTable;
+            protected MBOBuffer m_bufTable;
+        }
 
         /************************
          * accessors
@@ -394,8 +431,17 @@ namespace OTFontFile
             return cdt;
         }
 
-        // TODO: public .. GetMarkGlyphSetsDefTable()
+        public MarkGlyphSetsDefTable GetMarkGlyphSetsDefTable()
+        {
+            MarkGlyphSetsDefTable mgsdt = null;
 
+            if (MarkGlyphSetsDefOffset != 0)
+            {
+                mgsdt = new MarkGlyphSetsDefTable(MarkGlyphSetsDefOffset, m_bufTable);
+            }
+
+            return mgsdt;
+        }
 
         /************************
          * DataCache class
