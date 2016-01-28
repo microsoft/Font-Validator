@@ -3533,10 +3533,54 @@ Correct this data using a table editing tool.&lt;BR&gt;For examples of how to us
     atom="GDEF_E_Version"
     linkTitle="GDEF table specification"
     specLink="http://www.microsoft.com/typography/otspec/gdef.htm"
-    shortDesc="The version number is not 0x00010000"
+    shortDesc="The version number is neither 0x00010000 nor 0x0001002"
     fwLinkID="10347"
     tableName="GDEF">
-    <problem>Version 0x00010000 is currently the only defined version of the GDEF table.</problem>
+    <problem>Versions 0x00010000 and 0x0001002 are currently the only defined versions of the GDEF table.</problem>
+</item>
+
+<item
+    helpID="E4013"
+    atom="GDEF_E_MarkSetTableFormat"
+    linkTitle="GDEF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/gdef.htm"
+    shortDesc="The MarkSetTableFormat is not 1"
+    fwLinkID="10347"
+    tableName="GDEF">
+    <problem>MarkSetTableFormat must be 1.</problem>
+</item>
+
+<item
+    helpID="E4014"
+    atom="GDEF_E_MarkGlyphSetsDefTable_PastEOT"
+    linkTitle="GDEF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/gdef.htm"
+    shortDesc="The MarkGlyphSetsDefTable extends past the end of the GDEF table"
+    fwLinkID="10347"
+    tableName="GDEF">
+    <problem>This error indicates a structural problem with the font. Structural errors may be caused by: a font tool incorrectly generating the font file; a person altering the contents of a valid font file; or some other corruption to the font file. Regenerate the font, or contact the font vendor to obtain a valid version of the font.</problem>
+</item>
+
+<item
+    helpID="I4000"
+    atom="GDEF_I_MarkSetCount"
+    linkTitle="GDEF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/gdef.htm"
+    shortDesc="The MarkSetCount of the GDEF table"
+    fwLinkID="10347"
+    tableName="GDEF">
+    <problem>Number of mark sets defined in the MarkGlyphSetsTable of the GDEF table</problem>
+</item>
+
+<item
+    helpID="P4007"
+    atom="GDEF_P_MarkGlyphSetsDefTable"
+    linkTitle="GDEF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/gdef.htm"
+    shortDesc="The MarkGlyphSetsDefTable of the GDEF table is okay"
+    fwLinkID="10347"
+    tableName="GDEF">
+    <problem>The MarkGlyphSetsTable of the GDEF table is okay.</problem>
 </item>
 
 <item
@@ -7718,7 +7762,7 @@ Correct this data using a table editing tool.&lt;BR&gt;For examples of how to us
     atom="GDEF_P_Version"
     linkTitle="WARNING: field missing"
     specLink="WARNING: field missing"
-    shortDesc="The version number is 0x00010000"
+    shortDesc="The version numbers 0x00010000 or 0x0001002 are okay"
     fwLinkID="0"
     tableName="WARNING: field missing">
     <problem/>
