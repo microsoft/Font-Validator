@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace OTFontFileVal
 {
@@ -10,7 +10,7 @@ namespace OTFontFileVal
     {
         public DataOverlapDetector()
         {
-            m_listFootprints = new ArrayList();
+            m_listFootprints = new List<Footprint>();
         }
 
         public bool CheckForNoOverlap(uint offset, uint length)
@@ -24,7 +24,7 @@ namespace OTFontFileVal
 
             for (int i=0; i<m_listFootprints.Count; i++)
             {
-                if (footprint.Overlaps((Footprint)m_listFootprints[i]))
+                if (footprint.Overlaps(m_listFootprints[i]))
                 {
                     bNoOverlap = false;
                     break;
@@ -64,12 +64,53 @@ namespace OTFontFileVal
                 return bOverlap;
             }
 
+            public uint begins
+            {
+                get {
+                    return first;
+                }
+            }
+            public uint ends
+            {
+                get {
+                    return (first + length);
+                }
+            }
+
             uint first;
             uint last;
             uint length;
         }
 
-        ArrayList m_listFootprints;
+        public string Occupied
+        {
+            get {
+                m_listFootprints.Sort(delegate(Footprint x, Footprint y)
+                                      {
+                                          if (x.begins == y.begins)
+                                              return x.ends.CompareTo(y.ends);
+                                          return x.begins.CompareTo(y.begins);
+                                      });
+
+                string result = m_listFootprints[0].begins.ToString();
+                for (int i = 1; i < m_listFootprints.Count; i++)
+                {
+                    if (m_listFootprints[i].begins != m_listFootprints[i-1].ends )
+                        result += "-" + m_listFootprints[i-1].ends + ";" + m_listFootprints[i].begins;
+                }
+                result += "-" + m_listFootprints[m_listFootprints.Count -1 ].ends;
+                return result;
+            }
+        }
+
+        public uint ends
+        {
+            get {
+                return m_listFootprints[m_listFootprints.Count -1 ].ends;
+            }
+        }
+
+        private List<Footprint> m_listFootprints;
     }
 
 }
