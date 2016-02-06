@@ -396,6 +396,8 @@ namespace OTFontFileVal {
         GDEF_E_LigGlyphTable_CaretValueArray_PastEOT,
         GDEF_E_LigGlyphTable_CaretValueOffset,
         GDEF_E_Version,
+        GDEF_E_MarkSetTableFormat,
+        GDEF_E_MarkGlyphSetsDefTable_PastEOT,
         GPOS_E_AnchorTable_format,
         GPOS_E_Array_order,
         GPOS_E_Array_pastEOT,
@@ -568,6 +570,7 @@ namespace OTFontFileVal {
         post_I_v2_numberOfGlyphs_notv2,
         post_I_names_uni_unexpected,
         prep_I_NotValidated,
+        GDEF_I_MarkSetCount,
         _rast_I_rasterization,
     }
     public enum P {
@@ -781,6 +784,7 @@ namespace OTFontFileVal {
         GDEF_P_LigCaretListTable_LigGlyphArray,
         GDEF_P_LigGlyphTable_CaretValueArray,
         GDEF_P_Version,
+        GDEF_P_MarkGlyphSetsDefTable,
         GPOS_P_AnchorTable,
         GPOS_P_BaseArrayTable,
         GPOS_P_BaseRecord,
