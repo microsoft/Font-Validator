@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace FontVal
@@ -33,7 +34,9 @@ namespace FontVal
 
             // Display the assembly information in a Label.
             //Label label1 = new Label();
-            label1.Text += " " + this.ProductVersion;
+            AssemblyName assemName = Assembly.GetExecutingAssembly().GetName();
+            label1.Text += " " + assemName.Version.Major + "." + assemName.Version.Minor
+                + "." + assemName.Version.Build + "." + assemName.Version.Revision;
         }
 
         /// <summary>
