@@ -5340,23 +5340,233 @@ Correct this data using a table editing tool.&lt;BR&gt;For examples of how to us
 <item
     helpID="I0200"
     atom="CFF_I_NotValidated"
-    linkTitle="WARNING: field missing"
-    specLink="WARNING: field missing"
-    shortDesc="Validation for the CFF table is not implemented"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Validation for the CFF table is not completedly implemented"
     fwLinkID="0"
-    tableName="WARNING: field missing">
-    <problem>ERROR: Required field missing</problem>
+    tableName="CFF">
+  <problem>Validation for the CFF table is not completedly implemented. Charset, Encoding, FDSelect for CID-keyed fonts, and
+  detailed testing of CharStrings are not implemented</problem>
 </item>
 
 <item
     helpID="I0201"
     atom="CFF_I_Version"
-    linkTitle="WARNING: field missing"
-    specLink="WARNING: field missing"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
     shortDesc="The CFF major.minor version for this table"
     fwLinkID="0"
-    tableName="WARNING: field missing">
-    <problem>ERROR: Required field missing</problem>
+    tableName="CFF">
+    <problem>The CFF major.minor version for this table</problem>
+</item>
+
+<item
+    helpID="P0202"
+    atom="CFF_P_Header"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="The header for the CFF table is okay"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>The header for the CFF table is okay.</problem>
+</item>
+
+<item
+    helpID="E0202"
+    atom="CFF_E_Header"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="The header for the CFF table is wrong"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>The header for the CFF table should have major 1, minor 0, header size 4 and offSize 0.</problem>
+</item>
+
+<item
+    helpID="P0203"
+    atom="CFF_P_MAININDEX_Enumeration"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Parse and Count items in the 4 main INDEX"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>Parse and count items in the 4 main INDEX</problem>
+</item>
+
+<item
+    helpID="E0203"
+    atom="CFF_E_MAININDEX_Enumeration"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Failed to parse and count items in the 4 main INDEX"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>Failed to parse and count items in the 4 main INDEX</problem>
+</item>
+
+<item
+    helpID="P0204"
+    atom="CFF_P_NameDICTSize"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Name and TopDICT have exactly 1 item each."
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>Name and TopDICT have exactly 1 item each.</problem>
+</item>
+
+<item
+    helpID="E0204"
+    atom="CFF_E_NameDICTSize"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Name and TopDICT should have exactly 1 item each."
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>Name and TopDICT should have exactly 1 item each.</problem>
+</item>
+
+<item
+    helpID="W0205"
+    atom="CFF_W_INDEXFirstOffset"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="The first offset in an INDEX structure should be 1"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>The first offset in an INDEX structure should be 1</problem>
+</item>
+
+<item
+    helpID="E0206"
+    atom="CFF_E_StructOverlap"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="structure overlap detected"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>This error indicates a structural problem with the font. Structural errors may be caused by: a font tool incorrectly generating the font file; a person altering the contents of a valid font file; or some other corruption to the font file. Regenerate the font, or contact the font vendor to obtain a valid version of the font.</problem>
+</item>
+
+<item
+    helpID="P0207"
+    atom="CFF_P_DICTUnwind"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Top/FD Dictionary Unwind Passed"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem></problem>
+</item>
+
+<item
+    helpID="E0207"
+    atom="CFF_E_DICTUnwind"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Top/FD Dictionary Unwind Error"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>This error indicates a structural problem with the font. Structural errors may be caused by: a font tool incorrectly generating the font file; a person altering the contents of a valid font file; or some other corruption to the font file. Regenerate the font, or contact the font vendor to obtain a valid version of the font.</problem>
+</item>
+
+<item
+    helpID="P0208"
+    atom="CFF_P_PrivDICTUnwind"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Private Dictionary Unwind Passed"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem></problem>
+</item>
+
+<item
+    helpID="E0208"
+    atom="CFF_E_PrivDICTUnwind"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Private Dictionary Unwind Error"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>This error indicates a structural problem with the font. Structural errors may be caused by: a font tool incorrectly generating the font file; a person altering the contents of a valid font file; or some other corruption to the font file. Regenerate the font, or contact the font vendor to obtain a valid version of the font.</problem>
+</item>
+
+<item
+    helpID="P0209"
+    atom="CFF_P_INDEXCount"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Number of items in an INDEX"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem></problem>
+</item>
+
+<item
+    helpID="E0209"
+    atom="CFF_E_INDEXCount"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Failed to extract INDEX"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>This error indicates a structural problem with the font. Structural errors may be caused by: a font tool incorrectly generating the font file; a person altering the contents of a valid font file; or some other corruption to the font file. Regenerate the font, or contact the font vendor to obtain a valid version of the font.</problem>
+</item>
+
+<item
+    helpID="P0210"
+    atom="CFF_P_CharStringsCount"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Count of CharStrings is equal to numGlyphs in maxp"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem></problem>
+</item>
+
+<item
+    helpID="E0210"
+    atom="CFF_E_CharStringsCount"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Count of CharStrings is not equal to numGlyphs in maxp"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>Count of CharStrings should be equal to numGlyphs in maxp.</problem>
+</item>
+
+<item
+    helpID="I0211"
+    atom="CFF_I_CIDROS"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Registry, Ordering, Supplement of the CID Font"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>Registry, Ordering, Supplement of the CID Font</problem>
+</item>
+
+<item
+    helpID="P0212"
+    atom="CFF_P_Non_ASCII_String_or_Name"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Names and Strings are us-ascii"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem></problem>
+</item>
+
+<item
+    helpID="E0212"
+    atom="CFF_E_Non_ASCII_String_or_Name"
+    linkTitle="CFF table specification"
+    specLink="http://www.microsoft.com/typography/otspec/cff.htm"
+    shortDesc="Names and Strings should be us-ascii"
+    fwLinkID="0"
+    tableName="CFF">
+    <problem>Font names and text strings in the CFF table should be in us-ascii encoding. In particular, copyright signs, trademarks, notices and non-English names of authors should be encoded with the proper encoding in the top level 'name' table. Some font vendors had in the past occasionally and mistakenly put copyright signs in either Latin1 or UTF8 encoding in the CFF String table.</problem>
 </item>
 
 <item
