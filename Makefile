@@ -128,7 +128,7 @@ bin/Glyph.dll:
 
 # running just xbuild (from monodevelop) plain also work for GenerateFValData.
 # but it's implementation of PostBuildEvent is lacking.
-GenerateFValData/bin/Debug/GenerateFValData.exe:
+GenerateFValData/bin/Debug/GenerateFValData.exe: GenerateFValData/ValTests.cs
 	( cd GenerateFValData && \
         mkdir -p bin/Debug && \
         $(MCS) -r:System.Web  -target:exe \
