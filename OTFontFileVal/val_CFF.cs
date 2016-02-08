@@ -66,7 +66,7 @@ namespace OTFontFileVal
             try
             {
                 v.Pass(T.CFF_MAININDEX_Enumeration, P.CFF_P_MAININDEX_Enumeration, m_tag,
-                       "Name=" + Name.count + ", TopDICT=" + TopDICT.count + " String=" + String.count + ", GlobalSubr=" + GlobalSubr.count);
+                       "Name=" + Name.count + ", TopDICT=" + TopDICT.count + ", String=" + String.count + ", GlobalSubr=" + GlobalSubr.count);
             }
             catch (Exception e)
             {
