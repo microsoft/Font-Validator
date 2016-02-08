@@ -130,7 +130,7 @@ namespace OTFontFileVal
                 if (MarkGlyphSetsDefOffset != 0)
                 {
                     MarkGlyphSetsDefTable_val mgsdt = GetMarkGlyphSetsDefTable_val();
-                    mgsdt.Validate(v, "MarkGlyphSetsDefDef", this);
+                    mgsdt.Validate(v, "MarkGlyphSetsDef", this);
                 }
             }
 
