@@ -82,7 +82,7 @@ namespace Compat
                 Console.WriteLine("String:\tcount={0}\tsize={1}",
                                   tCFF.String.count, tCFF.String.size);
                 Console.WriteLine("GlobalSubr:\tcount={0}\tsize={1}",
-                                  tCFF.GlobalSubr.size, tCFF.GlobalSubr.count);
+                                  tCFF.GlobalSubr.count, tCFF.GlobalSubr.size);
                 /* INDEX success */
 
                 var overlap = new DataOverlapDetector();
@@ -92,6 +92,14 @@ namespace Compat
                 overlap.CheckForNoOverlap(tCFF.String.begin, tCFF.String.size);
                 overlap.CheckForNoOverlap(tCFF.GlobalSubr.begin, tCFF.GlobalSubr.size);
 
+                if ( verbose > 1 )
+                {
+                    Console.WriteLine("Region-hdr        :\t{0}\t{1}", 0, tCFF.hdrSize);
+                    Console.WriteLine("Region-Name       :\t{0}\t{1}", tCFF.Name.begin, tCFF.Name.size);
+                    Console.WriteLine("Region-TopDICT    :\t{0}\t{1}", tCFF.TopDICT.begin, tCFF.TopDICT.size);
+                    Console.WriteLine("Region-String     :\t{0}\t{1}", tCFF.String.begin, tCFF.String.size);
+                    Console.WriteLine("Region-GlobalSubr :\t{0}\t{1}", tCFF.GlobalSubr.begin, tCFF.GlobalSubr.size);
+                }
                 for(uint i = 0; i< tCFF.Name.count; i++)
                     Console.WriteLine("Name: " + tCFF.Name.GetString(i));
 
@@ -121,6 +129,9 @@ namespace Compat
 
                     overlap.CheckForNoOverlap((uint)curTopDICT.offsetPrivate, (uint)curTopDICT.sizePrivate);
 
+                    if ( verbose > 1 )
+                        Console.WriteLine("Region-Private    :\t{0}\t{1}", curTopDICT.offsetPrivate, curTopDICT.sizePrivate);
+
                     Console.WriteLine("Offset to Charset:\t"  + curTopDICT.offsetCharset);
                     Console.WriteLine("Offset to Encoding:\t" + curTopDICT.offsetEncoding);
 
@@ -139,12 +150,18 @@ namespace Compat
                         var topPrivSubrs = tCFF.GetINDEX(curTopDICT.offsetPrivate + topPrivateDict.Subrs);
 
                         overlap.CheckForNoOverlap(topPrivSubrs.begin, topPrivSubrs.size);
+
+                        if ( verbose > 1 )
+                            Console.WriteLine("Region-PrivSubrs  :\t{0}\t{1}", topPrivSubrs.begin, topPrivSubrs.size);
                     }
 
                     var CharStrings = tCFF.GetINDEX(curTopDICT.offsetCharStrings);
                     Console.WriteLine("CharStrings count: " + CharStrings.count);
 
                     overlap.CheckForNoOverlap(CharStrings.begin, CharStrings.size);
+
+                    if ( verbose > 1 )
+                        Console.WriteLine("Region-CharStrings:\t{0}\t{1}", CharStrings.begin, CharStrings.size);
 
                     if (curTopDICT.ROS != null)
                     {
@@ -158,12 +175,18 @@ namespace Compat
 
                         overlap.CheckForNoOverlap(FDArray.begin, FDArray.size);
 
+                        if ( verbose > 1 )
+                            Console.WriteLine("Region-FDArray    :\t{0}\t{1}", FDArray.begin, FDArray.size);
+
                         for(uint i = 0; i< FDArray.count; i++)
                         {
                             var FDict = tCFF.GetDICT(FDArray.GetData(i));
                             Console.WriteLine("CID FontDict #{0}: {1}", i, FDict.FontName);
 
                             overlap.CheckForNoOverlap((uint)FDict.offsetPrivate, (uint)FDict.sizePrivate);
+
+                            if ( verbose > 1 )
+                                Console.WriteLine("Region-CID FontDict #{2}    :\t{0}\t{1}", FDict.offsetPrivate, FDict.sizePrivate, i);
 
                             Table_CFF.DICTData FDictPrivate = null;
                             try
@@ -180,6 +203,8 @@ namespace Compat
                                 var PrivSubrs = tCFF.GetINDEX(FDict.offsetPrivate + FDictPrivate.Subrs);
 
                                 overlap.CheckForNoOverlap(PrivSubrs.begin, PrivSubrs.size);
+                                if ( verbose > 1 )
+                                    Console.WriteLine("Region-CID PrivSubrs #{2}    :\t{0}\t{1}", PrivSubrs.begin, PrivSubrs.size, i);
                             }
                         }
                     }
