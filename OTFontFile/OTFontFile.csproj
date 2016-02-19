@@ -1,0 +1,238 @@
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2E80C9CA-7EA9-4855-A924-1EDF63728DF4}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>OTFontFile</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OTFontFile</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\OTFontFile.XML</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591</NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\OTFontFile.XML</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591</NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+      <HintPath>..\..\WINDOWS\Microsoft.NET\Framework\v4.0.30319\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+      <HintPath>..\..\WINDOWS\Microsoft.NET\Framework\v4.0.30319\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+      <HintPath>..\..\WINDOWS\Microsoft.NET\Framework\v4.0.30319\System.XML.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MBOBuffer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CFFStdStrings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OTFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OTFont.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OTL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OTTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OTTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TableManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_BASE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_CFF.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_cmap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_cvt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_DSIG.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_EBDT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_EBLC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_EBSC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_fpgm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_gasp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_GDEF.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_glyf.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_GPOS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_GSUB.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_hdmx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_head.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_hhea.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_hmtx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_JSTF.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_kern.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_loca.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_LTSH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_maxp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_name.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_OS2.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_PCLT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_post.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_prep.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_SVG.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_VDMX.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_vhea.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_vmtx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_VORG.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table_Zapf.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Table__Unknown.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TTCHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="util.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
