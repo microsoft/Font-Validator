@@ -1,0 +1,272 @@
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{07FCF988-3D68-4AC6-A7FA-A6F2FC1F9F95}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>OTFontFileVal</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OTFontFileVal</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\OTFontFileVal.XML</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591</NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\OTFontFileVal.XML</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591</NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="Compat">
+      <Name>System</Name>
+      <HintPath>..\bin\Compat.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\Glyph\Glyph.csproj">
+      <Name>Glyph</Name>
+      <Project>{6101D069-2BF6-4B8E-8C5A-25B5EC8BB344}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\GMath\GMath.csproj">
+      <Name>GMath</Name>
+      <Project>{0C946E0C-56F4-4C55-AC86-D97993574824}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\OTFontFile\OTFontFile.csproj">
+      <Name>OTFontFile</Name>
+      <Project>{2E80C9CA-7EA9-4855-A924-1EDF63728DF4}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\ValCommon\ValCommon.csproj">
+      <Name>ValCommon</Name>
+      <Project>{B6ACE917-C661-4ACC-8A1E-C96F51E80F2C}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="atoms.cs" />
+    <Compile Include="CallbVal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITableValidate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="I_IOGlyphsFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OTFileVal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OTFontVal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OTLVal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Overlap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PostNames.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RastTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TableManagerVal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ValDriver.cs" />
+    <Compile Include="ValidationInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ValidatorParameters.cs" />
+    <Compile Include="val_BASE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_CFF.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_cmap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_cvt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_DSIG.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_EBDT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_EBLC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_EBSC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_fpgm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_gasp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_GDEF.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_glyf.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_GPOS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_GSUB.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_hdmx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_head.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_hhea.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_hmtx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_JSTF.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_kern.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_loca.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_LTSH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_maxp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_name.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_OS2.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_PCLT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_post.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_prep.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_SVG.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_VDMX.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_vhea.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_vmtx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val_VORG.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="val__Unknown.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="OTFontFileVal.ValStrings.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
