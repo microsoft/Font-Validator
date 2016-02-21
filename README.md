@@ -14,12 +14,9 @@ The GUI's built-in help requires a CHM viewer, which defaults to [chmsee](https:
 
 The GUI on X11/mono needs the env variable `MONO_WINFORMS_XIM_STYLE=disabled` set to work around [Bug 28047 - Forms on separare threads -- Fatal errors/crashes](https://bugzilla.xamarin.com/show_bug.cgi?id=28047)
 
-Using [xsltproc](http://xmlsoft.org/XSLT/xsltproc2.html) (commonly available on GNU+Linux and Mac OS X) one can generate an HTML report from the XML one:
-
-    xsltproc fval.xsl arial.ttf.report.xml > arial.ttf.report.htm
-
 ## Build Instructions
 
+Font Validator was developed with Visual Studio C# by Microsoft; when it was released under MIT license in autumn 2015, VC# project files were not released. Instead, building with Mono's mcs C# compiler (http://www.mono-project.com/) was added.
 To build with mono instead of Microsoft C\# simply run:
 
     make
@@ -35,6 +32,8 @@ If one is making major changes (adding new tests, or new error/warning codes):
 To delete the newly generated binaries:
 
     make clean
+
+As of Feb 2016, building with Microsoft Visual C# was partially re-implemented. See https://github.com/HinTak/Font-Validator/issues/8 for current status on this.
 
 The rasterer-dependent tests (HDMX/LTSH/VDMX) requires an enhancement which first appears in FreeType 2.6.1. 
 Linux users can use `LD_LIBRARY_PATH` env to load newer library than system's.
