@@ -27,19 +27,10 @@
 		}
 		function display_row(cb_id, row_classname)
 		{
-			rowColl = document.all.tags("TR");
+			rowColl = document.body.querySelectorAll("TR." + row_classname);
 			for (i=0; i!=rowColl.length; i++) {
-				if (rowColl(i).className == row_classname)
-				{
-					if (cb_id.checked)
-					{
-						rowColl(i).style.display = "";
-					}
-					else
-					{
-						rowColl(i).style.display = "none";
-					}
-				}
+				rowColl.item(i).style.display =
+					cb_id.checked ? "" : "none";
 			}
 		}
 		</script>
