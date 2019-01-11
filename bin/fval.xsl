@@ -21,9 +21,9 @@
 		{
 			display_row(document.FORM1.cbErr, "class_E");
 		}
-		function display_table(table_id)
+		function display_table(checked, table_id)
 		{
-			table_id.style.display = (table_id.style.display == "none" ) ? "" : "none";
+			table_id.style.display = checked ? "" : "none";
 		}
 		function display_row(cb_id, row_classname)
 		{
@@ -168,7 +168,7 @@
 				    id='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}'
 				    type='checkbox'
 				    name='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}'
-				    onclick='display_table(table_{@CodeFriendlyTag}_{parent::node()/@FontIndex})'
+				    onclick='display_table(cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}.checked, table_{@CodeFriendlyTag}_{parent::node()/@FontIndex})'
 				checked='1'/>
 				<B>
 				<A
@@ -190,7 +190,7 @@
 			<xsl:for-each select="RasterizationTest_BW">
 				<BR/>
 				<INPUT
-				id='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}' type='checkbox' name='cb_{CodeFriendlyTag}_{parent::node()/@FontIndex}' onclick='display_table(table_{@CodeFriendlyTag}_{parent::node()/@FontIndex})'
+				id='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}' type='checkbox' name='cb_{CodeFriendlyTag}_{parent::node()/@FontIndex}' onclick='display_table(cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}.checked, table_{@CodeFriendlyTag}_{parent::node()/@FontIndex})'
 				checked='1'/>
 				<B>Rasterization Test, BW</B><BR/>
 				<TABLE
@@ -207,7 +207,7 @@
 			<xsl:for-each select="RasterizationTest_Grayscale">
 				<BR/>
 				<INPUT
-				id='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}' type='checkbox' name='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}' onclick='display_table(table_{@CodeFriendlyTag}_{parent::node()/@FontIndex})'
+				id='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}' type='checkbox' name='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}' onclick='display_table(cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}.checked, table_{@CodeFriendlyTag}_{parent::node()/@FontIndex})'
 				checked='1'/>
 				<B>Rasterization Test, Grayscale</B><BR/>
 				<TABLE
@@ -224,7 +224,7 @@
 			<xsl:for-each select="RasterizationTest_ClearType">
 				<BR/>
 				<INPUT
-				id='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}' type='checkbox' name='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}' onclick='display_table(table_{@CodeFriendlyTag}_{parent::node()/@FontIndex})'
+				id='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}' type='checkbox' name='cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}' onclick='display_table(cb_{@CodeFriendlyTag}_{parent::node()/@FontIndex}.checked, table_{@CodeFriendlyTag}_{parent::node()/@FontIndex})'
 				checked='1'/>
 				<B>Rasterization Test, ClearType</B><BR/>
 				<TABLE
